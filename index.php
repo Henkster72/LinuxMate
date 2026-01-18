@@ -85,7 +85,7 @@ $kb = fn($bytes) => number_format($bytes / 1024, 1) . ' KB';
                         <i class="pi pi-code"></i>
                         GitHub
                     </a>
-                    <a href="https://github.com/Henkster72/LinuxMate/CONTRIBUTING.md" target="_blank" rel="noreferrer">
+                    <a href="https://github.com/Henkster72/LinuxMate/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">
                         <i class="pi pi-heart"></i>
                         Contribute
                     </a>
