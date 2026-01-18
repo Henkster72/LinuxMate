@@ -1,4 +1,3 @@
-````markdown
 # LinuxMate v0.1 🐧✨
 
 <img src="icons/tuxbw.svg" alt="LinuxMate logo" width="96" />
