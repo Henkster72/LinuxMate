@@ -91,6 +91,10 @@ If your repo uses an `output/` directory, deploy that instead:
 3. Replace `icons/tuxbw.svg` with your logo
 4. Change the project name everywhere you feel like it (go wild)
 
+## Contributing
+
+See `CONTRIBUTING.md`.
+
 ---
 
 ## URL parameters (shareable selections)
