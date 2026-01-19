@@ -1,4 +1,4 @@
-# LinuxMate v0.21 🐧✨
+# LinuxMate v0.3 🐧✨
 
 <img src="icons/tuxbw.svg" alt="LinuxMate logo" width="96" />
 
@@ -11,6 +11,7 @@ No build step. No tooling ceremony. Just open it and go.
 
 ## Changelog
 
+- v0.3: Tighten the hero/search area, inline stats, version badge, and single clear button.
 - v0.21: Fix search filtering by honoring the `hidden` attribute in CSS.
 - v0.2: Move distros to JSON, show AUR helper only when needed, and refresh stats + mobile footer.
 - v0.1: Initial release.
