@@ -1,4 +1,4 @@
-# LinuxMate v0.2 🐧✨
+# LinuxMate v0.21 🐧✨
 
 <img src="icons/tuxbw.svg" alt="LinuxMate logo" width="96" />
 
@@ -6,6 +6,14 @@ LinuxMate is a lightweight, dependency-free bulk app installer UI for Linux — 
 
 It renders server-side, generates **clean batched install scripts** per package manager, and runs happily on basic PHP hosting.  
 No build step. No tooling ceremony. Just open it and go.
+
+---
+
+## Changelog
+
+- v0.21: Fix search filtering by honoring the `hidden` attribute in CSS.
+- v0.2: Move distros to JSON, show AUR helper only when needed, and refresh stats + mobile footer.
+- v0.1: Initial release.
 
 ---
 

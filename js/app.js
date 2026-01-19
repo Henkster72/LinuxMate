@@ -496,9 +496,10 @@ searchInput.addEventListener('input', (event) => {
     }
     const tokens = query.split(/\s+/).filter(Boolean);
     packageItems.forEach((item) => {
-        const base = item.dataset.search
+        const baseSource = item.dataset.search
             ? item.dataset.search
-            : `${item.dataset.name} ${item.dataset.description}`.toLowerCase();
+            : `${item.dataset.name || ''} ${item.dataset.description || ''}`;
+        const base = baseSource.toLowerCase();
         const match = tokens.length
             ? tokens.every((token) => base.includes(token))
             : true;

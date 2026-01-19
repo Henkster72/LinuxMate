@@ -30,6 +30,10 @@ body[data-theme="dark"] {
     box-sizing: border-box;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 body {
     margin: 0;
     font-family: "Space Grotesk", "Avenir Next", "Trebuchet MS", sans-serif;
