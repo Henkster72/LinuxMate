@@ -1,6 +1,15 @@
 <?php
 $packagesFile = __DIR__ . '/data/packages.json';
 $packages = json_decode(file_get_contents($packagesFile), true) ?? [];
+$distroFile = __DIR__ . '/data/distro.json';
+$distros = [];
+if (file_exists($distroFile)) {
+    $distros = json_decode(file_get_contents($distroFile), true);
+}
+$distros = is_array($distros) ? $distros : [];
+$defaultDistroLabel = $distros[0]['label'] ?? 'Select';
+$packageCount = is_array($packages) ? count($packages) : 0;
+$distroCount = count($distros);
 
 $categoryOrder = [
     'Web Browsers',
@@ -104,24 +113,33 @@ $kb = fn($bytes) => number_format($bytes / 1024, 1) . ' KB';
                         <div class="select-shell distro-shell">
                             <button id="distro-button" class="distro-button" type="button" aria-haspopup="listbox" aria-controls="distro-menu" aria-expanded="false">
                                 <img class="distro-button-icon" alt="" />
-                                <span class="distro-button-label">Ubuntu</span>
+                                <span class="distro-button-label"><?php echo htmlspecialchars($defaultDistroLabel); ?></span>
                             </button>
                             <span class="select-caret pi pi-downcaret" aria-hidden="true"></span>
                             <select id="distro" class="native-select" aria-hidden="true" tabindex="-1">
-                                <option value="ubuntu" data-icon="https://api.iconify.design/simple-icons/ubuntu.svg?color=%23E95420" data-managers="apt,flatpak">Ubuntu</option>
-                                <option value="debian" data-icon="https://api.iconify.design/simple-icons/debian.svg?color=%23A81D33" data-managers="apt,flatpak">Debian</option>
-                                <option value="arch" data-icon="https://api.iconify.design/simple-icons/archlinux.svg?color=%231793D1" data-managers="pacman,aur,flatpak">Arch</option>
-                                <option value="fedora" data-icon="https://api.iconify.design/simple-icons/fedora.svg?color=%2351A2DA" data-managers="dnf,flatpak">Fedora</option>
-                                <option value="opensuse" data-icon="https://api.iconify.design/simple-icons/opensuse.svg?color=%2373BA25" data-managers="zypper,flatpak">OpenSUSE</option>
-                                <option value="nix" data-icon="https://api.iconify.design/simple-icons/nixos.svg?color=%235277C3" data-managers="flatpak">Nix</option>
-                                <option value="flatpak" data-icon="https://api.iconify.design/simple-icons/flatpak.svg?color=%234A90D9" data-managers="flatpak">Flatpak</option>
-                                <option value="snap" data-icon="https://api.iconify.design/simple-icons/snapcraft.svg?color=%2382BEA0" data-managers="snap">Snap</option>
-                                <option value="homebrew" data-icon="https://api.iconify.design/simple-icons/homebrew.svg?color=%23FBB040" data-managers="brew">Homebrew</option>
+                                <?php foreach ($distros as $index => $distro): ?>
+                                    <?php
+                                        $value = $distro['value'] ?? '';
+                                        $label = $distro['label'] ?? $value;
+                                        $icon = $distro['icon'] ?? '';
+                                        $managers = $distro['managers'] ?? [];
+                                        $managerList = is_array($managers) ? implode(',', $managers) : '';
+                                    ?>
+                                    <option value="<?php echo htmlspecialchars($value); ?>"
+                                        data-icon="<?php echo htmlspecialchars($icon); ?>"
+                                        data-managers="<?php echo htmlspecialchars($managerList); ?>"
+                                        <?php echo $index === 0 ? 'selected' : ''; ?>>
+                                        <?php echo htmlspecialchars($label); ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
                             <ul id="distro-menu" class="distro-menu" role="listbox" aria-label="Select distro"></ul>
                         </div>
                     </label>
-                    <label class="select aur-select" id="aur-wrap" hidden>
+                    <div id="aur-slot"></div>
+                </div>
+                <template id="aur-template">
+                    <label class="select aur-select" id="aur-wrap">
                         <span>AUR helper</span>
                         <div class="select-shell">
                             <select id="aur-helper">
@@ -131,7 +149,7 @@ $kb = fn($bytes) => number_format($bytes / 1024, 1) . ' KB';
                             <span class="select-caret pi pi-downcaret" aria-hidden="true"></span>
                         </div>
                     </label>
-                </div>
+                </template>
             </div>
         </header>
 
@@ -141,10 +159,8 @@ $kb = fn($bytes) => number_format($bytes / 1024, 1) . ' KB';
                 <p>No toolbars. No clicking next. Select apps, batch by manager, run once.</p>
             </div>
             <div class="stats">
-                <span>0 dependencies</span>
-                <span>Requests: base 3 + lazy icons</span>
-                <span>JS: <?php echo htmlspecialchars($kb($jsBytes)); ?></span>
-                <span>CSS: <?php echo htmlspecialchars($kb($cssBytes)); ?></span>
+                <span>Packages: <?php echo htmlspecialchars((string) $packageCount); ?></span>
+                <span>Distros: <?php echo htmlspecialchars((string) $distroCount); ?></span>
             </div>
         </section>
 

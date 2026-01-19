@@ -1,0 +1,56 @@
+[
+  {
+    "value": "ubuntu",
+    "label": "Ubuntu",
+    "icon": "https://api.iconify.design/simple-icons/ubuntu.svg?color=%23E95420",
+    "managers": ["apt", "flatpak"]
+  },
+  {
+    "value": "debian",
+    "label": "Debian",
+    "icon": "https://api.iconify.design/simple-icons/debian.svg?color=%23A81D33",
+    "managers": ["apt", "flatpak"]
+  },
+  {
+    "value": "arch",
+    "label": "Arch",
+    "icon": "https://api.iconify.design/simple-icons/archlinux.svg?color=%231793D1",
+    "managers": ["pacman", "aur", "flatpak"]
+  },
+  {
+    "value": "fedora",
+    "label": "Fedora",
+    "icon": "https://api.iconify.design/simple-icons/fedora.svg?color=%2351A2DA",
+    "managers": ["dnf", "flatpak"]
+  },
+  {
+    "value": "opensuse",
+    "label": "OpenSUSE",
+    "icon": "https://api.iconify.design/simple-icons/opensuse.svg?color=%2373BA25",
+    "managers": ["zypper", "flatpak"]
+  },
+  {
+    "value": "nix",
+    "label": "Nix",
+    "icon": "https://api.iconify.design/simple-icons/nixos.svg?color=%235277C3",
+    "managers": ["flatpak"]
+  },
+  {
+    "value": "flatpak",
+    "label": "Flatpak",
+    "icon": "https://api.iconify.design/simple-icons/flatpak.svg?color=%234A90D9",
+    "managers": ["flatpak"]
+  },
+  {
+    "value": "snap",
+    "label": "Snap",
+    "icon": "https://api.iconify.design/simple-icons/snapcraft.svg?color=%2382BEA0",
+    "managers": ["snap"]
+  },
+  {
+    "value": "homebrew",
+    "label": "Homebrew",
+    "icon": "https://api.iconify.design/simple-icons/homebrew.svg?color=%23FBB040",
+    "managers": ["brew"]
+  }
+]

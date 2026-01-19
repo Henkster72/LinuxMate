@@ -1,6 +1,8 @@
 const distroSelect = document.getElementById('distro');
-const aurWrap = document.getElementById('aur-wrap');
-const aurHelper = document.getElementById('aur-helper');
+const aurSlot = document.getElementById('aur-slot');
+const aurTemplate = document.getElementById('aur-template');
+let aurWrap = document.getElementById('aur-wrap');
+let aurHelper = document.getElementById('aur-helper');
 const scriptOutput = document.getElementById('script-output');
 const selectedCount = document.getElementById('selected-count');
 const searchInput = document.getElementById('search');
@@ -44,6 +46,7 @@ let focusIndex = 0;
 let pendingRequest = null;
 let debounceTimer = null;
 const feedbackTimers = new WeakMap();
+let lastAurHelper = 'yay';
 
 packageItems.forEach((item) => {
     const checkbox = item.querySelector('.pkg-check');
@@ -68,6 +71,42 @@ const getActiveManagers = () => {
         .split(',')
         .map((entry) => entry.trim())
         .filter(Boolean);
+};
+
+const setAurHelperValue = (value) => {
+    if (!aurHelper) {
+        return;
+    }
+    aurHelper.value = value;
+    lastAurHelper = value;
+};
+
+const ensureAurHelper = (show) => {
+    if (!aurSlot || !aurTemplate) {
+        return;
+    }
+    if (show) {
+        if (!aurWrap) {
+            const fragment = aurTemplate.content.cloneNode(true);
+            aurSlot.appendChild(fragment);
+            aurWrap = document.getElementById('aur-wrap');
+            aurHelper = document.getElementById('aur-helper');
+            if (aurHelper) {
+                aurHelper.value = lastAurHelper;
+                aurHelper.addEventListener('change', () => {
+                    lastAurHelper = aurHelper.value;
+                    scheduleUpdate();
+                });
+            }
+        }
+    } else if (aurWrap) {
+        if (aurHelper) {
+            lastAurHelper = aurHelper.value;
+        }
+        aurWrap.remove();
+        aurWrap = null;
+        aurHelper = null;
+    }
 };
 
 const updateDistroButton = () => {
@@ -288,7 +327,7 @@ const focusItemByDirection = (direction) => {
 const updateAvailability = () => {
     const activeManagers = new Set(getActiveManagers());
     const showAur = activeManagers.has('aur');
-    aurWrap.hidden = !showAur;
+    ensureAurHelper(showAur);
 
     packageItems.forEach((item) => {
         const checkbox = item.querySelector('.pkg-check');
@@ -324,7 +363,7 @@ const fetchScript = async () => {
             body: JSON.stringify({
                 distro: distroSelect.value,
                 packages: Array.from(selected),
-                aur_helper: aurHelper ? aurHelper.value : 'yay',
+                aur_helper: aurHelper ? aurHelper.value : lastAurHelper,
             }),
             signal: controller.signal,
         });
@@ -528,8 +567,6 @@ helpButton.addEventListener('click', () => {
 
 themeToggle.addEventListener('click', toggleTheme);
 
-aurHelper?.addEventListener('change', scheduleUpdate);
-
 distroSelect.addEventListener('change', () => {
     updateAvailability();
     scheduleUpdate();
@@ -617,14 +654,14 @@ window.addEventListener('keydown', (event) => {
             clearBtn.click();
             break;
         case '1':
-            if (!aurWrap.hidden) {
-                aurHelper.value = 'yay';
+            if (aurHelper) {
+                setAurHelperValue('yay');
                 scheduleUpdate();
             }
             break;
         case '2':
-            if (!aurWrap.hidden) {
-                aurHelper.value = 'paru';
+            if (aurHelper) {
+                setAurHelperValue('paru');
                 scheduleUpdate();
             }
             break;

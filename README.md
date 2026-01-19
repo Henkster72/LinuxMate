@@ -1,4 +1,4 @@
-# LinuxMate v0.1 🐧✨
+# LinuxMate v0.2 🐧✨
 
 <img src="icons/tuxbw.svg" alt="LinuxMate logo" width="96" />
 
