@@ -2462,5 +2462,1237 @@
             "zypper": "zoxide"
         },
         "icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1em\" height=\"1em\" viewBox=\"0 0 24 24\"><path fill=\"#FF9F43\" d=\"M20 18H4V8h16zM12 6l-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16c1.11 0 2-.89 2-2V8a2 2 0 0 0-2-2zm-1 8v-2h4V9l4 4l-4 4v-3z\"/></svg>"
+    },
+    {
+        "id": "claws-mail",
+        "name": "Claws Mail",
+        "description": "Claws Mail for Communication.",
+        "category": "Communication",
+        "packages": {
+            "apt": "claws-mail",
+            "dnf": "claws-mail",
+            "pacman": "claws-mail",
+            "flatpak": null,
+            "zypper": "claws-mail"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "cups",
+        "name": "CUPS",
+        "description": "CUPS for System.",
+        "category": "System",
+        "packages": {
+            "apt": "cups",
+            "dnf": "cups",
+            "pacman": "cups",
+            "flatpak": null,
+            "zypper": "cups"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "djvulibre",
+        "name": "DjVuLibre",
+        "description": "DjVuLibre for Media.",
+        "category": "Media",
+        "packages": {
+            "apt": "djvulibre",
+            "dnf": "djvulibre",
+            "pacman": "djvulibre",
+            "flatpak": null,
+            "zypper": "djvulibre"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "dosbox",
+        "name": "DOSBox",
+        "description": "DOSBox for Gaming.",
+        "category": "Gaming",
+        "packages": {
+            "apt": "dosbox",
+            "dnf": "dosbox",
+            "pacman": "dosbox",
+            "flatpak": null,
+            "zypper": "dosbox"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "gcc",
+        "name": "GCC",
+        "description": "GCC for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "gcc",
+            "dnf": "gcc",
+            "pacman": "gcc",
+            "flatpak": null,
+            "zypper": "gcc"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "gdb",
+        "name": "GDB",
+        "description": "GDB for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "gdb",
+            "dnf": "gdb",
+            "pacman": "gdb",
+            "flatpak": null,
+            "zypper": "gdb"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "grub",
+        "name": "GRUB",
+        "description": "GRUB for System.",
+        "category": "System",
+        "packages": {
+            "apt": "grub",
+            "dnf": "grub",
+            "pacman": "grub",
+            "flatpak": null,
+            "zypper": "grub"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "gtk",
+        "name": "GTK",
+        "description": "GTK for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "gtk",
+            "dnf": "gtk",
+            "pacman": "gtk",
+            "flatpak": null,
+            "zypper": "gtk"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/gtk.svg\" alt=\"\" />"
+    },
+    {
+        "id": "haproxy",
+        "name": "HAProxy",
+        "description": "HAProxy for VPN & Network.",
+        "category": "VPN & Network",
+        "packages": {
+            "apt": "haproxy",
+            "dnf": "haproxy",
+            "pacman": "haproxy",
+            "flatpak": null,
+            "zypper": "haproxy"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "imagemagick",
+        "name": "ImageMagick",
+        "description": "ImageMagick for Creative.",
+        "category": "Creative",
+        "packages": {
+            "apt": "imagemagick",
+            "dnf": "imagemagick",
+            "pacman": "imagemagick",
+            "flatpak": null,
+            "zypper": "imagemagick"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "jq",
+        "name": "jq",
+        "description": "jq for CLI Tools.",
+        "category": "CLI Tools",
+        "packages": {
+            "apt": "jq",
+            "dnf": "jq",
+            "pacman": "jq",
+            "flatpak": null,
+            "zypper": "jq"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "kubernetes",
+        "name": "Kubernetes",
+        "description": "Kubernetes for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "kubernetes",
+            "dnf": "kubernetes",
+            "pacman": "kubernetes",
+            "flatpak": null,
+            "zypper": "kubernetes"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/kubernetes.svg\" alt=\"\" />"
+    },
+    {
+        "id": "lame",
+        "name": "LAME",
+        "description": "LAME for Media.",
+        "category": "Media",
+        "packages": {
+            "apt": "lame",
+            "dnf": "lame",
+            "pacman": "lame",
+            "flatpak": null,
+            "zypper": "lame"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "libreoffice",
+        "name": "LibreOffice",
+        "description": "LibreOffice for Office.",
+        "category": "Office",
+        "packages": {
+            "apt": "libreoffice",
+            "dnf": "libreoffice",
+            "pacman": "libreoffice",
+            "flatpak": null,
+            "zypper": "libreoffice"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/libreoffice.svg\" alt=\"\" />"
+    },
+    {
+        "id": "linux",
+        "name": "Linux",
+        "description": "Linux for System.",
+        "category": "System",
+        "packages": {
+            "apt": "linux",
+            "dnf": "linux",
+            "pacman": "linux",
+            "flatpak": null,
+            "zypper": "linux"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/linux.svg\" alt=\"\" />"
+    },
+    {
+        "id": "llvm",
+        "name": "LLVM",
+        "description": "LLVM for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "llvm",
+            "dnf": "llvm",
+            "pacman": "llvm",
+            "flatpak": null,
+            "zypper": "llvm"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/llvm.svg\" alt=\"\" />"
+    },
+    {
+        "id": "mariadb",
+        "name": "MariaDB",
+        "description": "MariaDB for Databases.",
+        "category": "Databases",
+        "packages": {
+            "apt": "mariadb",
+            "dnf": "mariadb",
+            "pacman": "mariadb",
+            "flatpak": null,
+            "zypper": "mariadb"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/mariadb.svg\" alt=\"\" />"
+    },
+    {
+        "id": "project-mc",
+        "name": "Project MC",
+        "description": "Project MC for Gaming.",
+        "category": "Gaming",
+        "packages": {
+            "apt": "project-mc",
+            "dnf": "project-mc",
+            "pacman": "project-mc",
+            "flatpak": null,
+            "zypper": "project-mc"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/minecraft.svg\" alt=\"\" />"
+    },
+    {
+        "id": "mplayer",
+        "name": "MPlayer",
+        "description": "MPlayer for Media.",
+        "category": "Media",
+        "packages": {
+            "apt": "mplayer",
+            "dnf": "mplayer",
+            "pacman": "mplayer",
+            "flatpak": null,
+            "zypper": "mplayer"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "mysql",
+        "name": "MySQL",
+        "description": "MySQL for Databases.",
+        "category": "Databases",
+        "packages": {
+            "apt": "mysql",
+            "dnf": "mysql",
+            "pacman": "mysql",
+            "flatpak": null,
+            "zypper": "mysql"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/mysql.svg\" alt=\"\" />"
+    },
+    {
+        "id": "nginx",
+        "name": "Nginx",
+        "description": "Nginx for VPN & Network.",
+        "category": "VPN & Network",
+        "packages": {
+            "apt": "nginx",
+            "dnf": "nginx",
+            "pacman": "nginx",
+            "flatpak": null,
+            "zypper": "nginx"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/nginx.svg\" alt=\"\" />"
+    },
+    {
+        "id": "openssl",
+        "name": "OpenSSL",
+        "description": "OpenSSL for Security.",
+        "category": "Security",
+        "packages": {
+            "apt": "openssl",
+            "dnf": "openssl",
+            "pacman": "openssl",
+            "flatpak": null,
+            "zypper": "openssl"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/openssl.svg\" alt=\"\" />"
+    },
+    {
+        "id": "openttd",
+        "name": "OpenTTD",
+        "description": "OpenTTD for Gaming.",
+        "category": "Gaming",
+        "packages": {
+            "apt": "openttd",
+            "dnf": "openttd",
+            "pacman": "openttd",
+            "flatpak": null,
+            "zypper": "openttd"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "p7zip",
+        "name": "p7zip",
+        "description": "p7zip for CLI Tools.",
+        "category": "CLI Tools",
+        "packages": {
+            "apt": "p7zip",
+            "dnf": "p7zip",
+            "pacman": "p7zip",
+            "flatpak": null,
+            "zypper": "p7zip"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/7zip.svg\" alt=\"\" />"
+    },
+    {
+        "id": "pip",
+        "name": "pip",
+        "description": "pip for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "python3-pip",
+            "dnf": "python3-pip",
+            "pacman": "python-pip",
+            "flatpak": null,
+            "zypper": "python3-pip"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "postfix",
+        "name": "Postfix",
+        "description": "Postfix for VPN & Network.",
+        "category": "VPN & Network",
+        "packages": {
+            "apt": "postfix",
+            "dnf": "postfix",
+            "pacman": "postfix",
+            "flatpak": null,
+            "zypper": "postfix"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "postgresql",
+        "name": "PostgreSQL",
+        "description": "PostgreSQL for Databases.",
+        "category": "Databases",
+        "packages": {
+            "apt": "postgresql",
+            "dnf": "postgresql",
+            "pacman": "postgresql",
+            "flatpak": null,
+            "zypper": "postgresql"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/postgresql.svg\" alt=\"\" />"
+    },
+    {
+        "id": "privoxy",
+        "name": "Privoxy",
+        "description": "Privoxy for VPN & Network.",
+        "category": "VPN & Network",
+        "packages": {
+            "apt": "privoxy",
+            "dnf": "privoxy",
+            "pacman": "privoxy",
+            "flatpak": null,
+            "zypper": "privoxy"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "python",
+        "name": "Python",
+        "description": "Python for Dev: Languages.",
+        "category": "Dev: Languages",
+        "packages": {
+            "apt": "python3",
+            "dnf": "python3",
+            "pacman": "python",
+            "flatpak": null,
+            "zypper": "python3"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/python.svg\" alt=\"\" />"
+    },
+    {
+        "id": "qemu",
+        "name": "QEMU",
+        "description": "QEMU for System.",
+        "category": "System",
+        "packages": {
+            "apt": "qemu",
+            "dnf": "qemu",
+            "pacman": "qemu",
+            "flatpak": null,
+            "zypper": "qemu"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/qemu.svg\" alt=\"\" />"
+    },
+    {
+        "id": "qt",
+        "name": "Qt",
+        "description": "Qt for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "qt",
+            "dnf": "qt",
+            "pacman": "qt",
+            "flatpak": null,
+            "zypper": "qt"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/qt.svg\" alt=\"\" />"
+    },
+    {
+        "id": "rdesktop",
+        "name": "rdesktop",
+        "description": "rdesktop for File Sharing.",
+        "category": "File Sharing",
+        "packages": {
+            "apt": "rdesktop",
+            "dnf": "rdesktop",
+            "pacman": "rdesktop",
+            "flatpak": null,
+            "zypper": "rdesktop"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "redis",
+        "name": "Redis",
+        "description": "Redis for Databases.",
+        "category": "Databases",
+        "packages": {
+            "apt": "redis",
+            "dnf": "redis",
+            "pacman": "redis",
+            "flatpak": null,
+            "zypper": "redis"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/redis.svg\" alt=\"\" />"
+    },
+    {
+        "id": "rtorrent",
+        "name": "rTorrent",
+        "description": "rTorrent for File Sharing.",
+        "category": "File Sharing",
+        "packages": {
+            "apt": "rtorrent",
+            "dnf": "rtorrent",
+            "pacman": "rtorrent",
+            "flatpak": null,
+            "zypper": "rtorrent"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "sane-backends",
+        "name": "SANE Backends",
+        "description": "SANE Backends for System.",
+        "category": "System",
+        "packages": {
+            "apt": "sane-backends",
+            "dnf": "sane-backends",
+            "pacman": "sane-backends",
+            "flatpak": null,
+            "zypper": "sane-backends"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "scummvm",
+        "name": "ScummVM",
+        "description": "ScummVM for Gaming.",
+        "category": "Gaming",
+        "packages": {
+            "apt": "scummvm",
+            "dnf": "scummvm",
+            "pacman": "scummvm",
+            "flatpak": null,
+            "zypper": "scummvm"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "smartmontools",
+        "name": "Smartmontools",
+        "description": "Smartmontools for System.",
+        "category": "System",
+        "packages": {
+            "apt": "smartmontools",
+            "dnf": "smartmontools",
+            "pacman": "smartmontools",
+            "flatpak": null,
+            "zypper": "smartmontools"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "sqlite",
+        "name": "SQLite",
+        "description": "SQLite for Databases.",
+        "category": "Databases",
+        "packages": {
+            "apt": "sqlite",
+            "dnf": "sqlite",
+            "pacman": "sqlite",
+            "flatpak": null,
+            "zypper": "sqlite"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/sqlite.svg\" alt=\"\" />"
+    },
+    {
+        "id": "squid",
+        "name": "Squid",
+        "description": "Squid for VPN & Network.",
+        "category": "VPN & Network",
+        "packages": {
+            "apt": "squid",
+            "dnf": "squid",
+            "pacman": "squid",
+            "flatpak": null,
+            "zypper": "squid"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "sudo",
+        "name": "sudo",
+        "description": "sudo for System.",
+        "category": "System",
+        "packages": {
+            "apt": "sudo",
+            "dnf": "sudo",
+            "pacman": "sudo",
+            "flatpak": null,
+            "zypper": "sudo"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "tor",
+        "name": "Tor",
+        "description": "Tor for Security.",
+        "category": "Security",
+        "packages": {
+            "apt": "tor",
+            "dnf": "tor",
+            "pacman": "tor",
+            "flatpak": null,
+            "zypper": "tor"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "unbound",
+        "name": "Unbound",
+        "description": "Unbound for VPN & Network.",
+        "category": "VPN & Network",
+        "packages": {
+            "apt": "unbound",
+            "dnf": "unbound",
+            "pacman": "unbound",
+            "flatpak": null,
+            "zypper": "unbound"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "valgrind",
+        "name": "Valgrind",
+        "description": "Valgrind for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "valgrind",
+            "dnf": "valgrind",
+            "pacman": "valgrind",
+            "flatpak": null,
+            "zypper": "valgrind"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "project-wesnoth",
+        "name": "Project Wesnoth",
+        "description": "Project Wesnoth for Gaming.",
+        "category": "Gaming",
+        "packages": {
+            "apt": "project-wesnoth",
+            "dnf": "project-wesnoth",
+            "pacman": "project-wesnoth",
+            "flatpak": null,
+            "zypper": "project-wesnoth"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/linux.svg\" alt=\"\" />"
+    },
+    {
+        "id": "xorg-server",
+        "name": "Xorg Server",
+        "description": "Xorg Server for System.",
+        "category": "System",
+        "packages": {
+            "apt": "xorg-server",
+            "dnf": "xorg-server",
+            "pacman": "xorg-server",
+            "flatpak": null,
+            "zypper": "xorg-server"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "xterm",
+        "name": "Xterm",
+        "description": "Xterm for Terminal.",
+        "category": "Terminal",
+        "packages": {
+            "apt": "xterm",
+            "dnf": "xterm",
+            "pacman": "xterm",
+            "flatpak": null,
+            "zypper": "xterm"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "yt-dlp",
+        "name": "yt-dlp",
+        "description": "yt-dlp for CLI Tools.",
+        "category": "CLI Tools",
+        "packages": {
+            "apt": "yt-dlp",
+            "dnf": "yt-dlp",
+            "pacman": "yt-dlp",
+            "flatpak": null,
+            "zypper": "yt-dlp"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "zeromq",
+        "name": "ZeroMQ",
+        "description": "ZeroMQ for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "zeromq",
+            "dnf": "zeromq",
+            "pacman": "zeromq",
+            "flatpak": null,
+            "zypper": "zeromq"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/zeromq.svg\" alt=\"\" />"
+    },
+    {
+        "id": "gnome",
+        "name": "GNOME",
+        "description": "GNOME for Desktop Environments.",
+        "category": "Desktop Environments",
+        "packages": {
+            "apt": "gnome",
+            "dnf": "gnome",
+            "pacman": "gnome",
+            "flatpak": null,
+            "zypper": "gnome"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/gnome.svg\" alt=\"\" />"
+    },
+    {
+        "id": "kde-plasma",
+        "name": "KDE Plasma",
+        "description": "KDE Plasma for Desktop Environments.",
+        "category": "Desktop Environments",
+        "packages": {
+            "apt": "plasma-desktop",
+            "dnf": "plasma-desktop",
+            "pacman": "plasma-desktop",
+            "flatpak": null,
+            "zypper": "plasma-desktop"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "xfce",
+        "name": "Xfce",
+        "description": "Xfce for Desktop Environments.",
+        "category": "Desktop Environments",
+        "packages": {
+            "apt": "xfce",
+            "dnf": "xfce",
+            "pacman": "xfce",
+            "flatpak": null,
+            "zypper": "xfce"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/xfce.svg\" alt=\"\" />"
+    },
+    {
+        "id": "cinnamon",
+        "name": "Cinnamon",
+        "description": "Cinnamon for Desktop Environments.",
+        "category": "Desktop Environments",
+        "packages": {
+            "apt": "cinnamon",
+            "dnf": "cinnamon",
+            "pacman": "cinnamon",
+            "flatpak": null,
+            "zypper": "cinnamon"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/cinnamon.svg\" alt=\"\" />"
+    },
+    {
+        "id": "mate",
+        "name": "MATE",
+        "description": "MATE for Desktop Environments.",
+        "category": "Desktop Environments",
+        "packages": {
+            "apt": "mate",
+            "dnf": "mate",
+            "pacman": "mate",
+            "flatpak": null,
+            "zypper": "mate"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "lxqt",
+        "name": "LXQt",
+        "description": "LXQt for Desktop Environments.",
+        "category": "Desktop Environments",
+        "packages": {
+            "apt": "lxqt",
+            "dnf": "lxqt",
+            "pacman": "lxqt",
+            "flatpak": null,
+            "zypper": "lxqt"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "budgie",
+        "name": "Budgie",
+        "description": "Budgie for Desktop Environments.",
+        "category": "Desktop Environments",
+        "packages": {
+            "apt": "budgie",
+            "dnf": "budgie",
+            "pacman": "budgie",
+            "flatpak": null,
+            "zypper": "budgie"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "sway",
+        "name": "Sway",
+        "description": "Sway for Window Managers.",
+        "category": "Window Managers",
+        "packages": {
+            "apt": "sway",
+            "dnf": "sway",
+            "pacman": "sway",
+            "flatpak": null,
+            "zypper": "sway"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/sway.svg\" alt=\"\" />"
+    },
+    {
+        "id": "openbox",
+        "name": "Openbox",
+        "description": "Openbox for Window Managers.",
+        "category": "Window Managers",
+        "packages": {
+            "apt": "openbox",
+            "dnf": "openbox",
+            "pacman": "openbox",
+            "flatpak": null,
+            "zypper": "openbox"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "awesome",
+        "name": "Awesome",
+        "description": "Awesome for Window Managers.",
+        "category": "Window Managers",
+        "packages": {
+            "apt": "awesome",
+            "dnf": "awesome",
+            "pacman": "awesome",
+            "flatpak": null,
+            "zypper": "awesome"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "bspwm",
+        "name": "Bspwm",
+        "description": "Bspwm for Window Managers.",
+        "category": "Window Managers",
+        "packages": {
+            "apt": "bspwm",
+            "dnf": "bspwm",
+            "pacman": "bspwm",
+            "flatpak": null,
+            "zypper": "bspwm"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/bspwm.svg\" alt=\"\" />"
+    },
+    {
+        "id": "fluxbox",
+        "name": "Fluxbox",
+        "description": "Fluxbox for Window Managers.",
+        "category": "Window Managers",
+        "packages": {
+            "apt": "fluxbox",
+            "dnf": "fluxbox",
+            "pacman": "fluxbox",
+            "flatpak": null,
+            "zypper": "fluxbox"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "ansible",
+        "name": "Ansible",
+        "description": "Ansible for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "ansible",
+            "dnf": "ansible",
+            "pacman": "ansible",
+            "flatpak": null,
+            "zypper": "ansible"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/ansible.svg\" alt=\"\" />"
+    },
+    {
+        "id": "apache",
+        "name": "Apache",
+        "description": "Apache for VPN & Network.",
+        "category": "VPN & Network",
+        "packages": {
+            "apt": "apache2",
+            "dnf": "httpd",
+            "pacman": "apache",
+            "flatpak": null,
+            "zypper": "apache2"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/apache.svg\" alt=\"\" />"
+    },
+    {
+        "id": "bash",
+        "name": "Bash",
+        "description": "Bash for Terminal.",
+        "category": "Terminal",
+        "packages": {
+            "apt": "bash",
+            "dnf": "bash",
+            "pacman": "bash",
+            "flatpak": null,
+            "zypper": "bash"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/gnubash.svg\" alt=\"\" />"
+    },
+    {
+        "id": "binutils",
+        "name": "Binutils",
+        "description": "Binutils for System.",
+        "category": "System",
+        "packages": {
+            "apt": "binutils",
+            "dnf": "binutils",
+            "pacman": "binutils",
+            "flatpak": null,
+            "zypper": "binutils"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "boost",
+        "name": "Boost",
+        "description": "Boost for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "boost",
+            "dnf": "boost",
+            "pacman": "boost",
+            "flatpak": null,
+            "zypper": "boost"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/boost.svg\" alt=\"\" />"
+    },
+    {
+        "id": "coreutils",
+        "name": "Coreutils",
+        "description": "Coreutils for System.",
+        "category": "System",
+        "packages": {
+            "apt": "coreutils",
+            "dnf": "coreutils",
+            "pacman": "coreutils",
+            "flatpak": null,
+            "zypper": "coreutils"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "cppcheck",
+        "name": "Cppcheck",
+        "description": "Cppcheck for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "cppcheck",
+            "dnf": "cppcheck",
+            "pacman": "cppcheck",
+            "flatpak": null,
+            "zypper": "cppcheck"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "dovecot",
+        "name": "Dovecot",
+        "description": "Dovecot for VPN & Network.",
+        "category": "VPN & Network",
+        "packages": {
+            "apt": "dovecot",
+            "dnf": "dovecot",
+            "pacman": "dovecot",
+            "flatpak": null,
+            "zypper": "dovecot"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/dovecot.svg\" alt=\"\" />"
+    },
+    {
+        "id": "doxygen",
+        "name": "Doxygen",
+        "description": "Doxygen for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "doxygen",
+            "dnf": "doxygen",
+            "pacman": "doxygen",
+            "flatpak": null,
+            "zypper": "doxygen"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/doxygen.svg\" alt=\"\" />"
+    },
+    {
+        "id": "evince",
+        "name": "Evince",
+        "description": "Evince for Office.",
+        "category": "Office",
+        "packages": {
+            "apt": "evince",
+            "dnf": "evince",
+            "pacman": "evince",
+            "flatpak": null,
+            "zypper": "evince"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "freeciv",
+        "name": "Freeciv",
+        "description": "Freeciv for Gaming.",
+        "category": "Gaming",
+        "packages": {
+            "apt": "freeciv",
+            "dnf": "freeciv",
+            "pacman": "freeciv",
+            "flatpak": null,
+            "zypper": "freeciv"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "geeqie",
+        "name": "Geeqie",
+        "description": "Geeqie for Media.",
+        "category": "Media",
+        "packages": {
+            "apt": "geeqie",
+            "dnf": "geeqie",
+            "pacman": "geeqie",
+            "flatpak": null,
+            "zypper": "geeqie"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "godot",
+        "name": "Godot",
+        "description": "Godot for Creative.",
+        "category": "Creative",
+        "packages": {
+            "apt": "godot",
+            "dnf": "godot",
+            "pacman": "godot",
+            "flatpak": null,
+            "zypper": "godot"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "graphviz",
+        "name": "Graphviz",
+        "description": "Graphviz for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "graphviz",
+            "dnf": "graphviz",
+            "pacman": "graphviz",
+            "flatpak": null,
+            "zypper": "graphviz"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "hyprland",
+        "name": "Hyprland",
+        "description": "Hyprland for Window Managers.",
+        "category": "Window Managers",
+        "packages": {
+            "apt": "hyprland",
+            "dnf": "hyprland",
+            "pacman": "hyprland",
+            "flatpak": null,
+            "zypper": "hyprland"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/hyprland.svg\" alt=\"\" />"
+    },
+    {
+        "id": "i3",
+        "name": "i3",
+        "description": "i3 for Window Managers.",
+        "category": "Window Managers",
+        "packages": {
+            "apt": "i3",
+            "dnf": "i3",
+            "pacman": "i3",
+            "flatpak": null,
+            "zypper": "i3"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/i3.svg\" alt=\"\" />"
+    },
+    {
+        "id": "maxima",
+        "name": "Maxima",
+        "description": "Maxima for Office.",
+        "category": "Office",
+        "packages": {
+            "apt": "maxima",
+            "dnf": "maxima",
+            "pacman": "maxima",
+            "flatpak": null,
+            "zypper": "maxima"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "mesa",
+        "name": "Mesa",
+        "description": "Mesa for System.",
+        "category": "System",
+        "packages": {
+            "apt": "mesa",
+            "dnf": "mesa",
+            "pacman": "mesa",
+            "flatpak": null,
+            "zypper": "mesa"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "meson",
+        "name": "Meson",
+        "description": "Meson for Dev: Tools.",
+        "category": "Dev: Tools",
+        "packages": {
+            "apt": "meson",
+            "dnf": "meson",
+            "pacman": "meson",
+            "flatpak": null,
+            "zypper": "meson"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "mutt",
+        "name": "Mutt",
+        "description": "Mutt for Communication.",
+        "category": "Communication",
+        "packages": {
+            "apt": "mutt",
+            "dnf": "mutt",
+            "pacman": "mutt",
+            "flatpak": null,
+            "zypper": "mutt"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "neofetch",
+        "name": "Neofetch",
+        "description": "Neofetch for Terminal.",
+        "category": "Terminal",
+        "packages": {
+            "apt": "neofetch",
+            "dnf": "neofetch",
+            "pacman": "neofetch",
+            "flatpak": null,
+            "zypper": "neofetch"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "octave",
+        "name": "Octave",
+        "description": "Octave for Office.",
+        "category": "Office",
+        "packages": {
+            "apt": "octave",
+            "dnf": "octave",
+            "pacman": "octave",
+            "flatpak": null,
+            "zypper": "octave"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/octave.svg\" alt=\"\" />"
+    },
+    {
+        "id": "pidgin",
+        "name": "Pidgin",
+        "description": "Pidgin for Communication.",
+        "category": "Communication",
+        "packages": {
+            "apt": "pidgin",
+            "dnf": "pidgin",
+            "pacman": "pidgin",
+            "flatpak": null,
+            "zypper": "pidgin"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "samba",
+        "name": "Samba",
+        "description": "Samba for File Sharing.",
+        "category": "File Sharing",
+        "packages": {
+            "apt": "samba",
+            "dnf": "samba",
+            "pacman": "samba",
+            "flatpak": null,
+            "zypper": "samba"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "scribus",
+        "name": "Scribus",
+        "description": "Scribus for Creative.",
+        "category": "Creative",
+        "packages": {
+            "apt": "scribus",
+            "dnf": "scribus",
+            "pacman": "scribus",
+            "flatpak": null,
+            "zypper": "scribus"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "stellarium",
+        "name": "Stellarium",
+        "description": "Stellarium for Media.",
+        "category": "Media",
+        "packages": {
+            "apt": "stellarium",
+            "dnf": "stellarium",
+            "pacman": "stellarium",
+            "flatpak": null,
+            "zypper": "stellarium"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"icons/tuxbw.svg\" alt=\"\" />"
+    },
+    {
+        "id": "wayland",
+        "name": "Wayland",
+        "description": "Wayland for System.",
+        "category": "System",
+        "packages": {
+            "apt": "wayland",
+            "dnf": "wayland",
+            "pacman": "wayland",
+            "flatpak": null,
+            "zypper": "wayland"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/wayland.svg\" alt=\"\" />"
+    },
+    {
+        "id": "wine",
+        "name": "Wine",
+        "description": "Wine for System.",
+        "category": "System",
+        "packages": {
+            "apt": "wine",
+            "dnf": "wine",
+            "pacman": "wine",
+            "flatpak": null,
+            "zypper": "wine"
+        },
+        "icon_svg": "<img class=\"icon-external\" loading=\"lazy\" decoding=\"async\" src=\"https://api.iconify.design/simple-icons/wine.svg\" alt=\"\" />"
     }
 ]

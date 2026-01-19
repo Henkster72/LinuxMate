@@ -3,54 +3,291 @@
     "value": "ubuntu",
     "label": "Ubuntu",
     "icon": "https://api.iconify.design/simple-icons/ubuntu.svg?color=%23E95420",
-    "managers": ["apt", "flatpak"]
+    "managers": [
+      "apt",
+      "flatpak"
+    ]
   },
   {
     "value": "debian",
     "label": "Debian",
     "icon": "https://api.iconify.design/simple-icons/debian.svg?color=%23A81D33",
-    "managers": ["apt", "flatpak"]
+    "managers": [
+      "apt",
+      "flatpak"
+    ]
   },
   {
     "value": "arch",
     "label": "Arch",
     "icon": "https://api.iconify.design/simple-icons/archlinux.svg?color=%231793D1",
-    "managers": ["pacman", "aur", "flatpak"]
+    "managers": [
+      "pacman",
+      "aur",
+      "flatpak"
+    ]
   },
   {
     "value": "fedora",
     "label": "Fedora",
     "icon": "https://api.iconify.design/simple-icons/fedora.svg?color=%2351A2DA",
-    "managers": ["dnf", "flatpak"]
+    "managers": [
+      "dnf",
+      "flatpak"
+    ]
   },
   {
     "value": "opensuse",
     "label": "OpenSUSE",
     "icon": "https://api.iconify.design/simple-icons/opensuse.svg?color=%2373BA25",
-    "managers": ["zypper", "flatpak"]
+    "managers": [
+      "zypper",
+      "flatpak"
+    ]
   },
   {
     "value": "nix",
     "label": "Nix",
     "icon": "https://api.iconify.design/simple-icons/nixos.svg?color=%235277C3",
-    "managers": ["flatpak"]
+    "managers": [
+      "flatpak"
+    ]
   },
   {
     "value": "flatpak",
     "label": "Flatpak",
     "icon": "https://api.iconify.design/simple-icons/flatpak.svg?color=%234A90D9",
-    "managers": ["flatpak"]
+    "managers": [
+      "flatpak"
+    ]
   },
   {
     "value": "snap",
     "label": "Snap",
     "icon": "https://api.iconify.design/simple-icons/snapcraft.svg?color=%2382BEA0",
-    "managers": ["snap"]
+    "managers": [
+      "snap"
+    ]
   },
   {
     "value": "homebrew",
     "label": "Homebrew",
     "icon": "https://api.iconify.design/simple-icons/homebrew.svg?color=%23FBB040",
-    "managers": ["brew"]
+    "managers": [
+      "brew"
+    ]
+  },
+  {
+    "value": "linuxmint",
+    "label": "Linux Mint",
+    "icon": "https://api.iconify.design/simple-icons/linuxmint.svg",
+    "managers": [
+      "apt",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "popos",
+    "label": "Pop!_OS",
+    "icon": "https://api.iconify.design/simple-icons/popos.svg",
+    "managers": [
+      "apt",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "manjaro",
+    "label": "Manjaro",
+    "icon": "https://api.iconify.design/simple-icons/manjaro.svg",
+    "managers": [
+      "pacman",
+      "aur",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "kali",
+    "label": "Kali Linux",
+    "icon": "https://api.iconify.design/simple-icons/kalilinux.svg",
+    "managers": [
+      "apt",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "elementary",
+    "label": "Elementary OS",
+    "icon": "https://api.iconify.design/simple-icons/elementary.svg",
+    "managers": [
+      "apt",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "zorin",
+    "label": "Zorin OS",
+    "icon": "https://api.iconify.design/simple-icons/zorin.svg",
+    "managers": [
+      "apt",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "centos",
+    "label": "CentOS",
+    "icon": "https://api.iconify.design/simple-icons/centos.svg",
+    "managers": [
+      "dnf",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "rockylinux",
+    "label": "Rocky Linux",
+    "icon": "https://api.iconify.design/simple-icons/rockylinux.svg",
+    "managers": [
+      "dnf",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "almalinux",
+    "label": "AlmaLinux",
+    "icon": "https://api.iconify.design/simple-icons/almalinux.svg",
+    "managers": [
+      "dnf",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "cachyos",
+    "label": "CachyOS",
+    "icon": "icons/tuxbw.svg",
+    "managers": [
+      "pacman",
+      "aur",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "mxlinux",
+    "label": "MX Linux",
+    "icon": "https://api.iconify.design/simple-icons/mxlinux.svg",
+    "managers": [
+      "apt",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "endeavouros",
+    "label": "EndeavourOS",
+    "icon": "https://api.iconify.design/simple-icons/endeavouros.svg",
+    "managers": [
+      "pacman",
+      "aur",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "anduinos",
+    "label": "AnduinOS",
+    "icon": "icons/tuxbw.svg",
+    "managers": [
+      "apt",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "nobara",
+    "label": "Nobara",
+    "icon": "icons/tuxbw.svg",
+    "managers": [
+      "dnf",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "bluestar",
+    "label": "Bluestar",
+    "icon": "icons/tuxbw.svg",
+    "managers": [
+      "pacman",
+      "aur",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "bazzite",
+    "label": "Bazzite",
+    "icon": "icons/tuxbw.svg",
+    "managers": [
+      "dnf",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "biglinux",
+    "label": "BigLinux",
+    "icon": "icons/tuxbw.svg",
+    "managers": [
+      "pacman",
+      "aur",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "kdeneon",
+    "label": "KDE neon",
+    "icon": "https://api.iconify.design/simple-icons/kdeneon.svg",
+    "managers": [
+      "apt",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "antix",
+    "label": "antiX",
+    "icon": "icons/tuxbw.svg",
+    "managers": [
+      "apt",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "q4os",
+    "label": "Q4OS",
+    "icon": "icons/tuxbw.svg",
+    "managers": [
+      "apt",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "pikaos",
+    "label": "PikaOS",
+    "icon": "icons/tuxbw.svg",
+    "managers": [
+      "apt",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "garuda",
+    "label": "Garuda",
+    "icon": "https://api.iconify.design/simple-icons/garudalinux.svg",
+    "managers": [
+      "pacman",
+      "aur",
+      "flatpak"
+    ]
+  },
+  {
+    "value": "minios",
+    "label": "MiniOS",
+    "icon": "icons/tuxbw.svg",
+    "managers": [
+      "apt",
+      "flatpak"
+    ]
   }
 ]

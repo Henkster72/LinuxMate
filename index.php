@@ -18,10 +18,13 @@ $categoryOrder = [
     'Gaming',
     'Office',
     'System',
+    'Desktop Environments',
+    'Window Managers',
     'Creative',
     'VPN & Network',
     'File Sharing',
     'Security',
+    'Databases',
     'Dev: Editors',
     'Dev: Languages',
     'Dev: Tools',
@@ -65,6 +68,11 @@ foreach ($categoryOrder as $label) {
 $jsBytes = file_exists(__DIR__ . '/js/app.js') ? filesize(__DIR__ . '/js/app.js') : 0;
 $cssBytes = file_exists(__DIR__ . '/css/style.css') ? filesize(__DIR__ . '/css/style.css') : 0;
 $kb = fn($bytes) => number_format($bytes / 1024, 1) . ' KB';
+$readme = file_exists(__DIR__ . '/README.md') ? file_get_contents(__DIR__ . '/README.md') : '';
+$version = 'v0.21';
+if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
+    $version = $match[1];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,9 +91,13 @@ $kb = fn($bytes) => number_format($bytes / 1024, 1) . ' KB';
                     <img src="icons/tuxbw.svg" alt="" />
                     <span class="logo-badge pi pi-packageclose"></span>
                 </div>
-                <div>
-                    <h1>LinuxMate</h1>
-                    <p>The Linux Bulk App Installer.</p>
+                <div class="brand-text">
+                    <div class="brand-title">
+                        <h1>LinuxMate</h1>
+                        <span class="version-badge"><?php echo htmlspecialchars($version); ?></span>
+                    </div>
+                    <p>The Linux Bulk App Installer.<br>
+                    Install and update all your Linux programs at once.</p>
                 </div>
             </div>
             <div class="topbar-controls">
@@ -153,24 +165,19 @@ $kb = fn($bytes) => number_format($bytes / 1024, 1) . ' KB';
             </div>
         </header>
 
-        <section class="status">
-            <div>
-                <h2>Install and update all your Linux programs at once</h2>
-                <p>No toolbars. No clicking next. Select apps, batch by manager, run once.</p>
-            </div>
-            <div class="stats">
-                <span>Packages: <?php echo htmlspecialchars((string) $packageCount); ?></span>
-                <span>Distros: <?php echo htmlspecialchars((string) $distroCount); ?></span>
-            </div>
-        </section>
-
         <section class="controls">
-            <div class="search-wrap">
-                <span class="search-icon pi pi-magnify" aria-hidden="true"></span>
-                <input id="search" type="search" placeholder="Search apps or categories" />
-                <button id="search-clear" type="button" aria-label="Clear search">
-                    <span class="pi pi-cross" aria-hidden="true"></span>
-                </button>
+            <div class="search-stats-row">
+                <div class="search-wrap">
+                    <span class="search-icon pi pi-magnify" aria-hidden="true"></span>
+                    <input id="search" type="search" placeholder="Search apps or categories" />
+                    <button id="search-clear" type="button" aria-label="Clear search">
+                        <span class="pi pi-cross" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="stats-chips">
+                    <span class="stats-chip">Packages: <?php echo htmlspecialchars((string) $packageCount); ?></span>
+                    <span class="stats-chip">Distros: <?php echo htmlspecialchars((string) $distroCount); ?></span>
+                </div>
             </div>
             <div class="hint">Tip: Press <span>/</span> to jump to search.</div>
         </section>
@@ -244,6 +251,7 @@ $kb = fn($bytes) => number_format($bytes / 1024, 1) . ' KB';
                 <div class="panel-footer">
                     <span>Selected: <strong id="selected-count">0</strong></span>
                     <span class="note">PHP + JS + CSS, no build step.</span>
+                    <a class="repology-link" href="https://repology.org/" target="_blank" rel="noreferrer">Repology</a>
                 </div>
             </div>
         </footer>

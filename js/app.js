@@ -47,6 +47,11 @@ let pendingRequest = null;
 let debounceTimer = null;
 const feedbackTimers = new WeakMap();
 let lastAurHelper = 'yay';
+let distroTypeBuffer = '';
+let distroTypeTimer = null;
+let lastTypeKey = '';
+let lastTypeIndex = -1;
+let lastTypeMatches = [];
 
 packageItems.forEach((item) => {
     const checkbox = item.querySelector('.pkg-check');
@@ -71,6 +76,76 @@ const getActiveManagers = () => {
         .split(',')
         .map((entry) => entry.trim())
         .filter(Boolean);
+};
+
+const getDistroMatches = (prefix) => {
+    const options = Array.from(distroSelect.options);
+    return options.filter((option) =>
+        option.textContent.trim().toLowerCase().startsWith(prefix)
+    );
+};
+
+const resetDistroTypeState = () => {
+    distroTypeBuffer = '';
+    lastTypeKey = '';
+    lastTypeIndex = -1;
+    lastTypeMatches = [];
+};
+
+const selectDistroOption = (option) => {
+    if (!option) {
+        return;
+    }
+    if (distroSelect.value !== option.value) {
+        distroSelect.value = option.value;
+        distroSelect.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+};
+
+const handleDistroType = (char) => {
+    const nextChar = char.toLowerCase();
+    if (distroTypeTimer) {
+        clearTimeout(distroTypeTimer);
+    }
+    distroTypeTimer = setTimeout(() => {
+        resetDistroTypeState();
+        distroTypeTimer = null;
+    }, 700);
+
+    if (distroTypeBuffer.length === 1 && distroTypeBuffer === nextChar) {
+        const matches = getDistroMatches(distroTypeBuffer);
+        if (!matches.length) {
+            return;
+        }
+        if (lastTypeKey !== distroTypeBuffer) {
+            lastTypeIndex = -1;
+            lastTypeKey = distroTypeBuffer;
+        }
+        lastTypeIndex = (lastTypeIndex + 1) % matches.length;
+        lastTypeMatches = matches;
+        selectDistroOption(matches[lastTypeIndex]);
+        return;
+    }
+
+    distroTypeBuffer = `${distroTypeBuffer}${nextChar}`.trim();
+    let matches = getDistroMatches(distroTypeBuffer);
+    if (!matches.length) {
+        distroTypeBuffer = nextChar;
+        matches = getDistroMatches(distroTypeBuffer);
+    }
+    if (!matches.length) {
+        return;
+    }
+    selectDistroOption(matches[0]);
+    if (distroTypeBuffer.length === 1) {
+        lastTypeKey = distroTypeBuffer;
+        lastTypeMatches = matches;
+        lastTypeIndex = 0;
+    } else {
+        lastTypeKey = '';
+        lastTypeMatches = [];
+        lastTypeIndex = -1;
+    }
 };
 
 const setAurHelperValue = (value) => {
@@ -347,6 +422,17 @@ const updateAvailability = () => {
     updateSelectedCount();
 };
 
+const updateCategoryHeights = () => {
+    document.querySelectorAll('.package-list').forEach((list) => {
+        const card = list.closest('.category-card');
+        if (card && card.classList.contains('is-collapsed')) {
+            return;
+        }
+        const height = list.scrollHeight;
+        list.style.setProperty('--list-max-height', `${height}px`);
+    });
+};
+
 const fetchScript = async () => {
     if (pendingRequest) {
         pendingRequest.abort();
@@ -486,6 +572,12 @@ document.querySelectorAll('.category-toggle').forEach((toggle) => {
         if (collapsed && activeItem && card.contains(activeItem)) {
             focusItemByDirection('right');
         }
+        if (!collapsed) {
+            const list = card.querySelector('.package-list');
+            if (list) {
+                list.style.setProperty('--list-max-height', `${list.scrollHeight}px`);
+            }
+        }
     });
 });
 
@@ -509,6 +601,7 @@ searchInput.addEventListener('input', (event) => {
         const visible = card.querySelector('.package-item:not([hidden])');
         card.hidden = !visible;
     });
+    updateCategoryHeights();
     focusIndex = 0;
 });
 
@@ -580,6 +673,17 @@ distroButton?.addEventListener('click', (event) => {
 });
 
 distroShell?.addEventListener('keydown', (event) => {
+    if (
+        event.key.length === 1 &&
+        /[a-z0-9]/i.test(event.key) &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.altKey
+    ) {
+        event.preventDefault();
+        handleDistroType(event.key);
+        return;
+    }
     if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
         toggleDistroMenu();
@@ -753,6 +857,7 @@ updateSelectedCount();
 buildDistroMenu();
 updateDistroButton();
 scheduleUpdate();
+updateCategoryHeights();
 
 const initialQuery = searchInput.value.trim();
 if (searchWrap) {
