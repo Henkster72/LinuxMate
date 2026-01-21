@@ -23,6 +23,7 @@ const infoModal = document.getElementById('info-modal');
 const previewList = document.getElementById('preview-list');
 const infoTitle = document.getElementById('info-title');
 const infoBody = document.getElementById('info-body');
+const infoLinkRow = document.getElementById('info-link');
 const distroButton = document.getElementById('distro-button');
 const distroMenu = document.getElementById('distro-menu');
 const distroButtonIcon = document.querySelector('.distro-button-icon');
@@ -64,6 +65,7 @@ packageItems.forEach((item) => {
         name: item.dataset.name,
         description: item.dataset.description,
         category: item.dataset.category,
+        url: item.dataset.url,
         element: item,
     });
     checkbox.addEventListener('focus', () => {
@@ -72,6 +74,20 @@ packageItems.forEach((item) => {
         if (idx >= 0) {
             focusIndex = idx;
         }
+    });
+});
+
+const openExternalUrl = (url) => {
+    if (!url) {
+        return;
+    }
+    window.open(url, '_blank', 'noreferrer');
+};
+
+document.querySelectorAll('.external-link-btn').forEach((button) => {
+    button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        openExternalUrl(button.dataset.url);
     });
 });
 
@@ -573,11 +589,32 @@ packageItems.forEach((item) => {
         event.stopPropagation();
         const name = item.dataset.name;
         const description = item.dataset.description;
+        const url = item.dataset.url;
         const note = item.classList.contains('is-disabled')
             ? 'This app is not available for the selected distro. Try Flatpak or Snap.'
             : 'Available for this distro.';
         infoTitle.textContent = name;
         infoBody.textContent = description + ' ' + note;
+        if (infoLinkRow) {
+            if (url) {
+                infoLinkRow.innerHTML = '';
+                const anchor = document.createElement('a');
+                anchor.href = url;
+                anchor.target = '_blank';
+                anchor.rel = 'noreferrer';
+                anchor.className = 'info-link-anchor';
+                const icon = document.createElement('span');
+                icon.className = 'pi pi-externallink';
+                icon.setAttribute('aria-hidden', 'true');
+                anchor.appendChild(icon);
+                anchor.appendChild(document.createTextNode(` ${name}`));
+                infoLinkRow.appendChild(anchor);
+                infoLinkRow.hidden = false;
+            } else {
+                infoLinkRow.innerHTML = '';
+                infoLinkRow.hidden = true;
+            }
+        }
         openModal(infoModal);
     });
 });

@@ -628,29 +628,32 @@ body[data-theme="dark"] .category-header .count {
 
 .package-list {
     list-style: none;
-    padding: 8px 10px 10px;
+    padding: 6px 8px 8px;
     margin: 0;
     display: grid;
-    gap: 6px;
+    gap: 4px;
     max-height: var(--list-max-height, none);
 }
 
 .package-item {
-    display: grid;
-    grid-template-columns: 1fr auto;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 6px;
     border-radius: 10px;
-    padding: 4px 6px 4px 4px;
+    padding: 2px 4px;
     transition: background 0.2s ease, opacity 0.2s ease;
+    white-space: nowrap;
+    min-width: 0;
 }
 
 .package-item label {
-    display: grid;
-    grid-template-columns: 18px 20px 1fr;
+    display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     cursor: pointer;
+    min-width: 0;
+    white-space: nowrap;
 }
 
 .package-item:hover {
@@ -669,9 +672,9 @@ body[data-theme="dark"] .category-header .count {
 
 .pkg-check {
     appearance: none;
-    width: 16px;
-    height: 16px;
-    border-radius: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
     border: 1px solid var(--border);
     display: grid;
     place-items: center;
@@ -693,8 +696,8 @@ body[data-theme="dark"] .category-header .count {
 
 .pkg-icon svg,
 .pkg-icon img {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     display: block;
 }
 
@@ -712,16 +715,20 @@ body[data-theme="dark"] .pkg-icon img[src$="tuxbw.svg"] {
 
 .pkg-name {
     font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 4px;
 }
 
 .info-btn {
     border: 1px solid var(--border);
     background: rgba(255, 255, 255, 0.8);
     color: var(--muted);
-    font-size: 0.75rem;
-    border-radius: 8px;
-    width: 22px;
-    height: 22px;
+    font-size: 0.55rem;
+    border-radius: 6px;
+    width: 16px;
+    height: 16px;
     cursor: pointer;
     opacity: 0;
     pointer-events: none;
@@ -730,10 +737,51 @@ body[data-theme="dark"] .pkg-icon img[src$="tuxbw.svg"] {
     justify-content: center;
 }
 
+.external-link-btn {
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--muted);
+    font-size: 0.55rem;
+    border-radius: 6px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4px;
+}
+
 .package-item.is-disabled .info-btn,
 .package-item:hover .info-btn {
     opacity: 1;
     pointer-events: auto;
+}
+
+.package-item.is-disabled .external-link-btn,
+.package-item:hover .external-link-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.info-link-row {
+    margin-top: 12px;
+    font-size: 0.85rem;
+}
+
+.info-link-anchor {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.info-link-anchor .pi {
+    font-size: 0.85rem;
 }
 
 .script-footer {

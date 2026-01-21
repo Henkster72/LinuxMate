@@ -215,13 +215,19 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
                                     }
                                     $managerList = implode(',', $managerKeys);
                                     $iconHtml = decorate_icon($pkg['icon_svg']);
+                                    $url = $pkg['url'] ?? '';
                                 ?>
-                                <li class="package-item" data-search="<?php echo htmlspecialchars($search); ?>" data-managers="<?php echo htmlspecialchars($managerList); ?>" data-category="<?php echo htmlspecialchars($slug); ?>" data-name="<?php echo htmlspecialchars($pkg['name']); ?>" data-description="<?php echo htmlspecialchars($pkg['description']); ?>">
+                                <li class="package-item" data-search="<?php echo htmlspecialchars($search); ?>" data-managers="<?php echo htmlspecialchars($managerList); ?>" data-category="<?php echo htmlspecialchars($slug); ?>" data-name="<?php echo htmlspecialchars($pkg['name']); ?>" data-description="<?php echo htmlspecialchars($pkg['description']); ?>" data-url="<?php echo htmlspecialchars($url); ?>">
                                     <label>
                                         <input class="pkg-check" type="checkbox" data-id="<?php echo htmlspecialchars($pkg['id']); ?>" />
                                         <span class="pkg-icon"><?php echo $iconHtml; ?></span>
                                         <span class="pkg-name"><?php echo htmlspecialchars($pkg['name']); ?></span>
                                     </label>
+                                    <?php if ($url): ?>
+                                        <button class="external-link-btn" type="button" data-url="<?php echo htmlspecialchars($url); ?>" title="Open website">
+                                            <span class="pi pi-externallink" aria-hidden="true"></span>
+                                        </button>
+                                    <?php endif; ?>
                                     <button class="info-btn" type="button" aria-label="More info" title="More info">
                                         <span class="pi pi-info" aria-hidden="true"></span>
                                     </button>
@@ -359,11 +365,12 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
                     Close
                 </button>
             </header>
-            <div class="modal-body">
-                <p id="info-body"></p>
-            </div>
+        <div class="modal-body">
+            <p id="info-body"></p>
+            <p id="info-link" class="info-link-row" hidden></p>
         </div>
     </div>
+</div>
 
     <script src="js/app.js"></script>
 </body>
