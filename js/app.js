@@ -28,13 +28,16 @@ const distroMenu = document.getElementById('distro-menu');
 const distroButtonIcon = document.querySelector('.distro-button-icon');
 const distroButtonLabel = document.querySelector('.distro-button-label');
 const distroShell = document.querySelector('.distro-shell');
+const preferFlatpakToggle = document.getElementById('prefer-flatpak');
 const initialUrlState = (() => {
     const params = new URLSearchParams(window.location.search);
     const distro = params.get('distro');
     const apps = params.get('apps');
+    const preferFlatpak = params.get('prefer_flatpak');
     return {
         distro,
         apps: apps ? apps.split(',').map((id) => id.trim()).filter(Boolean) : [],
+        preferFlatpak: preferFlatpak === '1' || preferFlatpak === 'true',
     };
 })();
 
@@ -42,6 +45,8 @@ const packageItems = Array.from(document.querySelectorAll('.package-item'));
 const checkboxes = Array.from(document.querySelectorAll('.pkg-check'));
 const selected = new Set();
 const packageMeta = new Map();
+const warningNotice = document.querySelector('.footer-warning');
+const warningCategories = new Set(['desktop-environments', 'window-managers']);
 let focusIndex = 0;
 let pendingRequest = null;
 let debounceTimer = null;
@@ -58,6 +63,7 @@ packageItems.forEach((item) => {
     packageMeta.set(checkbox.dataset.id, {
         name: item.dataset.name,
         description: item.dataset.description,
+        category: item.dataset.category,
         element: item,
     });
     checkbox.addEventListener('focus', () => {
@@ -295,6 +301,9 @@ const buildShareUrl = () => {
     if (distroSelect.value) {
         params.set('distro', distroSelect.value);
     }
+    if (preferFlatpakToggle?.checked) {
+        params.set('prefer_flatpak', '1');
+    }
     if (selected.size) {
         const apps = Array.from(selected).sort().join(',');
         params.set('apps', apps);
@@ -305,6 +314,16 @@ const buildShareUrl = () => {
 
 const updateSelectedCount = () => {
     selectedCount.textContent = selected.size;
+};
+
+const updateWarningNotice = () => {
+    if (!warningNotice) {
+        return;
+    }
+    const hasRiskySelection = Array.from(selected).some((id) =>
+        warningCategories.has(packageMeta.get(id)?.category)
+    );
+    warningNotice.hidden = !hasRiskySelection;
 };
 
 const getVisibleItems = () =>
@@ -420,6 +439,7 @@ const updateAvailability = () => {
     });
 
     updateSelectedCount();
+    updateWarningNotice();
 };
 
 const updateCategoryHeights = () => {
@@ -450,6 +470,7 @@ const fetchScript = async () => {
                 distro: distroSelect.value,
                 packages: Array.from(selected),
                 aur_helper: aurHelper ? aurHelper.value : lastAurHelper,
+                prefer_flatpak: Boolean(preferFlatpakToggle?.checked),
             }),
             signal: controller.signal,
         });
@@ -467,6 +488,7 @@ const fetchScript = async () => {
 
 const scheduleUpdate = () => {
     updateSelectedCount();
+    updateWarningNotice();
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(fetchScript, 120);
 };
@@ -661,6 +683,10 @@ helpButton.addEventListener('click', () => {
 
 themeToggle.addEventListener('click', toggleTheme);
 
+preferFlatpakToggle?.addEventListener('change', () => {
+    scheduleUpdate();
+});
+
 distroSelect.addEventListener('change', () => {
     updateAvailability();
     scheduleUpdate();
@@ -831,6 +857,10 @@ const applyUrlSelections = () => {
         }
     }
 
+    if (preferFlatpakToggle && initialUrlState.preferFlatpak) {
+        preferFlatpakToggle.checked = true;
+    }
+
     if (initialUrlState.apps.length) {
         initialUrlState.apps.forEach((id) => {
             const checkbox = document.querySelector(
@@ -854,6 +884,7 @@ buildDistroMenu();
 applyUrlSelections();
 updateAvailability();
 updateSelectedCount();
+updateWarningNotice();
 buildDistroMenu();
 updateDistroButton();
 scheduleUpdate();

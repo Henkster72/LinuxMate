@@ -88,7 +88,7 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
         <header class="topbar">
             <div class="brand">
                 <div class="logo" aria-hidden="true">
-                    <img src="icons/tuxbw.svg" alt="" />
+                    <img src="assets-icons/tuxbw.svg" alt="" />
                     <span class="logo-badge pi pi-packageclose"></span>
                 </div>
                 <div class="brand-text">
@@ -147,6 +147,10 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
                             </select>
                             <ul id="distro-menu" class="distro-menu" role="listbox" aria-label="Select distro"></ul>
                         </div>
+                    </label>
+                    <label class="flatpak-toggle">
+                        <input id="prefer-flatpak" type="checkbox" />
+                        <span>Prefer Flatpak</span>
                     </label>
                     <div id="aur-slot"></div>
                 </div>
@@ -209,7 +213,7 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
                                     $managerList = implode(',', $managerKeys);
                                     $iconHtml = decorate_icon($pkg['icon_svg']);
                                 ?>
-                                <li class="package-item" data-search="<?php echo htmlspecialchars($search); ?>" data-managers="<?php echo htmlspecialchars($managerList); ?>" data-name="<?php echo htmlspecialchars($pkg['name']); ?>" data-description="<?php echo htmlspecialchars($pkg['description']); ?>">
+                                <li class="package-item" data-search="<?php echo htmlspecialchars($search); ?>" data-managers="<?php echo htmlspecialchars($managerList); ?>" data-category="<?php echo htmlspecialchars($slug); ?>" data-name="<?php echo htmlspecialchars($pkg['name']); ?>" data-description="<?php echo htmlspecialchars($pkg['description']); ?>">
                                     <label>
                                         <input class="pkg-check" type="checkbox" data-id="<?php echo htmlspecialchars($pkg['id']); ?>" />
                                         <span class="pkg-icon"><?php echo $iconHtml; ?></span>
@@ -251,6 +255,10 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
                 <div class="panel-footer">
                     <span>Selected: <strong id="selected-count">0</strong></span>
                     <span class="note">PHP + JS + CSS, no build step.</span>
+                    <span class="footer-warning" hidden>
+                        <span class="warning-icon" aria-hidden="true">!</span>
+                        Warning: Desktop Environments and Window Managers are often bundled with distros (Arch is a common exception). Installing separately can cause conflicts.
+                    </span>
                     <a class="repology-link" href="https://repology.org/" target="_blank" rel="noreferrer">Repology</a>
                 </div>
             </div>

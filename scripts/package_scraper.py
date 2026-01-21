@@ -8,7 +8,7 @@ from pathlib import Path
 ICONIFY_BASE = "https://api.iconify.design"
 DEFAULT_ICON_SET = "simple-icons"
 DEFAULT_ICON_NAME = "linux"
-FALLBACK_ICON_URL = "icons/tuxbw.svg"
+FALLBACK_ICON_URL = "assets-icons/tuxbw.svg"
 MANAGER_KEYS = ["apt", "dnf", "pacman", "flatpak", "zypper"]
 
 

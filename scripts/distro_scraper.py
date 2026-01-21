@@ -8,7 +8,7 @@ from pathlib import Path
 ICONIFY_BASE = "https://api.iconify.design"
 DEFAULT_ICON_SET = "simple-icons"
 KNOWN_MANAGERS = {"apt", "dnf", "pacman", "zypper", "flatpak", "aur", "snap", "brew"}
-FALLBACK_ICON_URL = "icons/tuxbw.svg"
+FALLBACK_ICON_URL = "assets-icons/tuxbw.svg"
 
 DISTRO_CATALOG = [
     {

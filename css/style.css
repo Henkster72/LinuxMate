@@ -207,6 +207,55 @@ body[data-theme="dark"] .logo img {
     gap: 12px;
 }
 
+.flatpak-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: #fff;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--ink);
+    cursor: pointer;
+    user-select: none;
+}
+
+.flatpak-toggle input {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    display: grid;
+    place-items: center;
+    background: #fff;
+}
+
+.flatpak-toggle input:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.flatpak-toggle input:checked::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+    background: #fff;
+}
+
+.flatpak-toggle input:focus-visible {
+    outline: 2px solid rgba(var(--accent-rgb), 0.4);
+    outline-offset: 2px;
+}
+
+body[data-theme="dark"] .flatpak-toggle {
+    background: #1f1d18;
+    color: var(--ink);
+}
+
 .ghost {
     border: 1px solid var(--border);
     background: transparent;
@@ -643,8 +692,16 @@ body[data-theme="dark"] .category-header .count {
     display: block;
 }
 
+.pkg-icon img[src$="tuxbw.svg"] {
+    filter: none;
+}
+
 .pkg-icon svg {
     fill: currentColor;
+}
+
+body[data-theme="dark"] .pkg-icon img[src$="tuxbw.svg"] {
+    filter: invert(1) brightness(1.1);
 }
 
 .pkg-name {
@@ -759,6 +816,28 @@ body[data-theme="dark"] .category-header .count {
     gap: 8px;
     font-size: 0.76rem;
     color: #c8c1b9;
+}
+
+.footer-warning {
+    flex-basis: 100%;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #f0c674;
+}
+
+.warning-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border: 1px solid rgba(240, 198, 116, 0.7);
+    background: rgba(240, 198, 116, 0.18);
+    color: #f0c674;
 }
 
 .comparison {

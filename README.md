@@ -1,6 +1,6 @@
-# LinuxMate v0.3 🐧✨
+# LinuxMate v0.4 🐧✨
 
-<img src="icons/tuxbw.svg" alt="LinuxMate logo" width="96" />
+<img src="assets-icons/tuxbw.svg" alt="LinuxMate logo" width="96" />
 
 LinuxMate is a lightweight, dependency-free bulk app installer UI for Linux — built with **PHP**, **vanilla JavaScript**, and **plain CSS**.
 
@@ -11,6 +11,7 @@ No build step. No tooling ceremony. Just open it and go.
 
 ## Changelog
 
+- v0.4: Prefer Flatpak toggle, desktop-environment warning, and icons now live in `assets-icons/`.
 - v0.3: Tighten the hero/search area, inline stats, version badge, and single clear button.
 - v0.21: Fix search filtering by honoring the `hidden` attribute in CSS.
 - v0.2: Move distros to JSON, show AUR helper only when needed, and refresh stats + mobile footer.
@@ -27,6 +28,7 @@ No build step. No tooling ceremony. Just open it and go.
   - `dnf` → one `dnf install ...` line
   - `pacman` → one `pacman -S ...` line
   - `flatpak` → one `flatpak install ...` line
+- ✅ Prefer Flatpak toggle forces Flatpak identifiers when available and shows a warning while selecting desktop environments/window managers.
 - ✅ Supports **icons** via inline SVG or local files for fast rendering (no CDN required).
 - ✅ Shareable via **URL parameters** (bookmark a selection and send it to a friend like it’s 2009, but in a good way).
 
@@ -77,7 +79,7 @@ Recommended package entry fields:
 
 ### Icons
 
-* Local icons live in `icons/`
+ * Local icons live in `assets-icons/`
 * You can embed SVG inline in `packages.json` for fewer file reads, or reference files for easier swapping.
 
 ---

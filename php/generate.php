@@ -16,6 +16,8 @@ $selected = $data['packages'] ?? [];
 if (!is_array($selected)) {
     $selected = [];
 }
+$preferFlatpak = $data['prefer_flatpak'] ?? false;
+$preferFlatpak = filter_var($preferFlatpak, FILTER_VALIDATE_BOOLEAN);
 
 $packagesFile = __DIR__ . '/../data/packages.json';
 $packages = json_decode(file_get_contents($packagesFile), true) ?? [];
@@ -117,11 +119,22 @@ foreach ($selected as $id) {
         continue;
     }
     $pkg = $packageIndex[$id];
+    $flatpakId = $pkg['packages']['flatpak'] ?? null;
+    if ($preferFlatpak && $flatpakId && array_key_exists('flatpak', $managerPackages)) {
+        $managerPackages['flatpak'][$flatpakId] = true;
+        continue;
+    }
+    $pkgAssigned = false;
     foreach (array_keys($managerPackages) as $manager) {
         $identifier = $pkg['packages'][$manager] ?? null;
-        if ($identifier) {
-            $managerPackages[$manager][$identifier] = true;
+        if (!$identifier) {
+            continue;
         }
+        if ($manager === 'flatpak' && $pkgAssigned) {
+            continue;
+        }
+        $managerPackages[$manager][$identifier] = true;
+        $pkgAssigned = true;
     }
 }
 

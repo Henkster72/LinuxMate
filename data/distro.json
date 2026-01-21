@@ -162,7 +162,7 @@
   {
     "value": "cachyos",
     "label": "CachyOS",
-    "icon": "icons/tuxbw.svg",
+    "icon": "assets-icons/tuxbw.svg",
     "managers": [
       "pacman",
       "aur",
@@ -191,7 +191,7 @@
   {
     "value": "anduinos",
     "label": "AnduinOS",
-    "icon": "icons/tuxbw.svg",
+    "icon": "assets-icons/tuxbw.svg",
     "managers": [
       "apt",
       "flatpak"
@@ -200,7 +200,7 @@
   {
     "value": "nobara",
     "label": "Nobara",
-    "icon": "icons/tuxbw.svg",
+    "icon": "assets-icons/tuxbw.svg",
     "managers": [
       "dnf",
       "flatpak"
@@ -209,7 +209,7 @@
   {
     "value": "bluestar",
     "label": "Bluestar",
-    "icon": "icons/tuxbw.svg",
+    "icon": "assets-icons/tuxbw.svg",
     "managers": [
       "pacman",
       "aur",
@@ -219,7 +219,7 @@
   {
     "value": "bazzite",
     "label": "Bazzite",
-    "icon": "icons/tuxbw.svg",
+    "icon": "assets-icons/tuxbw.svg",
     "managers": [
       "dnf",
       "flatpak"
@@ -228,7 +228,7 @@
   {
     "value": "biglinux",
     "label": "BigLinux",
-    "icon": "icons/tuxbw.svg",
+    "icon": "assets-icons/tuxbw.svg",
     "managers": [
       "pacman",
       "aur",
@@ -247,7 +247,7 @@
   {
     "value": "antix",
     "label": "antiX",
-    "icon": "icons/tuxbw.svg",
+    "icon": "assets-icons/tuxbw.svg",
     "managers": [
       "apt",
       "flatpak"
@@ -256,7 +256,7 @@
   {
     "value": "q4os",
     "label": "Q4OS",
-    "icon": "icons/tuxbw.svg",
+    "icon": "assets-icons/tuxbw.svg",
     "managers": [
       "apt",
       "flatpak"
@@ -265,7 +265,7 @@
   {
     "value": "pikaos",
     "label": "PikaOS",
-    "icon": "icons/tuxbw.svg",
+    "icon": "assets-icons/tuxbw.svg",
     "managers": [
       "apt",
       "flatpak"
@@ -284,7 +284,7 @@
   {
     "value": "minios",
     "label": "MiniOS",
-    "icon": "icons/tuxbw.svg",
+    "icon": "assets-icons/tuxbw.svg",
     "managers": [
       "apt",
       "flatpak"
