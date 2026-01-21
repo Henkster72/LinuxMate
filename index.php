@@ -98,6 +98,9 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
                     </div>
                     <p>The Linux Bulk App Installer.<br>
                     Install and update all your Linux programs at once.</p>
+                    <p class="brand-note">
+                        Story behind the tool: <a href="https://www.allroundwebsite.com/blog/bye-windows-hello-linux-and-linuxmate/" target="_blank" rel="noreferrer">Bye Windows, Hello Linux and LinuxMate</a>.
+                    </p>
                 </div>
             </div>
             <div class="topbar-controls">
@@ -260,6 +263,7 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
                         Warning: Desktop Environments and Window Managers are often bundled with distros (Arch is a common exception). Installing separately can cause conflicts.
                     </span>
                     <a class="repology-link" href="https://repology.org/" target="_blank" rel="noreferrer">Repology</a>
+                    <a class="repology-link" href="https://www.allroundwebsite.com/" target="_blank" rel="noreferrer">Made possible by Allroundwebsite</a>
                 </div>
             </div>
         </footer>

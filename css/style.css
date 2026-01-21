@@ -159,6 +159,12 @@ body[data-theme="dark"] .logo img {
     gap: 4px;
 }
 
+.brand-note {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--muted);
+}
+
 .brand-title {
     display: inline-flex;
     align-items: center;

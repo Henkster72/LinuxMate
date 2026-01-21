@@ -40,6 +40,7 @@ No build step. No tooling ceremony. Just open it and go.
 - 🧼 **Simple to deploy** (copy files, done)
 - 🧠 **Easy to extend** (add apps in JSON, not in code)
 - 🧩 **Browser-friendly** (minimal JS — only what you actually need)
+- 📘 **Further reading**: see [Bye Windows, Hello Linux and LinuxMate](https://www.allroundwebsite.com/blog/bye-windows-hello-linux-and-linuxmate/) for the story behind this tool.
 
 ---
 
