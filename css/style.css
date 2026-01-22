@@ -65,7 +65,7 @@ body.modal-open {
 .page {
     max-width: 1300px;
     margin: 0 auto;
-    padding: 32px 24px 180px;
+    padding: 2rem;
 }
 
 .topbar {
@@ -1045,9 +1045,71 @@ body[data-theme="dark"] .shortcut-grid div {
         column-count: 1;
     }
 
+    .topbar {
+        margin-left: -24px;
+        margin-right: -24px;
+        padding: 10px 14px;
+        border-radius: 0;
+        gap: 12px;
+        font-size: clamp(0.82rem, 3.2vw, 0.95rem);
+    }
+
+    .brand {
+        gap: 10px;
+    }
+
+    .logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+    }
+
+    .logo .logo-icon {
+        font-size: 2.6rem;
+    }
+
+    .logo-badge {
+        width: 24px;
+        height: 24px;
+        font-size: 0.95rem;
+    }
+
+    .brand h1 {
+        font-size: clamp(1.1rem, 5vw, 1.35rem);
+    }
+
+    .brand p {
+        font-size: clamp(0.78rem, 3.3vw, 0.92rem);
+    }
+
+    .brand-note {
+        font-size: clamp(0.72rem, 3vw, 0.85rem);
+    }
+
+    .top-links a,
+    .ghost {
+        font-size: clamp(0.72rem, 3vw, 0.86rem);
+    }
+
     .panel-header {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .panel-header h3 {
+        font-size: clamp(0.9rem, 3.6vw, 1rem);
+    }
+
+    .panel-header p {
+        font-size: clamp(0.7rem, 3vw, 0.85rem);
+    }
+
+    .script-actions button {
+        font-size: clamp(0.68rem, 2.8vw, 0.8rem);
+    }
+
+    #script-output {
+        font-size: clamp(0.68rem, 2.8vw, 0.8rem);
     }
 
     .script-footer {
@@ -1064,6 +1126,13 @@ body[data-theme="dark"] .shortcut-grid div {
 
     body[data-theme="dark"] .script-shell {
         background: rgba(12, 12, 12, 0.95);
+    }
+
+    .panel-footer {
+        font-size: clamp(0.64rem, 2.7vw, 0.78rem);
+    }
+    .page {
+        padding: 0 1.5rem;
     }
 }
 
