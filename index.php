@@ -80,6 +80,7 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>LinuxMate - Lightweight PHP Clone</title>
+    <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="popicon.css" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -240,14 +241,16 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
                                         <span class="pkg-icon"><?php echo $iconHtml; ?></span>
                                         <span class="pkg-name"><?php echo htmlspecialchars($pkg['name']); ?></span>
                                     </label>
-                                    <?php if ($url): ?>
-                                        <button class="external-link-btn" type="button" data-url="<?php echo htmlspecialchars($url); ?>" title="Open website">
-                                            <span class="pi pi-externallink" aria-hidden="true"></span>
+                                    <div class="package-actions">
+                                        <?php if ($url): ?>
+                                            <button class="external-link-btn" type="button" data-url="<?php echo htmlspecialchars($url); ?>" title="Open website">
+                                                <span class="pi pi-externallink" aria-hidden="true"></span>
+                                            </button>
+                                        <?php endif; ?>
+                                        <button class="info-btn" type="button" aria-label="More info" title="More info">
+                                            <span class="pi pi-info" aria-hidden="true"></span>
                                         </button>
-                                    <?php endif; ?>
-                                    <button class="info-btn" type="button" aria-label="More info" title="More info">
-                                        <span class="pi pi-info" aria-hidden="true"></span>
-                                    </button>
+                                    </div>
                                 </li>
                             <?php endforeach; ?>
                         </ul>

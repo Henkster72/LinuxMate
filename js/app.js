@@ -702,24 +702,40 @@ packageItems.forEach((item) => {
     });
 });
 
+const toggleCategoryCard = (card, toggle) => {
+    if (!card) {
+        return;
+    }
+    const collapsed = card.classList.toggle('is-collapsed');
+    if (toggle) {
+        toggle.setAttribute('aria-expanded', (!collapsed).toString());
+    }
+    const activeItem = document.activeElement?.closest('.package-item');
+    if (collapsed && activeItem && card.contains(activeItem)) {
+        focusItemByDirection('right');
+    }
+    if (!collapsed) {
+        const list = card.querySelector('.package-list');
+        if (list) {
+            list.style.setProperty('--list-max-height', `${list.scrollHeight}px`);
+        }
+    }
+};
+
 document.querySelectorAll('.category-toggle').forEach((toggle) => {
     toggle.addEventListener('click', () => {
-        const card = toggle.closest('.category-card');
-        if (!card) {
+        toggleCategoryCard(toggle.closest('.category-card'), toggle);
+    });
+});
+
+document.querySelectorAll('.category-header').forEach((header) => {
+    header.addEventListener('click', (event) => {
+        if (event.target.closest('.category-toggle')) {
             return;
         }
-        const collapsed = card.classList.toggle('is-collapsed');
-        toggle.setAttribute('aria-expanded', (!collapsed).toString());
-        const activeItem = document.activeElement?.closest('.package-item');
-        if (collapsed && activeItem && card.contains(activeItem)) {
-            focusItemByDirection('right');
-        }
-        if (!collapsed) {
-            const list = card.querySelector('.package-list');
-            if (list) {
-                list.style.setProperty('--list-max-height', `${list.scrollHeight}px`);
-            }
-        }
+        const card = header.closest('.category-card');
+        const toggle = card?.querySelector('.category-toggle') || null;
+        toggleCategoryCard(card, toggle);
     });
 });
 

@@ -1,4 +1,4 @@
-# LinuxMate v0.51 🐧✨
+# LinuxMate v0.52 🐧✨
 
 <img src="assets-icons/tuxbw.svg" alt="LinuxMate logo" width="96" />
 
@@ -11,6 +11,7 @@ No build step. No tooling ceremony. Just open it and go.
 
 ## Changelog
 
+- v0.52: Align package action buttons with a right-side wrapper.
 - v0.51: Mobile topbar/footer spacing and typography tuned to avoid overlap.
 - v0.5: Sandbox adds Snap/AppImage/custom scripts, AppImage search helpers, and Pop Icon linux fallbacks.
 - v0.4: Sandbox selector (Flatpak/Snap/AppImage), desktop-environment warning, and icons now live in `assets-icons/`.
