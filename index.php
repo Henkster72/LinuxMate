@@ -88,7 +88,7 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
         <header class="topbar">
             <div class="brand">
                 <div class="logo" aria-hidden="true">
-                    <img src="assets-icons/tuxbw.svg" alt="" />
+                    <span class="pi pi-linux logo-icon" aria-hidden="true"></span>
                     <span class="logo-badge pi pi-packageclose"></span>
                 </div>
                 <div class="brand-text">
@@ -151,9 +151,18 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
                             <ul id="distro-menu" class="distro-menu" role="listbox" aria-label="Select distro"></ul>
                         </div>
                     </label>
-                    <label class="flatpak-toggle">
-                        <input id="prefer-flatpak" type="checkbox" />
-                        <span>Prefer Flatpak</span>
+                    <label class="select sandbox-select">
+                        <span>Sandbox</span>
+                        <div class="select-shell">
+                            <select id="sandbox">
+                                <option value="none">None</option>
+                                <option value="flatpak">Flatpak</option>
+                                <option value="snap">Snap</option>
+                                <option value="appimage">AppImage</option>
+                                <option value="custom">Custom script</option>
+                            </select>
+                            <span class="select-caret pi pi-downcaret" aria-hidden="true"></span>
+                        </div>
                     </label>
                     <div id="aur-slot"></div>
                 </div>
@@ -209,15 +218,23 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
                                     $search = strtolower($pkg['name'] . ' ' . ($pkg['description'] ?? ''));
                                     $managerKeys = [];
                                     foreach (($pkg['packages'] ?? []) as $manager => $identifier) {
-                                        if ($identifier) {
-                                            $managerKeys[] = $manager;
+                                        if (!$identifier) {
+                                            continue;
                                         }
+                                        if (
+                                            $manager === 'appimage'
+                                            && strpos($identifier, 'duckduckgo.com/?q=appimage+site:') !== false
+                                        ) {
+                                            continue;
+                                        }
+                                        $managerKeys[] = $manager;
                                     }
                                     $managerList = implode(',', $managerKeys);
                                     $iconHtml = decorate_icon($pkg['icon_svg']);
                                     $url = $pkg['url'] ?? '';
+                                    $appimage = $pkg['packages']['appimage'] ?? '';
                                 ?>
-                                <li class="package-item" data-search="<?php echo htmlspecialchars($search); ?>" data-managers="<?php echo htmlspecialchars($managerList); ?>" data-category="<?php echo htmlspecialchars($slug); ?>" data-name="<?php echo htmlspecialchars($pkg['name']); ?>" data-description="<?php echo htmlspecialchars($pkg['description']); ?>" data-url="<?php echo htmlspecialchars($url); ?>">
+                                <li class="package-item" data-search="<?php echo htmlspecialchars($search); ?>" data-managers="<?php echo htmlspecialchars($managerList); ?>" data-category="<?php echo htmlspecialchars($slug); ?>" data-name="<?php echo htmlspecialchars($pkg['name']); ?>" data-description="<?php echo htmlspecialchars($pkg['description']); ?>" data-url="<?php echo htmlspecialchars($url); ?>" data-appimage="<?php echo htmlspecialchars((string) $appimage); ?>">
                                     <label>
                                         <input class="pkg-check" type="checkbox" data-id="<?php echo htmlspecialchars($pkg['id']); ?>" />
                                         <span class="pkg-icon"><?php echo $iconHtml; ?></span>
@@ -268,8 +285,18 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
                         <span class="warning-icon" aria-hidden="true">!</span>
                         Warning: Desktop Environments and Window Managers are often bundled with distros (Arch is a common exception). Installing separately can cause conflicts.
                     </span>
-                    <a class="repology-link" href="https://repology.org/" target="_blank" rel="noreferrer">Repology</a>
-                    <a class="repology-link" href="https://www.allroundwebsite.com/" target="_blank" rel="noreferrer">Made possible by Allroundwebsite</a>
+                    <a id="appimage-link" class="repology-link" href="#" target="_blank" rel="noreferrer" hidden>
+                        <span class="link-text">AppImage search</span>
+                        <span class="pi pi-externallink" aria-hidden="true"></span>
+                    </a>
+                    <a class="repology-link" href="https://repology.org/" target="_blank" rel="noreferrer">
+                        <span class="link-text">Repology</span>
+                        <span class="pi pi-externallink" aria-hidden="true"></span>
+                    </a>
+                    <a class="repology-link" href="https://www.allroundwebsite.com/" target="_blank" rel="noreferrer">
+                        <span class="link-text">Made possible by Allroundwebsite</span>
+                        <span class="pi pi-externallink" aria-hidden="true"></span>
+                    </a>
                 </div>
             </div>
         </footer>

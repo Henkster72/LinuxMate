@@ -522,7 +522,9 @@
 .pi-upload:before {
   content: "\e991"
 }
-
+.pi-linux:before {
+  content: "\e992"
+}
 .pi-stack {
   position: relative;
   display: inline-block;

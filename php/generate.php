@@ -18,6 +18,20 @@ if (!is_array($selected)) {
 }
 $preferFlatpak = $data['prefer_flatpak'] ?? false;
 $preferFlatpak = filter_var($preferFlatpak, FILTER_VALIDATE_BOOLEAN);
+$sandbox = $data['sandbox'] ?? '';
+if (!is_string($sandbox)) {
+    $sandbox = '';
+}
+$sandbox = strtolower(trim($sandbox));
+if ($sandbox === 'none') {
+    $sandbox = '';
+}
+if (!$sandbox && $preferFlatpak) {
+    $sandbox = 'flatpak';
+}
+if (!in_array($sandbox, ['flatpak', 'appimage', 'snap', 'custom'], true)) {
+    $sandbox = '';
+}
 
 $packagesFile = __DIR__ . '/../data/packages.json';
 $packages = json_decode(file_get_contents($packagesFile), true) ?? [];
@@ -109,20 +123,78 @@ if (!isset($distros[$distro])) {
     $distro = 'ubuntu';
 }
 
+$managerOrder = $distros[$distro]['managers'];
+if ($sandbox && $sandbox !== 'appimage' && $sandbox !== 'custom' && !in_array($sandbox, $managerOrder, true)) {
+    $managerOrder[] = $sandbox;
+}
+
 $managerPackages = [];
-foreach ($distros[$distro]['managers'] as $manager) {
+foreach ($managerOrder as $manager) {
     $managerPackages[$manager] = [];
 }
+
+$customScripts = [];
+$missingCustomScripts = [];
+function is_appimage_placeholder($value): bool {
+    if (!is_string($value) || $value === '') {
+        return false;
+    }
+    return strpos($value, 'duckduckgo.com/?q=appimage+site:') !== false;
+}
+
+function appimage_filename(string $url): string {
+    $path = parse_url($url, PHP_URL_PATH);
+    $filename = $path ? basename($path) : '';
+    $filename = preg_replace('/[^A-Za-z0-9._-]+/', '_', $filename ?? '');
+    if (!$filename) {
+        return 'appimage-' . substr(sha1($url), 0, 8) . '.AppImage';
+    }
+    return $filename;
+}
+
+$appimageDownloads = [];
+$appimagePlaceholders = 0;
 
 foreach ($selected as $id) {
     if (!isset($packageIndex[$id])) {
         continue;
     }
     $pkg = $packageIndex[$id];
+    $customScript = $pkg['custom_script'] ?? null;
+    if (is_string($customScript)) {
+        $customScript = trim($customScript);
+    } else {
+        $customScript = null;
+    }
+    if ($sandbox === 'custom') {
+        if ($customScript) {
+            $customScripts[] = [
+                'name' => $pkg['name'] ?? $id,
+                'script' => $customScript,
+            ];
+            continue;
+        } else {
+            $missingCustomScripts[] = $pkg['name'] ?? $id;
+        }
+    }
     $flatpakId = $pkg['packages']['flatpak'] ?? null;
-    if ($preferFlatpak && $flatpakId && array_key_exists('flatpak', $managerPackages)) {
+    $appimageId = $pkg['packages']['appimage'] ?? null;
+    $snapId = $pkg['packages']['snap'] ?? null;
+    if ($sandbox === 'flatpak' && $flatpakId && array_key_exists('flatpak', $managerPackages)) {
         $managerPackages['flatpak'][$flatpakId] = true;
         continue;
+    }
+    if ($sandbox === 'snap' && $snapId && array_key_exists('snap', $managerPackages)) {
+        $managerPackages['snap'][$snapId] = true;
+        continue;
+    }
+    if ($sandbox === 'appimage' && $appimageId) {
+        if (is_appimage_placeholder($appimageId)) {
+            $appimagePlaceholders++;
+        } else {
+            $appimageDownloads[$appimageId] = true;
+            continue;
+        }
     }
     $pkgAssigned = false;
     foreach (array_keys($managerPackages) as $manager) {
@@ -140,7 +212,7 @@ foreach ($selected as $id) {
 
 $lines = ['#!/usr/bin/env bash', ''];
 $hasAny = false;
-foreach ($distros[$distro]['managers'] as $manager) {
+foreach ($managerOrder as $manager) {
     $ids = array_keys($managerPackages[$manager]);
     if (!$ids) {
         continue;
@@ -154,9 +226,44 @@ foreach ($distros[$distro]['managers'] as $manager) {
     $lines[] = '';
 }
 
+if ($appimageDownloads) {
+    $hasAny = true;
+    $lines[] = '# AppImage';
+    $lines[] = 'mkdir -p "$HOME/Applications"';
+    foreach (array_keys($appimageDownloads) as $url) {
+        $filename = appimage_filename($url);
+        $lines[] = 'curl -L -o "$HOME/Applications/' . $filename . '" "' . $url . '"';
+        $lines[] = 'chmod +x "$HOME/Applications/' . $filename . '"';
+    }
+    $lines[] = '';
+}
+
+if ($sandbox === 'custom' && $customScripts) {
+    $hasAny = true;
+    $lines[] = '# Custom installs';
+    foreach ($customScripts as $entry) {
+        $lines[] = '# ' . $entry['name'];
+        $lines[] = $entry['script'];
+        $lines[] = '';
+    }
+}
+
+if ($sandbox === 'custom' && $missingCustomScripts) {
+    $hasAny = true;
+    $lines[] = '# No custom script available for: ' . implode(', ', $missingCustomScripts);
+    $lines[] = '';
+}
+
 if (!$hasAny) {
-    $lines[] = '# No packages available for this distro selection.';
-    $lines[] = '# Try another distro or switch to Flatpak/Snap.';
+    if ($sandbox === 'custom' && $missingCustomScripts) {
+        $lines[] = '# No custom script available for: ' . implode(', ', $missingCustomScripts);
+    } elseif ($sandbox === 'appimage' && $appimagePlaceholders > 0) {
+        $lines[] = '# AppImage selections are manual for now.';
+        $lines[] = '# Use the AppImage search link below the script output.';
+    } else {
+        $lines[] = '# No packages available for this distro selection.';
+        $lines[] = '# Try another distro or switch to Flatpak/AppImage/Snap.';
+    }
 }
 
 $script = rtrim(implode("\n", $lines)) . "\n";

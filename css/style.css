@@ -114,6 +114,12 @@ body[data-theme="dark"] .logo {
     height: 62px;
 }
 
+.logo .logo-icon {
+    font-size: 3.2rem;
+    color: #1e1b1b;
+    line-height: 1;
+}
+
 .logo-badge {
     position: absolute;
     bottom: 6px;
@@ -139,6 +145,10 @@ body[data-theme="dark"] .logo-badge {
 
 body[data-theme="dark"] .logo img {
     filter: invert(1) brightness(1.1);
+}
+
+body[data-theme="dark"] .logo .logo-icon {
+    color: var(--ink);
 }
 
 .brand h1 {
@@ -211,55 +221,6 @@ body[data-theme="dark"] .logo img {
     display: flex;
     align-items: flex-end;
     gap: 12px;
-}
-
-.flatpak-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    background: #fff;
-    font-weight: 600;
-    font-size: 0.85rem;
-    color: var(--ink);
-    cursor: pointer;
-    user-select: none;
-}
-
-.flatpak-toggle input {
-    appearance: none;
-    width: 14px;
-    height: 14px;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    display: grid;
-    place-items: center;
-    background: #fff;
-}
-
-.flatpak-toggle input:checked {
-    background: var(--accent);
-    border-color: var(--accent);
-}
-
-.flatpak-toggle input:checked::after {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 2px;
-    background: #fff;
-}
-
-.flatpak-toggle input:focus-visible {
-    outline: 2px solid rgba(var(--accent-rgb), 0.4);
-    outline-offset: 2px;
-}
-
-body[data-theme="dark"] .flatpak-toggle {
-    background: #1f1d18;
-    color: var(--ink);
 }
 
 .ghost {
@@ -695,10 +656,16 @@ body[data-theme="dark"] .category-header .count {
 }
 
 .pkg-icon svg,
-.pkg-icon img {
+.pkg-icon img,
+.pkg-icon .pi {
     width: 14px;
     height: 14px;
     display: block;
+}
+
+.pkg-icon .pi {
+    font-size: 14px;
+    line-height: 1;
 }
 
 .pkg-icon img[src$="tuxbw.svg"] {
@@ -870,6 +837,18 @@ body[data-theme="dark"] .pkg-icon img[src$="tuxbw.svg"] {
     gap: 8px;
     font-size: 0.76rem;
     color: #c8c1b9;
+}
+
+.panel-footer .repology-link {
+    color: #fff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.panel-footer .repology-link:hover {
+    opacity: 0.85;
 }
 
 .footer-warning {

@@ -5,6 +5,7 @@ let aurWrap = document.getElementById('aur-wrap');
 let aurHelper = document.getElementById('aur-helper');
 const scriptOutput = document.getElementById('script-output');
 const selectedCount = document.getElementById('selected-count');
+const appimageLink = document.getElementById('appimage-link');
 const searchInput = document.getElementById('search');
 const searchClear = document.getElementById('search-clear');
 const searchWrap = document.querySelector('.search-wrap');
@@ -29,16 +30,24 @@ const distroMenu = document.getElementById('distro-menu');
 const distroButtonIcon = document.querySelector('.distro-button-icon');
 const distroButtonLabel = document.querySelector('.distro-button-label');
 const distroShell = document.querySelector('.distro-shell');
-const preferFlatpakToggle = document.getElementById('prefer-flatpak');
+const sandboxSelect = document.getElementById('sandbox');
 const initialUrlState = (() => {
     const params = new URLSearchParams(window.location.search);
     const distro = params.get('distro');
     const apps = params.get('apps');
+    const sandboxParam = (params.get('sandbox') || '').trim().toLowerCase();
     const preferFlatpak = params.get('prefer_flatpak');
+    let sandbox = sandboxParam;
+    if (!sandbox && (preferFlatpak === '1' || preferFlatpak === 'true')) {
+        sandbox = 'flatpak';
+    }
+    if (!['flatpak', 'appimage', 'snap', 'custom', 'none'].includes(sandbox)) {
+        sandbox = 'none';
+    }
     return {
         distro,
         apps: apps ? apps.split(',').map((id) => id.trim()).filter(Boolean) : [],
-        preferFlatpak: preferFlatpak === '1' || preferFlatpak === 'true',
+        sandbox,
     };
 })();
 
@@ -66,6 +75,7 @@ packageItems.forEach((item) => {
         description: item.dataset.description,
         category: item.dataset.category,
         url: item.dataset.url,
+        appimageBase: item.dataset.appimage,
         element: item,
     });
     checkbox.addEventListener('focus', () => {
@@ -98,6 +108,72 @@ const getActiveManagers = () => {
         .split(',')
         .map((entry) => entry.trim())
         .filter(Boolean);
+};
+
+const getSandboxSelection = () => sandboxSelect?.value || 'none';
+
+const appimageSearchBase = 'https://duckduckgo.com/?q=appimage+site:';
+
+const isAppimageSearchBase = (value) =>
+    Boolean(value) &&
+    value.toLowerCase().includes('duckduckgo.com/?q=appimage+site:');
+
+const buildAppimageLink = (appimageValue, packageUrl) => {
+    if (!appimageValue) {
+        return '';
+    }
+    if (isAppimageSearchBase(appimageValue)) {
+        if (!packageUrl) {
+            return '';
+        }
+        return `${appimageSearchBase}${encodeURIComponent(packageUrl)}`;
+    }
+    return appimageValue;
+};
+
+const updateAppimageLink = (preferredId = '') => {
+    if (!appimageLink) {
+        return;
+    }
+    if (getSandboxSelection() !== 'appimage') {
+        appimageLink.hidden = true;
+        return;
+    }
+
+    let targetId = preferredId && selected.has(preferredId) ? preferredId : '';
+    let targetMeta = targetId ? packageMeta.get(targetId) : null;
+    let targetUrl = '';
+    if (targetMeta && isAppimageSearchBase(targetMeta.appimageBase)) {
+        targetUrl = buildAppimageLink(targetMeta.appimageBase, targetMeta.url);
+    }
+
+    if (!targetUrl) {
+        for (const id of selected) {
+            const meta = packageMeta.get(id);
+            if (!isAppimageSearchBase(meta?.appimageBase)) {
+                return;
+            }
+            const url = buildAppimageLink(meta?.appimageBase, meta?.url);
+            if (url) {
+                targetId = id;
+                targetMeta = meta;
+                targetUrl = url;
+                break;
+            }
+        }
+    }
+
+    if (!targetUrl || !targetMeta) {
+        appimageLink.hidden = true;
+        return;
+    }
+
+    appimageLink.href = targetUrl;
+    const linkText = appimageLink.querySelector('.link-text');
+    if (linkText) {
+        linkText.textContent = `AppImage search: ${targetMeta.name}`;
+    }
+    appimageLink.hidden = false;
 };
 
 const getDistroMatches = (prefix) => {
@@ -317,8 +393,9 @@ const buildShareUrl = () => {
     if (distroSelect.value) {
         params.set('distro', distroSelect.value);
     }
-    if (preferFlatpakToggle?.checked) {
-        params.set('prefer_flatpak', '1');
+    const sandbox = getSandboxSelection();
+    if (sandbox && sandbox !== 'none') {
+        params.set('sandbox', sandbox);
     }
     if (selected.size) {
         const apps = Array.from(selected).sort().join(',');
@@ -435,8 +512,13 @@ const focusItemByDirection = (direction) => {
 };
 
 const updateAvailability = () => {
-    const activeManagers = new Set(getActiveManagers());
-    const showAur = activeManagers.has('aur');
+    const baseManagers = new Set(getActiveManagers());
+    const activeManagers = new Set(baseManagers);
+    const sandbox = getSandboxSelection();
+    if (sandbox === 'flatpak' || sandbox === 'appimage' || sandbox === 'snap') {
+        activeManagers.add(sandbox);
+    }
+    const showAur = baseManagers.has('aur');
     ensureAurHelper(showAur);
 
     packageItems.forEach((item) => {
@@ -486,7 +568,7 @@ const fetchScript = async () => {
                 distro: distroSelect.value,
                 packages: Array.from(selected),
                 aur_helper: aurHelper ? aurHelper.value : lastAurHelper,
-                prefer_flatpak: Boolean(preferFlatpakToggle?.checked),
+                sandbox: getSandboxSelection(),
             }),
             signal: controller.signal,
         });
@@ -579,6 +661,7 @@ checkboxes.forEach((checkbox) => {
         } else {
             selected.delete(id);
         }
+        updateAppimageLink(id);
         scheduleUpdate();
     });
 });
@@ -591,7 +674,7 @@ packageItems.forEach((item) => {
         const description = item.dataset.description;
         const url = item.dataset.url;
         const note = item.classList.contains('is-disabled')
-            ? 'This app is not available for the selected distro. Try Flatpak or Snap.'
+            ? 'This app is not available for the selected distro. Try Flatpak, AppImage, or Snap.'
             : 'Available for this distro.';
         infoTitle.textContent = name;
         infoBody.textContent = description + ' ' + note;
@@ -675,6 +758,7 @@ clearBtn.addEventListener('click', () => {
     checkboxes.forEach((checkbox) => {
         checkbox.checked = false;
     });
+    updateAppimageLink();
     scheduleUpdate();
 });
 
@@ -720,12 +804,15 @@ helpButton.addEventListener('click', () => {
 
 themeToggle.addEventListener('click', toggleTheme);
 
-preferFlatpakToggle?.addEventListener('change', () => {
+sandboxSelect?.addEventListener('change', () => {
+    updateAvailability();
+    updateAppimageLink();
     scheduleUpdate();
 });
 
 distroSelect.addEventListener('change', () => {
     updateAvailability();
+    updateAppimageLink();
     scheduleUpdate();
     updateDistroButton();
 });
@@ -894,9 +981,11 @@ const applyUrlSelections = () => {
         }
     }
 
-    if (preferFlatpakToggle && initialUrlState.preferFlatpak) {
-        preferFlatpakToggle.checked = true;
+    if (sandboxSelect && initialUrlState.sandbox) {
+        sandboxSelect.value = initialUrlState.sandbox;
     }
+
+    updateAvailability();
 
     if (initialUrlState.apps.length) {
         initialUrlState.apps.forEach((id) => {
@@ -909,6 +998,7 @@ const applyUrlSelections = () => {
             }
         });
     }
+    updateAppimageLink();
 };
 
 const savedTheme = localStorage.getItem('linuxmate-theme');

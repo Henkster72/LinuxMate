@@ -43,6 +43,7 @@ Each entry in `data/packages.json` should look like this:
     "dnf": "exact-package-name",
     "pacman": "exact-package-name",
     "flatpak": "com.vendor.AppId",
+    "appimage": "https://example.com/App.AppImage",
     "snap": "snap-name",
     "brew": "formula-or-cask"
   },
@@ -54,6 +55,7 @@ Each entry in `data/packages.json` should look like this:
 
 - **Exact package names only** (no guesses).
 - **Flatpak IDs must be full App IDs** (e.g., `org.mozilla.firefox`).
+- **AppImage entries should be direct download URLs** (prefer `.AppImage` files).
 - **Snap packages that require classic confinement must include `--classic`**.
 - **Homebrew GUI apps must use `--cask`**.
 - If a package is not available for a manager, **omit the key entirely**.
@@ -73,6 +75,7 @@ Check official sources before submitting:
 - openSUSE: https://software.opensuse.org/
 - NixOS: https://search.nixos.org/packages
 - Flatpak: https://flathub.org/
+- AppImage: https://appimage.github.io/apps/
 - Snap: https://snapcraft.io/
 - Homebrew: https://formulae.brew.sh/
 
