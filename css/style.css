@@ -1125,15 +1125,24 @@ body[data-theme="dark"] .shortcut-grid div {
         margin-top: 0;
         margin-left: -24px;
         margin-right: -24px;
+        max-height: 70vh;
+        overflow: hidden;
     }
 
     .script-shell {
         border-radius: 0;
         background: rgba(17, 18, 16, 0.95);
+        max-height: 70vh;
+        overflow-y: auto;
     }
 
     body[data-theme="dark"] .script-shell {
         background: rgba(12, 12, 12, 0.95);
+    }
+
+    #script-output {
+        max-height: calc(70vh - 140px);
+        overflow-y: auto;
     }
 
     .panel-footer {

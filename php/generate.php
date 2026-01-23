@@ -135,6 +135,7 @@ foreach ($managerOrder as $manager) {
 
 $customScripts = [];
 $missingCustomScripts = [];
+$customScriptUsesCurl = false;
 function is_appimage_placeholder($value): bool {
     if (!is_string($value) || $value === '') {
         return false;
@@ -150,6 +151,22 @@ function appimage_filename(string $url): string {
         return 'appimage-' . substr(sha1($url), 0, 8) . '.AppImage';
     }
     return $filename;
+}
+
+function distro_install_command(string $distro, string $package): ?string {
+    static $templates = [
+        'ubuntu' => 'sudo apt install -y %s',
+        'debian' => 'sudo apt install -y %s',
+        'fedora' => 'sudo dnf install -y %s',
+        'arch' => 'sudo pacman -S --noconfirm %s',
+        'opensuse' => 'sudo zypper install -y %s',
+        'nix' => 'nix-env -iA nixpkgs.%s',
+        'homebrew' => 'brew install %s',
+    ];
+    if (!isset($templates[$distro])) {
+        return null;
+    }
+    return sprintf($templates[$distro], $package);
 }
 
 $appimageDownloads = [];
@@ -172,6 +189,9 @@ foreach ($selected as $id) {
                 'name' => $pkg['name'] ?? $id,
                 'script' => $customScript,
             ];
+            if (stripos($customScript, 'curl') !== false) {
+                $customScriptUsesCurl = true;
+            }
             continue;
         } else {
             $missingCustomScripts[] = $pkg['name'] ?? $id;
@@ -212,12 +232,21 @@ foreach ($selected as $id) {
 
 $lines = ['#!/usr/bin/env bash', ''];
 $hasAny = false;
+$hasCustomScripts = false;
 foreach ($managerOrder as $manager) {
     $ids = array_keys($managerPackages[$manager]);
     if (!$ids) {
         continue;
     }
     $hasAny = true;
+    if ($manager === 'flatpak') {
+        $flatpakInstall = distro_install_command($distro, 'flatpak');
+        if ($flatpakInstall) {
+            $lines[] = '# Add Flatpak on ' . $distros[$distro]['label'] . ': ' . $flatpakInstall;
+        } else {
+            $lines[] = '# Ensure Flatpak is installed on ' . $distros[$distro]['label'] . ' before running the Flatpak section.';
+        }
+    }
     $update = $managers[$manager]['update'] ?? null;
     if ($update) {
         $lines[] = $update;
@@ -240,6 +269,7 @@ if ($appimageDownloads) {
 
 if ($sandbox === 'custom' && $customScripts) {
     $hasAny = true;
+    $hasCustomScripts = true;
     $lines[] = '# Custom installs';
     foreach ($customScripts as $entry) {
         $lines[] = '# ' . $entry['name'];
@@ -263,6 +293,21 @@ if (!$hasAny) {
     } else {
         $lines[] = '# No packages available for this distro selection.';
         $lines[] = '# Try another distro or switch to Flatpak/AppImage/Snap.';
+    }
+}
+
+if ($hasCustomScripts) {
+    $lines[] = '# Tip: for better managing of custom scripts and packaging, one can run:';
+    $lines[] = '# mkdir -p ~/.local/bin ~/.local/opt && grep -qxF \'export PATH="$HOME/.local/bin:$PATH"\' ~/.profile || echo \'export PATH="$HOME/.local/bin:$PATH"\' >> ~/.profile && export PATH="$HOME/.local/bin:$PATH"';
+    $lines[] = '# Provided scripts are used at your own risk.';
+    $lines[] = '# It is highly recommended to use the dedicated package managers for distros.';
+    if ($customScriptUsesCurl) {
+        $curlInstall = distro_install_command($distro, 'curl');
+        if ($curlInstall) {
+            $lines[] = '# Add curl on ' . $distros[$distro]['label'] . ': ' . $curlInstall;
+        } else {
+            $lines[] = '# Add curl via your distro\'s package manager before running these custom commands.';
+        }
     }
 }
 

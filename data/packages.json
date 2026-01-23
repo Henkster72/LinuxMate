@@ -5,7 +5,7 @@
     "description": "Brave for Web Browsers.",
     "url": "https://brave.com/",
     "category": "Web Browsers",
-    "custom_script": null,
+    "custom_script": "curl -fsS https://dl.brave.com/install.sh | sh",
     "packages": {
       "apt": "brave",
       "dnf": "brave",
@@ -113,7 +113,7 @@
     "description": "Tor Browser for Web Browsers.",
     "url": "https://www.torproject.org/",
     "category": "Web Browsers",
-    "custom_script": null,
+    "custom_script": "curl",
     "packages": {
       "apt": "tor-browser",
       "dnf": "tor-browser",
@@ -299,7 +299,7 @@
       "dnf": "zoom",
       "pacman": "zoom",
       "flatpak": "us.zoom.Zoom",
-      "appimage": "https://duckduckgo.com/?q=appimage+site:",
+      "appimage": "https://github.com/probonopd/Zoom.AppImage/releases",
       "snap": "zoom",
       "zypper": "zoom"
     },
@@ -347,7 +347,7 @@
     "description": "FFmpeg for Media.",
     "url": "https://ffmpeg.org/",
     "category": "Media",
-    "custom_script": null,
+    "custom_script": "wget -O - https://raw.githubusercontent.com/jontybrook/ffmpeg-install-script/main/install-ffmpeg-static.sh | bash -s -- --force",
     "packages": {
       "apt": "ffmpeg",
       "dnf": "ffmpeg",
@@ -743,7 +743,7 @@
     "description": "Steam for Gaming.",
     "url": "https://store.steampowered.com/about/",
     "category": "Gaming",
-    "custom_script": null,
+    "custom_script": "curl -L -O https://steamcdn-a.akamaihd.net/client/installer/steamcmd_osx.tar.gz",
     "packages": {
       "apt": "steam",
       "dnf": "steam",
@@ -779,7 +779,7 @@
     "description": "Joplin for Office.",
     "url": "https://joplinapp.org/",
     "category": "Office",
-    "custom_script": null,
+    "custom_script": "bash -c \"$(curl -fsSL https://raw.githubusercontent.com/hieutt192/Joplin-ubuntu/refs/heads/main/manage_joplin.sh)\"",
     "packages": {
       "apt": "joplin",
       "dnf": "joplin",
@@ -941,7 +941,7 @@
     "description": "Zotero for Office.",
     "url": "https://www.zotero.org/",
     "category": "Office",
-    "custom_script": null,
+    "custom_script": "curl -sL https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash",
     "packages": {
       "apt": "zotero",
       "dnf": "zotero",
@@ -1535,7 +1535,7 @@
     "description": "OpenVPN for VPN & Network.",
     "url": "https://openvpn.net/",
     "category": "VPN & Network",
-    "custom_script": null,
+    "custom_script": "curl -Ls https://raw.githubusercontent.com/leomoon-studios/openvpn-installer/master/src/openvpn-installer -O ~/openvpn-installer",
     "packages": {
       "apt": "openvpn",
       "dnf": "openvpn",
@@ -1571,7 +1571,7 @@
     "description": "Tailscale for VPN & Network.",
     "url": "https://tailscale.com/",
     "category": "VPN & Network",
-    "custom_script": null,
+    "custom_script": "curl -fsSL https://tailscale.com/install.sh | sh",
     "packages": {
       "apt": "tailscale",
       "dnf": "tailscale",
@@ -1589,7 +1589,7 @@
     "description": "WireGuard for VPN & Network.",
     "url": "https://www.wireguard.com/",
     "category": "VPN & Network",
-    "custom_script": null,
+    "custom_script": "curl -O https://raw.githubusercontent.com/angristan/wireguard-install/master/wireguard-install.sh",
     "packages": {
       "apt": "wireguard",
       "dnf": "wireguard",
@@ -1697,7 +1697,7 @@
     "description": "Nextcloud for File Sharing.",
     "url": "https://nextcloud.com/",
     "category": "File Sharing",
-    "custom_script": null,
+    "custom_script": "curl -fsSL https://raw.githubusercontent.com/itsredbull/nextcloud-aio-install-script/main/install-nextcloud-aio.sh | sudo bash",
     "packages": {
       "apt": "nextcloud",
       "dnf": "nextcloud",
@@ -1715,7 +1715,7 @@
     "description": "Syncthing for File Sharing.",
     "url": "https://syncthing.net/",
     "category": "File Sharing",
-    "custom_script": null,
+    "custom_script": "curl -s https://syncthing.net/release-key.txt | sudo apt-key add -",
     "packages": {
       "apt": "syncthing",
       "dnf": "syncthing",
@@ -1769,7 +1769,7 @@
     "description": "Bitwarden for Security.",
     "url": "https://www.bitwarden.com",
     "category": "Security",
-    "custom_script": null,
+    "custom_script": "curl -sSL https://raw.githubusercontent.com/skipperoo/bitwarden-installer/master/install-bitwarden.sh | bash",
     "packages": {
       "apt": "bitwarden",
       "dnf": "bitwarden",
@@ -1895,7 +1895,7 @@
     "description": "Cursor for Dev: Editors.",
     "url": "https://cursor.com/docs",
     "category": "Dev: Editors",
-    "custom_script": null,
+    "custom_script": "curl https://gist.githubusercontent.com/Kinyugo/9845e18998744ff54b8f0cde3bb37182/raw/a9425582958c14f80acea08e51c49b1bf63840c7/install_cursor.sh",
     "packages": {
       "apt": "cursor",
       "dnf": "cursor",
@@ -1919,7 +1919,7 @@
       "dnf": "emacs",
       "pacman": "emacs",
       "flatpak": "org.gnu.emacs",
-      "appimage": "https://duckduckgo.com/?q=appimage+site:",
+      "appimage": "https://github.com/probonopd/Emacs.AppImage/releases",
       "snap": "emacs",
       "zypper": "emacs"
     },
@@ -2003,7 +2003,7 @@
     "description": "Sublime Text for Dev: Editors.",
     "url": "https://www.sublimetext.com/",
     "category": "Dev: Editors",
-    "custom_script": null,
+    "custom_script": "curl -LO https://raw.githubusercontent.com/franciscoernestoteixeira/sublime-linux/main/install-sublime.sh && chmod +x install-sublime.sh && ./install-sublime.sh",
     "packages": {
       "apt": "sublime-text",
       "dnf": "sublime-text",
@@ -2021,7 +2021,7 @@
     "description": "VS Code for Dev: Editors.",
     "url": "https://code.visualstudio.com/",
     "category": "Dev: Editors",
-    "custom_script": null,
+    "custom_script": "sudo apt-get install wget gpg &&",
     "packages": {
       "apt": "code",
       "dnf": "code",
@@ -2093,7 +2093,7 @@
     "description": "Bun for Dev: Languages.",
     "url": "https://bun.sh/",
     "category": "Dev: Languages",
-    "custom_script": null,
+    "custom_script": "curl -fsSL https://bun.com/install | bash",
     "packages": {
       "apt": "bun",
       "dnf": "bun",
@@ -2111,7 +2111,7 @@
     "description": "Deno for Dev: Languages.",
     "url": "https://deno.com/",
     "category": "Dev: Languages",
-    "custom_script": null,
+    "custom_script": "curl -fsSL https://deno.land/install.sh | sh",
     "packages": {
       "apt": "deno",
       "dnf": "deno",
@@ -2129,7 +2129,7 @@
     "description": "Go for Dev: Languages.",
     "url": "https://go.dev/",
     "category": "Dev: Languages",
-    "custom_script": null,
+    "custom_script": "sudo rm -rf /usr/local/go && curl -fsSL https://go.dev/dl/go1.25.6.linux-amd64.tar.gz | sudo tar -C /usr/local -xzf - && (grep -qxF 'export PATH=/usr/local/go/bin:$PATH' ~/.profile 2>/dev/null || echo 'export PATH=/usr/local/go/bin:$PATH' >> ~/.profile) && . ~/.profile && go version",
     "packages": {
       "apt": "go",
       "dnf": "go",
@@ -2147,7 +2147,7 @@
     "description": "Node.js for Dev: Languages.",
     "url": "https://nodejs.org/en",
     "category": "Dev: Languages",
-    "custom_script": null,
+    "custom_script": "curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash && export NVM_DIR=\"$HOME/.nvm\" && [ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\" && nvm install --lts && nvm alias default 'lts/*' && node -v && npm -v",
     "packages": {
       "apt": "nodejs",
       "dnf": "nodejs",
@@ -2165,7 +2165,7 @@
     "description": "OpenJDK for Dev: Languages.",
     "url": "https://openjdk.org/",
     "category": "Dev: Languages",
-    "custom_script": null,
+    "custom_script": "mkdir -p ~/.local/opt/jdk && curl -fL \"https://api.adoptium.net/v3/binary/latest/21/ga/linux/x64/jdk/hotspot/normal/eclipse?project=jdk\" -o /tmp/jdk.tgz && rm -rf ~/.local/opt/jdk/cur && mkdir -p ~/.local/opt/jdk/cur && tar -xzf /tmp/jdk.tgz -C ~/.local/opt/jdk/cur --strip-components=1 && ln -sf ~/.local/opt/jdk/cur/bin/java ~/.local/bin/java && ln -sf ~/.local/opt/jdk/cur/bin/javac ~/.local/bin/javac && java -version",
     "packages": {
       "apt": "default-jdk",
       "dnf": "java-latest-openjdk",
@@ -2183,7 +2183,7 @@
     "description": "PHP for Dev: Languages.",
     "url": "https://www.php.net/",
     "category": "Dev: Languages",
-    "custom_script": null,
+    "custom_script": "curl -fL https://github.com/phpbrew/phpbrew/releases/latest/download/phpbrew.phar -o ~/.local/bin/phpbrew && chmod +x ~/.local/bin/phpbrew && phpbrew init && grep -qxF '[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc' ~/.bashrc || echo '[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc' >> ~/.bashrc && . ~/.phpbrew/bashrc && phpbrew known",
     "packages": {
       "apt": "php",
       "dnf": "php",
@@ -2201,7 +2201,7 @@
     "description": "Python 3 for Dev: Languages.",
     "url": "https://www.python.org/downloads/",
     "category": "Dev: Languages",
-    "custom_script": null,
+    "custom_script": "curl -fsSL https://pyenv.run | bash && export PATH=\"$HOME/.pyenv/bin:$PATH\" && eval \"$(pyenv init -)\" && pyenv versions",
     "packages": {
       "apt": "python3",
       "dnf": "python3",
@@ -2219,7 +2219,7 @@
     "description": "Ruby for Dev: Languages.",
     "url": "https://www.ruby-lang.org/en/",
     "category": "Dev: Languages",
-    "custom_script": null,
+    "custom_script": "curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash && export PATH=\"$HOME/.rbenv/bin:$PATH\" && eval \"$(rbenv init - bash)\" && rbenv -v",
     "packages": {
       "apt": "ruby",
       "dnf": "ruby",
@@ -2237,7 +2237,7 @@
     "description": "Rust for Dev: Languages.",
     "url": "https://rust-lang.org/",
     "category": "Dev: Languages",
-    "custom_script": null,
+    "custom_script": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && . \"$HOME/.cargo/env\" && rustc -V && cargo -V",
     "packages": {
       "apt": "rust",
       "dnf": "rust",
@@ -2255,7 +2255,7 @@
     "description": "npm for Dev: Languages.",
     "url": "https://www.npmjs.com/",
     "category": "Dev: Languages",
-    "custom_script": null,
+    "custom_script": "npm install -g npm@latest && npm -v",
     "packages": {
       "apt": "npm",
       "dnf": "npm",
@@ -2273,7 +2273,7 @@
     "description": "pnpm for Dev: Languages.",
     "url": "https://pnpm.io/",
     "category": "Dev: Languages",
-    "custom_script": null,
+    "custom_script": "curl -fsSL https://get.pnpm.io/install.sh | sh -",
     "packages": {
       "apt": "pnpm",
       "dnf": "pnpm",
@@ -2291,7 +2291,7 @@
     "description": "uv for Dev: Languages.",
     "url": "https://docs.astral.sh/uv/getting-started/installation/",
     "category": "Dev: Languages",
-    "custom_script": null,
+    "custom_script": "$ curl -LsSf https://astral.sh/uv/install.sh | sh",
     "packages": {
       "apt": "uv",
       "dnf": "uv",
@@ -2309,7 +2309,7 @@
     "description": "yarn for Dev: Languages.",
     "url": "https://yarnpkg.com/",
     "category": "Dev: Languages",
-    "custom_script": null,
+    "custom_script": "corepack enable && corepack prepare yarn@stable --activate && yarn -v",
     "packages": {
       "apt": "yarn",
       "dnf": "yarn",
@@ -2327,7 +2327,7 @@
     "description": "Bruno for Dev: Tools.",
     "url": "https://www.usebruno.com/",
     "category": "Dev: Tools",
-    "custom_script": null,
+    "custom_script": "url=\"$(curl -fsSL https://api.github.com/repos/usebruno/bruno/releases/latest | python3 -c 'import sys",
     "packages": {
       "apt": "bruno",
       "dnf": "bruno",
@@ -2345,7 +2345,7 @@
     "description": "CMake for Dev: Tools.",
     "url": "https://cmake.org/",
     "category": "Dev: Tools",
-    "custom_script": null,
+    "custom_script": "url=\"$(curl -fsSL https://api.github.com/repos/Kitware/CMake/releases/latest | python3 -c 'import sys",
     "packages": {
       "apt": "cmake",
       "dnf": "cmake",
@@ -2363,7 +2363,7 @@
     "description": "DBeaver for Dev: Tools.",
     "url": "https://dbeaver.io/",
     "category": "Dev: Tools",
-    "custom_script": null,
+    "custom_script": "curl -fL https://dbeaver.io/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz -o /tmp/dbeaver.tgz && rm -rf ~/.local/opt/dbeaver && mkdir -p ~/.local/opt/dbeaver && tar -xzf /tmp/dbeaver.tgz -C ~/.local/opt/dbeaver --strip-components=1 && printf '#!/bin/sh\\nexec \"$HOME/.local/opt/dbeaver/dbeaver\" \"$@\"\\n' > ~/.local/bin/dbeaver && chmod +x ~/.local/bin/dbeaver",
     "packages": {
       "apt": "dbeaver",
       "dnf": "dbeaver",
@@ -2381,7 +2381,7 @@
     "description": "Docker for Dev: Tools.",
     "url": "https://www.docker.com/",
     "category": "Dev: Tools",
-    "custom_script": null,
+    "custom_script": "curl -fsSL https://get.docker.com/rootless | sh && export PATH=\"$HOME/bin:$PATH\" && systemctl --user start docker && docker version",
     "packages": {
       "apt": "docker",
       "dnf": "docker",
@@ -2417,7 +2417,7 @@
     "description": "Git for Dev: Tools.",
     "url": "https://git-scm.com/",
     "category": "Dev: Tools",
-    "custom_script": null,
+    "custom_script": "ver=\"$(curl -fsSL https://www.kernel.org/pub/software/scm/git/ | python3 -c 'import sys",
     "packages": {
       "apt": "git",
       "dnf": "git",
@@ -2435,7 +2435,7 @@
     "description": "Git LFS for Dev: Tools.",
     "url": "https://git-lfs.com/",
     "category": "Dev: Tools",
-    "custom_script": null,
+    "custom_script": "curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash",
     "packages": {
       "apt": "git-lfs",
       "dnf": "git-lfs",
@@ -2453,7 +2453,7 @@
     "description": "Hoppscotch for Dev: Tools.",
     "url": "https://hoppscotch.com/",
     "category": "Dev: Tools",
-    "custom_script": null,
+    "custom_script": "mkdir -p ~/.local/share/applications && printf '[Desktop Entry]\\nType=Application\\nName=Hoppscotch\\nExec=firefox --new-window https://hoppscotch.io\\nIcon=web-browser\\nCategories=Development;\\n' > ~/.local/share/applications/hoppscotch.desktop",
     "packages": {
       "apt": "hoppscotch",
       "dnf": "hoppscotch",
@@ -2489,7 +2489,7 @@
     "description": "LazyGit for Dev: Tools.",
     "url": "https://github.com/jesseduffield/lazygit",
     "category": "Dev: Tools",
-    "custom_script": null,
+    "custom_script": "url=\"$(curl -fsSL https://api.github.com/repos/jesseduffield/lazygit/releases/latest | python3 -c 'import sys",
     "packages": {
       "apt": "lazygit",
       "dnf": "lazygit",
@@ -2525,7 +2525,7 @@
     "description": "Podman for Dev: Tools.",
     "url": "https://podman.io/",
     "category": "Dev: Tools",
-    "custom_script": null,
+    "custom_script": "sudo mkdir -p /etc/containerssudo curl -L -o /etc/containers/registries.conf https://raw.githubusercontent.com/containers/image/main/registries.confsudo curl -L -o /etc/containers/policy.json https://raw.githubusercontent.com/containers/image/main/default-policy.json",
     "packages": {
       "apt": "podman",
       "dnf": "podman",
@@ -2633,7 +2633,7 @@
     "description": "kubectl for Dev: Tools.",
     "url": "https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/",
     "category": "Dev: Tools",
-    "custom_script": null,
+    "custom_script": "curl -LO \"https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl\"",
     "packages": {
       "apt": "kubectl",
       "dnf": "kubectl",
@@ -2723,7 +2723,7 @@
     "description": "Kitty for Terminal.",
     "url": "https://sw.kovidgoyal.net/kitty/",
     "category": "Terminal",
-    "custom_script": null,
+    "custom_script": "curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin",
     "packages": {
       "apt": "kitty",
       "dnf": "kitty",
@@ -2741,7 +2741,7 @@
     "description": "Oh My Zsh for Terminal.",
     "url": "https://ohmyz.sh/",
     "category": "Terminal",
-    "custom_script": null,
+    "custom_script": "# This script should be run via curl:",
     "packages": {
       "apt": "zsh",
       "dnf": "zsh",
@@ -2783,7 +2783,7 @@
       "dnf": "wezterm",
       "pacman": "wezterm",
       "flatpak": "org.wezfurlong.wezterm",
-      "appimage": "https://duckduckgo.com/?q=appimage+site:",
+      "appimage": "https://github.com/wezterm/wezterm/releases/download/20240203-110809-5046fc22/WezTerm-20240203-110809-5046fc22-Ubuntu20.04.AppImage",
       "snap": "wezterm",
       "zypper": "wezterm"
     },
@@ -2939,7 +2939,7 @@
     "description": "fastfetch for CLI Tools.",
     "url": "https://github.com/fastfetch-cli/fastfetch",
     "category": "CLI Tools",
-    "custom_script": null,
+    "custom_script": "curl -fsSL https://raw.githubusercontent.com/ValkyrieNexus/fastfetch-universal-installer/main/install-fastfetch-universal.sh | bash",
     "packages": {
       "apt": "fastfetch",
       "dnf": "fastfetch",
@@ -2999,7 +2999,7 @@
       "dnf": "htop",
       "pacman": "htop",
       "flatpak": null,
-      "appimage": "https://duckduckgo.com/?q=appimage+site:",
+      "appimage": "https://github.com/henry-hsieh/htop.appimage",
       "snap": "htop",
       "zypper": "htop"
     },
@@ -3413,7 +3413,7 @@
       "dnf": "libreoffice",
       "pacman": "libreoffice",
       "flatpak": "org.libreoffice.LibreOffice",
-      "appimage": "https://duckduckgo.com/?q=appimage+site:",
+      "appimage": "https://appimages.libreitalia.org/LibreOffice-still.basic-x86_64.AppImage",
       "snap": "libreoffice",
       "zypper": "libreoffice"
     },
@@ -3515,7 +3515,7 @@
     "description": "Nginx for VPN & Network.",
     "url": "https://nginx.org/",
     "category": "VPN & Network",
-    "custom_script": null,
+    "custom_script": "curl localhost",
     "packages": {
       "apt": "nginx",
       "dnf": "nginx",
@@ -3629,7 +3629,7 @@
       "dnf": "postgresql",
       "pacman": "postgresql",
       "flatpak": null,
-      "appimage": "https://duckduckgo.com/?q=appimage+site:",
+      "appimage": "https://github.com/Macmee/Postgres.AppImage",
       "snap": "postgresql",
       "zypper": "postgresql"
     },
@@ -3749,7 +3749,7 @@
     "description": "rTorrent for File Sharing.",
     "url": "https://github.com/jesec/rtorrent",
     "category": "File Sharing",
-    "custom_script": null,
+    "custom_script": "wget https://raw.githubusercontent.com/MarkusLange/r_ru-torrent-install-script/main/rrutorrent-install-deamon-script.bash",
     "packages": {
       "apt": "rtorrent",
       "dnf": "rtorrent",
@@ -4019,7 +4019,7 @@
     "description": "KDE Plasma for Desktop Environments.",
     "url": "https://kde.org/plasma-desktop/",
     "category": "Desktop Environments",
-    "custom_script": null,
+    "custom_script": "bash -c \"$(curl -fsSL https://tinyurl.com/PlasmaInstall)\"",
     "packages": {
       "apt": "plasma-desktop",
       "dnf": "plasma-desktop",
@@ -4469,7 +4469,7 @@
     "description": "Hyprland for Window Managers.",
     "url": "https://hyprland.org/",
     "category": "Window Managers",
-    "custom_script": null,
+    "custom_script": "sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Arch-Hyprland/main/auto-install.sh)",
     "packages": {
       "apt": "hyprland",
       "dnf": "hyprland",
@@ -4511,7 +4511,7 @@
       "dnf": "maxima",
       "pacman": "maxima",
       "flatpak": null,
-      "appimage": "https://duckduckgo.com/?q=appimage+site:",
+      "appimage": "https://sourceforge.net/projects/maxima/files/Maxima-Linux/5.46.0-Linux/wxmaxima-x86_64.AppImage/download",
       "snap": "maxima",
       "zypper": "maxima"
     },
@@ -4523,7 +4523,7 @@
     "description": "Mesa for System.",
     "url": "https://www.mesa3d.org/",
     "category": "System",
-    "custom_script": null,
+    "custom_script": "curl --remote-name http://user.astro.wisc.edu/~townsend/resource/download/mesasdk/\"$SDK_REV\".tar.gz",
     "packages": {
       "apt": "mesa",
       "dnf": "mesa",
@@ -4577,7 +4577,7 @@
     "description": "Neofetch for Terminal.",
     "url": "https://github.com/dylanaraps/neofetch",
     "category": "Terminal",
-    "custom_script": null,
+    "custom_script": "sudo wget -O /etc/ports/6c37-git.git \"https://raw.githubusercontent.com/6c37/cross/master/git-driver/6c37-git.git\"",
     "packages": {
       "apt": "neofetch",
       "dnf": "neofetch",
