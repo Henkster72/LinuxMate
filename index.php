@@ -79,7 +79,8 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>LinuxMate - Lightweight PHP Clone</title>
+    <meta name="description" content="LinuxMate is a lightweight PHP-based UI for generating bulk install scripts across multiple Linux package managers." />
+    <title>LinuxMate - The Online Linux Bulk App Installer.</title>
     <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="popicon.css" />
     <link rel="stylesheet" href="css/style.css" />

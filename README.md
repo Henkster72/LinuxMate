@@ -4,6 +4,8 @@
 
 LinuxMate is a lightweight, dependency-free bulk app installer UI for Linux — built with **PHP**, **vanilla JavaScript**, and **plain CSS**.
 
+Live demo: [https://linuxmate.org/](https://linuxmate.org/)
+
 It renders server-side, generates **clean batched install scripts** per package manager, and runs happily on basic PHP hosting.  
 No build step. No tooling ceremony. Just open it and go.
 
