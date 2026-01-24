@@ -257,6 +257,8 @@ body[data-theme="dark"] .logo .logo-icon {
     font-weight: 600;
     min-width: 160px;
     appearance: none;
+    min-height: 44px;
+    line-height: 1.2;
 }
 
 .aur-select .select-shell select {
@@ -299,6 +301,8 @@ body[data-theme="dark"] .select select {
     min-width: 200px;
     cursor: pointer;
     color: var(--ink);
+    min-height: 44px;
+    line-height: 1.2;
 }
 
 .distro-button img {
@@ -816,6 +820,18 @@ body[data-theme="dark"] .pkg-icon img[src$="tuxbw.svg"] {
     transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
+.script-actions button .button-label {
+    display: inline-block;
+}
+
+.script-actions button#update-toggle {
+    gap: 6px;
+}
+
+#update-toggle[data-enabled="false"] {
+    opacity: 0.6;
+}
+
 .script-actions button.is-copied {
     background: #32d074;
     border-color: #32d074;
@@ -1040,11 +1056,55 @@ body[data-theme="dark"] .shortcut-grid div {
 
     .topbar-controls {
         justify-items: stretch;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
     }
 
     .select-row {
         justify-content: space-between;
         flex-wrap: wrap;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .top-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .top-links a,
+    .top-links button {
+        flex: 1 1 calc(50% - 8px);
+        min-width: 140px;
+        justify-content: center;
+    }
+
+    .select {
+        width: 100%;
+    }
+
+    .select-shell {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .select select {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .script-actions button {
+        padding-inline: 8px;
+    }
+
+    .script-actions button .button-label {
+        display: none;
+    }
+
+    .script-actions button {
+        gap: 0;
     }
 }
 

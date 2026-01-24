@@ -18,6 +18,8 @@ const shareText = shareBtn?.querySelector('.share-text');
 const helpButton = document.getElementById('help-button');
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = document.getElementById('theme-icon');
+const updateToggle = document.getElementById('update-toggle');
+const updateToggleLabel = document.getElementById('update-toggle-label');
 const helpModal = document.getElementById('help-modal');
 const previewModal = document.getElementById('preview-modal');
 const infoModal = document.getElementById('info-modal');
@@ -36,6 +38,7 @@ const initialUrlState = (() => {
     const distro = params.get('distro');
     const apps = params.get('apps');
     const sandboxParam = (params.get('sandbox') || '').trim().toLowerCase();
+    const includeUpdateParam = params.get('include_update');
     const preferFlatpak = params.get('prefer_flatpak');
     let sandbox = sandboxParam;
     if (!sandbox && (preferFlatpak === '1' || preferFlatpak === 'true')) {
@@ -48,6 +51,7 @@ const initialUrlState = (() => {
         distro,
         apps: apps ? apps.split(',').map((id) => id.trim()).filter(Boolean) : [],
         sandbox,
+        includeUpdate: includeUpdateParam,
     };
 })();
 
@@ -62,6 +66,7 @@ let pendingRequest = null;
 let debounceTimer = null;
 const feedbackTimers = new WeakMap();
 let lastAurHelper = 'yay';
+let includeUpdate = true;
 let distroTypeBuffer = '';
 let distroTypeTimer = null;
 let lastTypeKey = '';
@@ -401,6 +406,7 @@ const buildShareUrl = () => {
         const apps = Array.from(selected).sort().join(',');
         params.set('apps', apps);
     }
+    params.set('include_update', includeUpdate ? '1' : '0');
     const query = params.toString();
     return query ? `${base}?${query}` : base;
 };
@@ -569,6 +575,7 @@ const fetchScript = async () => {
                 packages: Array.from(selected),
                 aur_helper: aurHelper ? aurHelper.value : lastAurHelper,
                 sandbox: getSandboxSelection(),
+                include_update: includeUpdate,
             }),
             signal: controller.signal,
         });
@@ -589,6 +596,33 @@ const scheduleUpdate = () => {
     updateWarningNotice();
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(fetchScript, 120);
+};
+
+const syncUpdateToggleState = () => {
+    if (!updateToggle) {
+        return;
+    }
+    const enabled = Boolean(includeUpdate);
+    updateToggle.dataset.enabled = enabled ? 'true' : 'false';
+    updateToggle.setAttribute('aria-pressed', enabled.toString());
+    if (updateToggleLabel) {
+        updateToggleLabel.textContent = enabled
+            ? 'Refresh before install'
+            : 'Skip refresh';
+    }
+};
+
+const setIncludeUpdate = (value, { suppressFetch = false } = {}) => {
+    includeUpdate = Boolean(value);
+    syncUpdateToggleState();
+    try {
+        localStorage.setItem('linuxmate-include-update', includeUpdate ? '1' : '0');
+    } catch (error) {
+        // Storage may be unavailable (e.g., private mode); ignore errors.
+    }
+    if (!suppressFetch) {
+        scheduleUpdate();
+    }
 };
 
 const openModal = (modal) => {
@@ -820,6 +854,10 @@ helpButton.addEventListener('click', () => {
 
 themeToggle.addEventListener('click', toggleTheme);
 
+updateToggle?.addEventListener('click', () => {
+    setIncludeUpdate(!includeUpdate);
+});
+
 sandboxSelect?.addEventListener('change', () => {
     updateAvailability();
     updateAppimageLink();
@@ -1001,6 +1039,12 @@ const applyUrlSelections = () => {
         sandboxSelect.value = initialUrlState.sandbox;
     }
 
+    if (initialUrlState.includeUpdate !== null) {
+        const normalized = String(initialUrlState.includeUpdate).trim().toLowerCase();
+        const includeValue = !['0', 'false', 'no'].includes(normalized);
+        setIncludeUpdate(includeValue, { suppressFetch: true });
+    }
+
     updateAvailability();
 
     if (initialUrlState.apps.length) {
@@ -1020,6 +1064,13 @@ const applyUrlSelections = () => {
 const savedTheme = localStorage.getItem('linuxmate-theme');
 if (savedTheme) {
     setTheme(savedTheme);
+}
+
+const savedIncludeUpdate = localStorage.getItem('linuxmate-include-update');
+if (savedIncludeUpdate !== null) {
+    setIncludeUpdate(savedIncludeUpdate === '1', { suppressFetch: true });
+} else {
+    syncUpdateToggleState();
 }
 
 updateAvailability();

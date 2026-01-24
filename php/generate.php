@@ -33,6 +33,12 @@ if (!in_array($sandbox, ['flatpak', 'appimage', 'snap', 'custom'], true)) {
     $sandbox = '';
 }
 
+$includeUpdate = $data['include_update'] ?? null;
+$includeUpdate = filter_var($includeUpdate, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+if ($includeUpdate === null) {
+    $includeUpdate = true;
+}
+
 $packagesFile = __DIR__ . '/../data/packages.json';
 $packages = json_decode(file_get_contents($packagesFile), true) ?? [];
 $packageIndex = [];
@@ -247,11 +253,13 @@ foreach ($managerOrder as $manager) {
             $lines[] = '# Ensure Flatpak is installed on ' . $distros[$distro]['label'] . ' before running the Flatpak section.';
         }
     }
+    $installCmd = $managers[$manager]['install'] . ' ' . implode(' ', $ids);
     $update = $managers[$manager]['update'] ?? null;
-    if ($update) {
-        $lines[] = $update;
+    if ($update && $includeUpdate) {
+        $lines[] = $update . ' && ' . $installCmd;
+    } else {
+        $lines[] = $installCmd;
     }
-    $lines[] = $managers[$manager]['install'] . ' ' . implode(' ', $ids);
     $lines[] = '';
 }
 

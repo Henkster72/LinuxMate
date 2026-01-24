@@ -105,24 +105,24 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
                 </div>
             </div>
             <div class="topbar-controls">
-                <div class="top-links">
-                    <a href="https://github.com/Henkster72/LinuxMate" target="_blank" rel="noreferrer">
-                        <i class="pi pi-code"></i>
-                        GitHub
-                    </a>
-                    <a href="https://github.com/Henkster72/LinuxMate/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">
-                        <i class="pi pi-heart"></i>
-                        Contribute
-                    </a>
-                    <button id="help-button" class="ghost" type="button">
-                        <i class="pi pi-question"></i>
-                        Help
-                    </button>
-                    <button id="theme-toggle" class="ghost" type="button" aria-pressed="false">
-                        <span id="theme-icon" class="pi pi-moon"></span>
-                        Theme
-                    </button>
-                </div>
+                    <div class="top-links">
+                        <a href="https://github.com/Henkster72/LinuxMate" target="_blank" rel="noreferrer">
+                            <i class="pi pi-code"></i>
+                            GitHub
+                        </a>
+                        <a href="https://github.com/Henkster72/LinuxMate/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">
+                            <i class="pi pi-heart"></i>
+                            Contribute
+                        </a>
+                        <button id="help-button" class="ghost" type="button">
+                            <i class="pi pi-question"></i>
+                            Help
+                        </button>
+                        <button id="theme-toggle" class="ghost" type="button" aria-pressed="false">
+                            <span id="theme-icon" class="pi pi-moon"></span>
+                            Theme
+                        </button>
+                    </div>
                 <div class="select-row">
                     <label class="select distro-select">
                         <span>Distro</span>
@@ -268,16 +268,26 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
                         <p>DRY commands, grouped per package manager.</p>
                     </div>
                     <div class="script-actions">
-                        <button id="clear" type="button"><span class="pi pi-bin" aria-hidden="true"></span> Clear</button>
+                        <button id="update-toggle" type="button" aria-pressed="true" data-enabled="true">
+                            <span class="pi pi-recycle" aria-hidden="true"></span>
+                            <span id="update-toggle-label" class="button-label">Refresh before install</span>
+                        </button>
+                        <button id="clear" type="button">
+                            <span class="pi pi-bin" aria-hidden="true"></span>
+                            <span class="button-label">Clear</span>
+                        </button>
                         <button id="copy" type="button" data-label="Copy" data-copied="Copied!">
                             <span class="pi pi-copy" aria-hidden="true"></span>
-                            <span class="copy-text">Copy</span>
+                            <span class="button-label copy-text">Copy</span>
                         </button>
                         <button id="share" type="button" data-label="Share" data-copied="Copied!">
                             <span class="pi pi-arrowbow" aria-hidden="true"></span>
-                            <span class="share-text">Share</span>
+                            <span class="button-label share-text">Share</span>
                         </button>
-                        <button id="download" type="button"><span class="pi pi-download" aria-hidden="true"></span> Download</button>
+                        <button id="download" type="button">
+                            <span class="pi pi-download" aria-hidden="true"></span>
+                            <span class="button-label">Download</span>
+                        </button>
                     </div>
                 </div>
                 <pre id="script-output"># Select apps above to generate a single batched command.</pre>

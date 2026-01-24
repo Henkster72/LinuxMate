@@ -1,4 +1,4 @@
-# LinuxMate v0.6 🐧✨
+# LinuxMate v0.61 🐧✨
 
 <img src="assets-icons/tuxbw.svg" alt="LinuxMate logo" width="96" />
 
@@ -11,6 +11,7 @@ No build step. No tooling ceremony. Just open it and go.
 
 ## Changelog
 
+- v0.61: Moved the refresh toggle into the footer, hid script-action labels on small screens, and tailored mobile topbar selects for consistent outlines and heights.
 - v0.6: Added custom-install footer tips (path/curl setup advice plus Flatpak reminder), capped the mobile script footer height, and improved CSV sync so “None” cells keep existing AppImage/custom-script data.
 - v0.52: Align package action buttons with a right-side wrapper.
 - v0.51: Mobile topbar/footer spacing and typography tuned to avoid overlap.
