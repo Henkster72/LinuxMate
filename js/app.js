@@ -519,13 +519,15 @@ const focusItemByDirection = (direction) => {
 
 const updateAvailability = () => {
     const baseManagers = new Set(getActiveManagers());
-    const activeManagers = new Set(baseManagers);
     const sandbox = getSandboxSelection();
-    if (sandbox === 'flatpak' || sandbox === 'appimage' || sandbox === 'snap') {
-        activeManagers.add(sandbox);
-    }
-    const showAur = baseManagers.has('aur');
+    const sandboxMode = ['flatpak', 'snap', 'appimage', 'custom'].includes(sandbox);
+    const showAur = baseManagers.has('aur') && !sandboxMode;
     ensureAurHelper(showAur);
+
+    let activeManagers = new Set(baseManagers);
+    if (sandbox === 'flatpak' || sandbox === 'snap') {
+        activeManagers = new Set([sandbox]);
+    }
 
     packageItems.forEach((item) => {
         const checkbox = item.querySelector('.pkg-check');
@@ -533,7 +535,17 @@ const updateAvailability = () => {
             .split(',')
             .map((entry) => entry.trim())
             .filter(Boolean);
-        const available = managers.some((manager) => activeManagers.has(manager));
+        let available = false;
+        if (sandbox === 'appimage') {
+            const appimageValue = (item.dataset.appimage || '').trim();
+            available = appimageValue !== '';
+        } else if (sandbox === 'custom') {
+            available = item.dataset.customScript === '1';
+        } else if (sandbox === 'flatpak' || sandbox === 'snap') {
+            available = managers.includes(sandbox);
+        } else {
+            available = managers.some((manager) => activeManagers.has(manager));
+        }
         item.classList.toggle('is-disabled', !available);
         checkbox.disabled = !available;
         if (!available) {

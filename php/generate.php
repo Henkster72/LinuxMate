@@ -46,6 +46,48 @@ foreach ($packages as $pkg) {
     $packageIndex[$pkg['id']] = $pkg;
 }
 
+$distroFile = __DIR__ . '/../data/distro.json';
+$distros = [];
+if (file_exists($distroFile)) {
+    $rawDistros = json_decode(file_get_contents($distroFile), true);
+    if (is_array($rawDistros)) {
+        foreach ($rawDistros as $entry) {
+            if (!is_array($entry)) {
+                continue;
+            }
+            $value = $entry['value'] ?? '';
+            if (!is_string($value)) {
+                continue;
+            }
+            $value = trim($value);
+            if ($value === '') {
+                continue;
+            }
+            $label = $entry['label'] ?? $value;
+            if (!is_string($label) || $label === '') {
+                $label = $value;
+            }
+            $managers = $entry['managers'] ?? [];
+            if (!is_array($managers)) {
+                $managers = [];
+            }
+            $managers = array_values(array_filter(array_map(static function ($manager) {
+                if (!is_string($manager)) {
+                    return '';
+                }
+                return trim($manager);
+            }, $managers), static fn($manager) => $manager !== ''));
+            if (!$managers) {
+                continue;
+            }
+            $distros[$value] = [
+                'label' => $label,
+                'managers' => $managers,
+            ];
+        }
+    }
+}
+
 // One mapping per manager; packages supply identifiers only.
 $managers = [
     'apt' => [
@@ -85,52 +127,73 @@ $managers = [
     ],
 ];
 
-// Distros only declare manager order; commands are reused.
-$distros = [
-    'ubuntu' => [
-        'label' => 'Ubuntu',
-        'managers' => ['apt', 'flatpak'],
-    ],
-    'debian' => [
-        'label' => 'Debian',
-        'managers' => ['apt', 'flatpak'],
-    ],
-    'fedora' => [
-        'label' => 'Fedora',
-        'managers' => ['dnf', 'flatpak'],
-    ],
-    'arch' => [
-        'label' => 'Arch',
-        'managers' => ['pacman', 'aur', 'flatpak'],
-    ],
-    'opensuse' => [
-        'label' => 'openSUSE',
-        'managers' => ['zypper', 'flatpak'],
-    ],
-    'nix' => [
-        'label' => 'Nix',
-        'managers' => ['flatpak'],
-    ],
-    'flatpak' => [
-        'label' => 'Flatpak only',
-        'managers' => ['flatpak'],
-    ],
-    'snap' => [
-        'label' => 'Snap',
-        'managers' => ['snap'],
-    ],
-    'homebrew' => [
-        'label' => 'Homebrew',
-        'managers' => ['brew'],
-    ],
-];
-
-if (!isset($distros[$distro])) {
-    $distro = 'ubuntu';
+if (!$distros) {
+    $distros = [
+        'ubuntu' => [
+            'label' => 'Ubuntu',
+            'managers' => ['apt', 'flatpak'],
+        ],
+        'debian' => [
+            'label' => 'Debian',
+            'managers' => ['apt', 'flatpak'],
+        ],
+        'fedora' => [
+            'label' => 'Fedora',
+            'managers' => ['dnf', 'flatpak'],
+        ],
+        'arch' => [
+            'label' => 'Arch',
+            'managers' => ['pacman', 'aur', 'flatpak'],
+        ],
+        'opensuse' => [
+            'label' => 'openSUSE',
+            'managers' => ['zypper', 'flatpak'],
+        ],
+        'nix' => [
+            'label' => 'Nix',
+            'managers' => ['flatpak'],
+        ],
+        'flatpak' => [
+            'label' => 'Flatpak only',
+            'managers' => ['flatpak'],
+        ],
+        'snap' => [
+            'label' => 'Snap',
+            'managers' => ['snap'],
+        ],
+        'homebrew' => [
+            'label' => 'Homebrew',
+            'managers' => ['brew'],
+        ],
+    ];
 }
 
-$managerOrder = $distros[$distro]['managers'];
-if ($sandbox && $sandbox !== 'appimage' && $sandbox !== 'custom' && !in_array($sandbox, $managerOrder, true)) {
+$defaultDistro = array_key_first($distros) ?: 'ubuntu';
+if (!isset($distros[$defaultDistro])) {
+    $defaultDistro = 'ubuntu';
+}
+
+if (!isset($distros[$distro])) {
+    $distro = $defaultDistro;
+}
+
+$rawManagerOrder = $distros[$distro]['managers'] ?? [];
+if (!is_array($rawManagerOrder)) {
+    $rawManagerOrder = [];
+}
+$managerOrder = array_values(array_filter($rawManagerOrder, static function ($manager) use ($managers) {
+    return isset($managers[$manager]);
+}));
+if (!$managerOrder) {
+    $managerOrder = ['flatpak'];
+}
+if (
+    $sandbox
+    && $sandbox !== 'appimage'
+    && $sandbox !== 'custom'
+    && isset($managers[$sandbox])
+    && !in_array($sandbox, $managerOrder, true)
+) {
     $managerOrder[] = $sandbox;
 }
 
@@ -159,7 +222,7 @@ function appimage_filename(string $url): string {
     return $filename;
 }
 
-function distro_install_command(string $distro, string $package): ?string {
+function distro_install_command(string $distro, string $package, array $distros, array $managers): ?string {
     static $templates = [
         'ubuntu' => 'sudo apt install -y %s',
         'debian' => 'sudo apt install -y %s',
@@ -170,13 +233,26 @@ function distro_install_command(string $distro, string $package): ?string {
         'homebrew' => 'brew install %s',
     ];
     if (!isset($templates[$distro])) {
+        $managerOrder = $distros[$distro]['managers'] ?? [];
+        if (!is_array($managerOrder)) {
+            $managerOrder = [];
+        }
+        foreach ($managerOrder as $manager) {
+            if (!isset($managers[$manager]['install'])) {
+                continue;
+            }
+            if (in_array($manager, ['flatpak', 'snap', 'aur'], true)) {
+                continue;
+            }
+            return $managers[$manager]['install'] . ' ' . $package;
+        }
         return null;
     }
     return sprintf($templates[$distro], $package);
 }
 
 $appimageDownloads = [];
-$appimagePlaceholders = 0;
+$appimagePlaceholderEntries = [];
 
 foreach ($selected as $id) {
     if (!isset($packageIndex[$id])) {
@@ -216,11 +292,14 @@ foreach ($selected as $id) {
     }
     if ($sandbox === 'appimage' && $appimageId) {
         if (is_appimage_placeholder($appimageId)) {
-            $appimagePlaceholders++;
-        } else {
-            $appimageDownloads[$appimageId] = true;
+            $appimagePlaceholderEntries[] = [
+                'name' => $pkg['name'] ?? $id,
+                'base' => $appimageId,
+            ];
             continue;
         }
+        $appimageDownloads[$appimageId] = true;
+        continue;
     }
     $pkgAssigned = false;
     foreach (array_keys($managerPackages) as $manager) {
@@ -246,7 +325,7 @@ foreach ($managerOrder as $manager) {
     }
     $hasAny = true;
     if ($manager === 'flatpak') {
-        $flatpakInstall = distro_install_command($distro, 'flatpak');
+        $flatpakInstall = distro_install_command($distro, 'flatpak', $distros, $managers);
         if ($flatpakInstall) {
             $lines[] = '# Add Flatpak on ' . $distros[$distro]['label'] . ': ' . $flatpakInstall;
         } else {
@@ -275,6 +354,20 @@ if ($appimageDownloads) {
     $lines[] = '';
 }
 
+if ($sandbox === 'appimage' && $appimagePlaceholderEntries) {
+    $hasAny = true;
+    $lines[] = '# AppImage placeholders (manual installs):';
+    foreach ($appimagePlaceholderEntries as $entry) {
+        $name = $entry['name'] ?? '';
+        $base = $entry['base'] ?? '';
+        $url = $base !== '' && $name !== '' ? $base . rawurlencode($name) : $base;
+        $label = $name !== '' ? $name : 'Unknown package';
+        $lines[] = '# - ' . $label . ($url ? ': ' . $url : '');
+    }
+    $lines[] = '# Use the AppImage search link below the script output.';
+    $lines[] = '';
+}
+
 if ($sandbox === 'custom' && $customScripts) {
     $hasAny = true;
     $hasCustomScripts = true;
@@ -295,7 +388,7 @@ if ($sandbox === 'custom' && $missingCustomScripts) {
 if (!$hasAny) {
     if ($sandbox === 'custom' && $missingCustomScripts) {
         $lines[] = '# No custom script available for: ' . implode(', ', $missingCustomScripts);
-    } elseif ($sandbox === 'appimage' && $appimagePlaceholders > 0) {
+    } elseif ($sandbox === 'appimage' && $appimagePlaceholderEntries) {
         $lines[] = '# AppImage selections are manual for now.';
         $lines[] = '# Use the AppImage search link below the script output.';
     } else {
@@ -310,7 +403,7 @@ if ($hasCustomScripts) {
     $lines[] = '# Provided scripts are used at your own risk.';
     $lines[] = '# It is highly recommended to use the dedicated package managers for distros.';
     if ($customScriptUsesCurl) {
-        $curlInstall = distro_install_command($distro, 'curl');
+        $curlInstall = distro_install_command($distro, 'curl', $distros, $managers);
         if ($curlInstall) {
             $lines[] = '# Add curl on ' . $distros[$distro]['label'] . ': ' . $curlInstall;
         } else {

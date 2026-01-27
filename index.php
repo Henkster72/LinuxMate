@@ -235,8 +235,10 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
                                     $iconHtml = decorate_icon($pkg['icon_svg']);
                                     $url = $pkg['url'] ?? '';
                                     $appimage = $pkg['packages']['appimage'] ?? '';
+                                    $customScript = $pkg['custom_script'] ?? '';
+                                    $hasCustomScript = is_string($customScript) && trim($customScript) !== '' ? '1' : '0';
                                 ?>
-                                <li class="package-item" data-search="<?php echo htmlspecialchars($search); ?>" data-managers="<?php echo htmlspecialchars($managerList); ?>" data-category="<?php echo htmlspecialchars($slug); ?>" data-name="<?php echo htmlspecialchars($pkg['name']); ?>" data-description="<?php echo htmlspecialchars($pkg['description']); ?>" data-url="<?php echo htmlspecialchars($url); ?>" data-appimage="<?php echo htmlspecialchars((string) $appimage); ?>">
+                                <li class="package-item" data-search="<?php echo htmlspecialchars($search); ?>" data-managers="<?php echo htmlspecialchars($managerList); ?>" data-category="<?php echo htmlspecialchars($slug); ?>" data-name="<?php echo htmlspecialchars($pkg['name']); ?>" data-description="<?php echo htmlspecialchars($pkg['description']); ?>" data-url="<?php echo htmlspecialchars($url); ?>" data-appimage="<?php echo htmlspecialchars((string) $appimage); ?>" data-custom-script="<?php echo $hasCustomScript; ?>">
                                     <label>
                                         <input class="pkg-check" type="checkbox" data-id="<?php echo htmlspecialchars($pkg['id']); ?>" />
                                         <span class="pkg-icon"><?php echo $iconHtml; ?></span>
