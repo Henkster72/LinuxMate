@@ -216,6 +216,10 @@ body[data-theme="dark"] .logo .logo-icon {
     gap: 6px;
 }
 
+.top-links a[aria-current="page"] {
+    color: var(--accent);
+}
+
 
 .select-row {
     display: flex;
@@ -234,6 +238,10 @@ body[data-theme="dark"] .logo .logo-icon {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+}
+
+a.ghost {
+    text-decoration: none;
 }
 
 .select {
@@ -378,7 +386,11 @@ body[data-theme="dark"] .distro-button {
 
 .search-wrap input::-webkit-search-cancel-button,
 .search-wrap input::-ms-clear {
+    -webkit-appearance: none;
+    appearance: none;
     display: none;
+    width: 0;
+    height: 0;
 }
 
 .search-icon {
@@ -397,6 +409,8 @@ body[data-theme="dark"] .distro-button {
     border: 1px solid var(--border);
     background: #fff;
     font-size: 1rem;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .search-wrap button {
@@ -479,6 +493,14 @@ body[data-theme="dark"] .controls input {
     font-size: 0.82rem;
     color: var(--muted);
     font-weight: 600;
+}
+
+.stats-link {
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .layout {
@@ -1026,6 +1048,140 @@ body[data-theme="dark"] .shortcut-grid div {
     color: var(--muted);
 }
 
+.windows2linux-actions {
+    justify-content: flex-end;
+}
+
+.windows2linux-installer {
+    margin-bottom: 0;
+}
+
+.windows2linux-grid {
+    column-count: 4;
+}
+
+.windows2linux-card {
+    --accent: #14b8a6;
+    --accent-rgb: 20, 184, 166;
+}
+
+.windows2linux-card .category-header h3 {
+    max-width: 18rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.windows2linux-card-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.windows2linux-source-link {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.45);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 0.68rem;
+}
+
+.windows2linux-layout {
+    display: grid;
+    gap: 16px;
+}
+
+.windows2linux-panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.windows2linux-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(120deg, rgba(var(--accent-rgb), 0.14), transparent 60%);
+}
+
+.windows2linux-panel-header h2 {
+    margin: 0 0 4px;
+    font-size: 1.05rem;
+}
+
+.windows2linux-panel-header p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.windows2linux-panel-header a {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.windows2linux-table-wrap {
+    overflow-x: auto;
+}
+
+.windows2linux-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 680px;
+}
+
+.windows2linux-table th,
+.windows2linux-table td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+.windows2linux-table th {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    color: var(--muted);
+    letter-spacing: 0;
+    background: rgba(255, 255, 255, 0.45);
+}
+
+body[data-theme="dark"] .windows2linux-table th {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.windows2linux-table td:first-child {
+    width: 34%;
+    font-weight: 700;
+}
+
+.windows2linux-empty {
+    margin: 0;
+    padding: 16px;
+    color: var(--muted);
+}
+
+.windows2linux-notfound {
+    margin-top: 32px;
+}
+
 @media (max-width: 1400px) {
     .category-grid {
         column-count: 5;
@@ -1036,16 +1192,28 @@ body[data-theme="dark"] .shortcut-grid div {
     .category-grid {
         column-count: 4;
     }
+
+    .windows2linux-grid {
+        column-count: 3;
+    }
 }
 
 @media (max-width: 1020px) {
     .category-grid {
         column-count: 3;
     }
+
+    .windows2linux-grid {
+        column-count: 2;
+    }
 }
 
 @media (max-width: 800px) {
     .category-grid {
+        column-count: 2;
+    }
+
+    .windows2linux-grid {
         column-count: 2;
     }
 
@@ -1106,10 +1274,22 @@ body[data-theme="dark"] .shortcut-grid div {
     .script-actions button {
         gap: 0;
     }
+
+    .windows2linux-actions {
+        justify-content: stretch;
+    }
+
+    .windows2linux-actions .ghost {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 560px) {
     .category-grid {
+        column-count: 1;
+    }
+
+    .windows2linux-grid {
         column-count: 1;
     }
 
@@ -1210,6 +1390,17 @@ body[data-theme="dark"] .shortcut-grid div {
     }
     .page {
         padding: 0 1.5rem;
+    }
+
+    .windows2linux-panel {
+        border-radius: 0;
+        margin-left: -24px;
+        margin-right: -24px;
+    }
+
+    .windows2linux-panel-header {
+        align-items: flex-start;
+        flex-direction: column;
     }
 }
 

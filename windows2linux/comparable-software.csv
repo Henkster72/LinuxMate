@@ -1,0 +1,214 @@
+windows_software,linux_variant
+"3D Studio MAX",Blender
+ACDSee,Geeqie
+"Adobe Acrobat","Scribus; Inkscape; Okular"
+"Adobe Acrobat Distiller",LibreOffice
+"Adobe Acrobat Reader","Evince; Zathura; Okular"
+"Adobe Animate","Blender; Krita"
+"Adobe Audition (formerly Cool Edit Pro)","Audacity; DaVinci Resolve"
+"Adobe Illustrator",Inkscape
+"Adobe Photoshop","GIMP; ImageMagick; Krita; Darktable"
+"Adobe Premiere Elements","Kdenlive; DaVinci Resolve"
+"Ajax Animator","Blender; Krita"
+"Aladin Sky Atlas",Stellarium
+"Alcohol 120%",HandBrake
+Animaker,"Blender; Krita"
+AntiVir,ClamAV
+Apache,Apache
+Ardour,"Audacity; DaVinci Resolve"
+Aseprite,"Blender; Krita"
+aTunes,"VLC; Strawberry"
+Audacious,"VLC; Strawberry"
+Audacity,"Audacity; DaVinci Resolve"
+"Audio Catalyst","Audacity; DaVinci Resolve"
+"Autodesk Inventor",FreeCAD
+Avast,ClamAV
+AVG,ClamAV
+Avidemux,"Kdenlive; DaVinci Resolve"
+"Bitwig Studio","Audacity; DaVinci Resolve"
+Blender,"Blender; Krita"
+Brave,"Firefox; Chromium; Brave; Vivaldi; LibreWolf"
+Cakewalk/Sonar,"Audacity; DaVinci Resolve"
+CATIA,FreeCAD
+CDex,"Audacity; DaVinci Resolve"
+Celestia,Stellarium
+Chrome,"Firefox; Chromium; Brave; Vivaldi; LibreWolf"
+"Cinema 4D",Blender
+ClamAV,ClamAV
+ClamWin,ClamAV
+"Claws Mail","Thunderbird; Claws Mail"
+Clementine,"VLC; Strawberry"
+"Corel Draw",Inkscape
+"Corel Photo-Paint","GIMP; ImageMagick; Krita; Darktable"
+Cubase,"Audacity; DaVinci Resolve"
+Darktable,"GIMP; ImageMagick; Krita; Darktable"
+"DaVinci Resolve","Kdenlive; DaVinci Resolve; Audacity"
+dbpoweramp,"Audacity; DaVinci Resolve"
+Deadbeef,"VLC; Strawberry"
+Deluge,"Transmission; qBittorrent"
+digiKam,"GIMP; ImageMagick; Krita; Darktable; Geeqie"
+"Disk Size Explorer",Filelight
+Dooble,"Firefox; Chromium; Brave; Vivaldi; LibreWolf"
+EditPlus,"Vim; Kate; Sublime Text"
+Enve,"Blender; Krita"
+Evernote,"Joplin; Xournal++"
+Exaile,"VLC; Strawberry"
+Falkon,"Firefox; Chromium; Brave; Vivaldi; LibreWolf"
+Filmulator,"GIMP; ImageMagick; Krita; Darktable"
+Firefox,"Firefox; Chromium; Brave; Vivaldi; LibreWolf"
+Flexipdf,"Scribus; Inkscape; Okular"
+FlightGear,Stellarium
+"Folder sharing",Samba
+"Forte Free Agent",Thunderbird
+"Foxit reader","Evince; Zathura; Okular"
+"fre:ac - free audio converter (freac)","HandBrake; VLC"
+Frostwire,"Transmission; qBittorrent"
+GIMP,"GIMP; ImageMagick; Krita; Darktable"
+GIMPShop,"GIMP; ImageMagick; Krita; Darktable"
+Glaxnimate,"Blender; Krita"
+Glimpse,"GIMP; ImageMagick; Krita; Darktable"
+GoldWave,"Audacity; DaVinci Resolve"
+"Google Earth",Stellarium
+Gravit,Inkscape
+Handbrake,"HandBrake; VLC"
+"Harrison Mixbus","Audacity; DaVinci Resolve"
+Hexchat,Pidgin
+ICQ,Pidgin
+IIS,Apache
+ImageMagick,"GIMP; ImageMagick; Krita; Darktable"
+ImgBurn,HandBrake
+Infrarecorder,HandBrake
+Inkscape,"Scribus; Inkscape; Okular"
+Irfanview,Geeqie
+Irssi,Pidgin
+iTunes,"VLC; Strawberry"
+"Jami (formerly GNU Ring",Zoom
+Jitsi,Zoom
+Karbon,Scribus
+Kdenlive,"Kdenlive; DaVinci Resolve"
+"Kid Pix","KolourPaint; Krita"
+Krita,"GIMP; ImageMagick; Krita; Darktable; Blender; KolourPaint"
+KVIrc,Pidgin
+"Libre Office",LibreOffice
+"LibreOffice Draw","Scribus; Inkscape; Okular"
+Lightning,Thunderbird
+Lightworks,"Kdenlive; DaVinci Resolve"
+"LightZone (non-free high quality)","GIMP; ImageMagick; Krita; Darktable"
+Linphone,Zoom
+LMMS,"Audacity; DaVinci Resolve"
+"Lotus Notes","Thunderbird; Claws Mail"
+Mailspring,"Thunderbird; Claws Mail"
+MakeMKV,HandBrake
+Maple,Maxima
+"Master PDF Editor","Scribus; Inkscape; Okular"
+Mathematica,Maxima
+Matlab,Octave
+Maya,Blender
+"Microsoft Edge","Firefox; Chromium; Brave; Vivaldi; LibreWolf"
+"Microsoft Flight Simulator",Stellarium
+"Microsoft Internet Explorer","Firefox; Chromium; Brave; Vivaldi; LibreWolf"
+"Microsoft Office",LibreOffice
+"Microsoft Outlook","Thunderbird; Claws Mail"
+"Microsoft Paint","KolourPaint; Krita"
+"Microsoft Publisher",Scribus
+"Microsoft Teams",Zoom
+mIRC,Pidgin
+MPV,"mpv; VLC; Celluloid; MPlayer"
+Mtpaint,"KolourPaint; Krita"
+Multiquence,"Kdenlive; DaVinci Resolve"
+MyPaint,"GIMP; ImageMagick; Krita; Darktable; KolourPaint"
+"NASA World Wind",Stellarium
+Natron,"Kdenlive; DaVinci Resolve"
+"Nero Burning ROM",HandBrake
+nomacs,"GIMP; ImageMagick; Krita; Darktable; Geeqie"
+"Norton Partition Magic","GParted; KDE Partition Manager"
+"Norton/McAfee Antivirus",ClamAV
+Notepad,"Vim; Kate; Sublime Text"
+Ocenaudio,"Audacity; DaVinci Resolve"
+Octave,Octave
+Olive,"Kdenlive; DaVinci Resolve"
+OneNote,"Joplin; Xournal++"
+"Onlyoffice Desktop",LibreOffice
+"OnlyOffice Desktop Editors","Scribus; Inkscape; Okular"
+OpenMeetings,Zoom
+OpenOffice,LibreOffice
+OpenShot,"Kdenlive; DaVinci Resolve"
+OpenToonz,"Blender; Krita"
+Opera,"Firefox; Chromium; Brave; Vivaldi; LibreWolf"
+"Otter Browser","Firefox; Chromium; Brave; Vivaldi; LibreWolf"
+Outlook,Thunderbird
+"Pale Moon","Firefox; Chromium; Brave; Vivaldi; LibreWolf"
+Pan,Thunderbird
+"PDF Studio Pro","Scribus; Inkscape; Okular"
+PDFCreator,LibreOffice
+PDFsam,"Scribus; Inkscape; Okular"
+Pegasus,"Thunderbird; Claws Mail"
+Pencil2D,"Blender; Krita; KolourPaint"
+Photivo,"GIMP; ImageMagick; Krita; Darktable"
+Pidgin,Pidgin
+Pinta,"GIMP; ImageMagick; Krita; Darktable; KolourPaint"
+PowerDVD,"mpv; VLC; Celluloid; MPlayer"
+"printer sharing",Samba
+qBittorrent,"Transmission; qBittorrent"
+qTox,Zoom
+Quark,Scribus
+"Quark Express",Scribus
+Quassel,Pidgin
+RawTherapee,"GIMP; ImageMagick; Krita; Darktable"
+RealVNC,rdesktop
+"Remote Desktop",rdesktop
+Scilab,Octave
+SciTE,"Vim; Kate; Sublime Text"
+Scribus,"Scribus; Inkscape; Okular"
+SeaMonkey,"Thunderbird; Claws Mail"
+SFLphone),Zoom
+Shotcut,"Kdenlive; DaVinci Resolve"
+sK1,Inkscape
+Skychart,Stellarium
+Slimjet,"Firefox; Chromium; Brave; Vivaldi; LibreWolf"
+SMPlayer,"mpv; VLC; Celluloid; MPlayer; Strawberry"
+"Softmaker Office",LibreOffice
+Solidworks,FreeCAD
+Sonique,"VLC; Strawberry"
+Sox,Audacity
+Stellarium,Stellarium
+Strawberry,"VLC; Strawberry"
+"Sumatra pdf","Evince; Zathura; Okular"
+SVG-edit,Inkscape
+SyncToy,"Meld; rsync"
+Synfig,"Blender; Krita"
+Tahoma2D,"Blender; Krita"
+TheGun,"Vim; Kate; Sublime Text"
+Thunderbird,"Thunderbird; Claws Mail"
+TightVNC,rdesktop
+Tixati,"Transmission; qBittorrent"
+"Toon Boom Harmony","Blender; Krita"
+Transmission,"Transmission; qBittorrent"
+Traverso-DAW,"Audacity; DaVinci Resolve"
+Tribler,"Transmission; qBittorrent"
+Trillian,Pidgin
+"Tupi (Tupitube Desk)","Blender; Krita"
+"Tux Paint","KolourPaint; Krita"
+TVPaint,"Blender; Krita"
+UltraVNC,rdesktop
+utorrent,"Transmission; qBittorrent"
+uTox,Zoom
+"VCT - Video Converter & Transcoder","HandBrake; VLC"
+Vectr,Inkscape
+VidCutter,"Kdenlive; DaVinci Resolve"
+Videora,"HandBrake; VLC"
+Vivaldi,"Firefox; Chromium; Brave; Vivaldi; LibreWolf"
+VLC,"mpv; VLC; Celluloid; MPlayer; Strawberry; HandBrake"
+"Vuze (formerly Azureus)","Transmission; qBittorrent"
+Waveform,"Audacity; DaVinci Resolve"
+Wavesurfer,Audacity
+Winamp,"VLC; Strawberry"
+"Windows Media Player","mpv; VLC; Celluloid; MPlayer"
+"Windows Movie Maker","Kdenlive; DaVinci Resolve"
+WinFF,"HandBrake; VLC"
+WinMerge,"Meld; rsync"
+Wordpad,"Vim; Kate; Sublime Text"
+"WPS Office",LibreOffice
+Xnview,"GIMP; ImageMagick; Krita; Darktable; Geeqie"
+"Xpdf Reader","Evince; Zathura; Okular"
+Zoom,Zoom

@@ -577,7 +577,8 @@ const fetchScript = async () => {
     pendingRequest = controller;
 
     try {
-        const response = await fetch('php/generate.php', {
+        const generateUrl = document.body.dataset.generateUrl || 'php/generate.php';
+        const response = await fetch(generateUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -707,6 +708,11 @@ checkboxes.forEach((checkbox) => {
         } else {
             selected.delete(id);
         }
+        checkboxes.forEach((peer) => {
+            if (peer !== event.target && peer.dataset.id === id && !peer.disabled) {
+                peer.checked = event.target.checked;
+            }
+        });
         updateAppimageLink(id);
         scheduleUpdate();
     });
@@ -776,7 +782,7 @@ document.querySelectorAll('.category-toggle').forEach((toggle) => {
 
 document.querySelectorAll('.category-header').forEach((header) => {
     header.addEventListener('click', (event) => {
-        if (event.target.closest('.category-toggle')) {
+        if (event.target.closest('a, button')) {
             return;
         }
         const card = header.closest('.category-card');
@@ -1061,11 +1067,15 @@ const applyUrlSelections = () => {
 
     if (initialUrlState.apps.length) {
         initialUrlState.apps.forEach((id) => {
-            const checkbox = document.querySelector(
+            const matchingCheckboxes = Array.from(document.querySelectorAll(
                 `.pkg-check[data-id=\"${CSS.escape(id)}\"]`
-            );
-            if (checkbox && !checkbox.disabled) {
-                checkbox.checked = true;
+            ));
+            matchingCheckboxes.forEach((checkbox) => {
+                if (!checkbox.disabled) {
+                    checkbox.checked = true;
+                }
+            });
+            if (matchingCheckboxes.some((checkbox) => !checkbox.disabled)) {
                 selected.add(id);
             }
         });

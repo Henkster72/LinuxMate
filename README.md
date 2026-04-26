@@ -1,4 +1,4 @@
-# LinuxMate v0.7 🐧✨
+# LinuxMate v0.8 🐧✨
 
 <img src="assets-icons/tuxbw.svg" alt="LinuxMate logo" width="96" />
 
@@ -13,8 +13,7 @@ No build step. No tooling ceremony. Just open it and go.
 
 ## Changelog
 
-- v0.7: Load distros from `data/distro.json`, make sandbox modes respect non-null package IDs, and list AppImage placeholders as commented search URLs in scripts.
-
+- v0.8: Windows-to-Linux now shows a visible LinuxQuestions source overview link, links the Help data source text, and hides the browser-native search clear icon so filtering only shows one clear button.
 - v0.7: Load distros from `data/distro.json`, make sandbox modes respect non-null package IDs, and list AppImage placeholders as commented search URLs in scripts.
 - v0.61: Moved the refresh toggle into the footer, hid script-action labels on small screens, and tailored mobile topbar selects for consistent outlines and heights.
 - v0.6: Added custom-install footer tips (path/curl setup advice plus Flatpak reminder), capped the mobile script footer height, and improved CSV sync so “None” cells keep existing AppImage/custom-script data.

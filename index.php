@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/php/layout.php';
+
 $packagesFile = __DIR__ . '/data/packages.json';
 $packages = json_decode(file_get_contents($packagesFile), true) ?? [];
 $distroFile = __DIR__ . '/data/distro.json';
@@ -39,10 +41,7 @@ function slugify_category($text) {
 }
 
 function decorate_icon($html) {
-    if (strpos($html, '<img') === 0 && strpos($html, 'loading=') === false) {
-        return preg_replace('/<img\b/', '<img loading="lazy" decoding="async"', $html, 1);
-    }
-    return $html;
+    return linuxmate_decorate_icon($html);
 }
 
 $categories = [];
@@ -68,120 +67,13 @@ foreach ($categoryOrder as $label) {
 $jsBytes = file_exists(__DIR__ . '/js/app.js') ? filesize(__DIR__ . '/js/app.js') : 0;
 $cssBytes = file_exists(__DIR__ . '/css/style.css') ? filesize(__DIR__ . '/css/style.css') : 0;
 $kb = fn($bytes) => number_format($bytes / 1024, 1) . ' KB';
-$readme = file_exists(__DIR__ . '/README.md') ? file_get_contents(__DIR__ . '/README.md') : '';
-$version = 'v0.21';
-if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
-    $version = $match[1];
-}
+$version = linuxmate_version(__DIR__);
+$topbarControls = linuxmate_render_installer_controls($distros, $defaultDistroLabel);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="LinuxMate is a lightweight PHP-based UI for generating bulk install scripts across multiple Linux package managers." />
-    <title>LinuxMate - The Online Linux Bulk App Installer.</title>
-    <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="popicon.css" />
-    <link rel="stylesheet" href="css/style.css" />
-</head>
+<?php linuxmate_render_head('LinuxMate - The Online Linux Bulk App Installer.', 'LinuxMate is a lightweight PHP-based UI for generating bulk install scripts across multiple Linux package managers.'); ?>
 <body>
     <div class="page">
-        <header class="topbar">
-            <div class="brand">
-                <div class="logo" aria-hidden="true">
-                    <span class="pi pi-linux logo-icon" aria-hidden="true"></span>
-                    <span class="logo-badge pi pi-packageclose"></span>
-                </div>
-                <div class="brand-text">
-                    <div class="brand-title">
-                        <h1>LinuxMate</h1>
-                        <span class="version-badge"><?php echo htmlspecialchars($version); ?></span>
-                    </div>
-                    <p>The Linux Bulk App Installer.<br>
-                    Install and update all your Linux programs at once.</p>
-                    <p class="brand-note">
-                        Story behind the tool: <a href="https://www.allroundwebsite.com/blog/bye-windows-hello-linux-and-linuxmate/" target="_blank" rel="noreferrer">Bye Windows, Hello Linux and LinuxMate</a>.
-                    </p>
-                </div>
-            </div>
-            <div class="topbar-controls">
-                    <div class="top-links">
-                        <a href="https://github.com/Henkster72/LinuxMate" target="_blank" rel="noreferrer">
-                            <i class="pi pi-code"></i>
-                            GitHub
-                        </a>
-                        <a href="https://github.com/Henkster72/LinuxMate/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">
-                            <i class="pi pi-heart"></i>
-                            Contribute
-                        </a>
-                        <button id="help-button" class="ghost" type="button">
-                            <i class="pi pi-question"></i>
-                            Help
-                        </button>
-                        <button id="theme-toggle" class="ghost" type="button" aria-pressed="false">
-                            <span id="theme-icon" class="pi pi-moon"></span>
-                            Theme
-                        </button>
-                    </div>
-                <div class="select-row">
-                    <label class="select distro-select">
-                        <span>Distro</span>
-                        <div class="select-shell distro-shell">
-                            <button id="distro-button" class="distro-button" type="button" aria-haspopup="listbox" aria-controls="distro-menu" aria-expanded="false">
-                                <img class="distro-button-icon" alt="" />
-                                <span class="distro-button-label"><?php echo htmlspecialchars($defaultDistroLabel); ?></span>
-                            </button>
-                            <span class="select-caret pi pi-downcaret" aria-hidden="true"></span>
-                            <select id="distro" class="native-select" aria-hidden="true" tabindex="-1">
-                                <?php foreach ($distros as $index => $distro): ?>
-                                    <?php
-                                        $value = $distro['value'] ?? '';
-                                        $label = $distro['label'] ?? $value;
-                                        $icon = $distro['icon'] ?? '';
-                                        $managers = $distro['managers'] ?? [];
-                                        $managerList = is_array($managers) ? implode(',', $managers) : '';
-                                    ?>
-                                    <option value="<?php echo htmlspecialchars($value); ?>"
-                                        data-icon="<?php echo htmlspecialchars($icon); ?>"
-                                        data-managers="<?php echo htmlspecialchars($managerList); ?>"
-                                        <?php echo $index === 0 ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars($label); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                            <ul id="distro-menu" class="distro-menu" role="listbox" aria-label="Select distro"></ul>
-                        </div>
-                    </label>
-                    <label class="select sandbox-select">
-                        <span>Sandbox</span>
-                        <div class="select-shell">
-                            <select id="sandbox">
-                                <option value="none">None</option>
-                                <option value="flatpak">Flatpak</option>
-                                <option value="snap">Snap</option>
-                                <option value="appimage">AppImage</option>
-                                <option value="custom">Custom script</option>
-                            </select>
-                            <span class="select-caret pi pi-downcaret" aria-hidden="true"></span>
-                        </div>
-                    </label>
-                    <div id="aur-slot"></div>
-                </div>
-                <template id="aur-template">
-                    <label class="select aur-select" id="aur-wrap">
-                        <span>AUR helper</span>
-                        <div class="select-shell">
-                            <select id="aur-helper">
-                                <option value="yay">yay</option>
-                                <option value="paru">paru</option>
-                            </select>
-                            <span class="select-caret pi pi-downcaret" aria-hidden="true"></span>
-                        </div>
-                    </label>
-                </template>
-            </div>
-        </header>
+<?php linuxmate_render_topbar(['version' => $version, 'controlsHtml' => $topbarControls, 'active' => 'installer']); ?>
 
         <section class="controls">
             <div class="search-stats-row">
@@ -415,6 +307,4 @@ if (preg_match('/LinuxMate\\s+(v[0-9.]+)/', $readme, $match)) {
     </div>
 </div>
 
-    <script src="js/app.js"></script>
-</body>
-</html>
+<?php linuxmate_render_page_end(['js/app.js']); ?>
