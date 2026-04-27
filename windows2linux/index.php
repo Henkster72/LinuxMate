@@ -57,6 +57,15 @@ function w2l_split_linux_variants($value) {
     return array_values(array_filter(array_map('trim', $parts), static fn($part) => $part !== ''));
 }
 
+function w2l_package_icon_html($pkg) {
+    $id = $pkg['id'] ?? '';
+    $icon = $pkg['icon_svg'] ?? '';
+    if (is_string($id) && preg_match('/^[a-z0-9-]+$/', $id) && is_string($icon) && stripos(ltrim($icon), '<svg') === 0) {
+        return '<img class="icon-external" loading="lazy" decoding="async" src="../icon/' . htmlspecialchars($id) . '" alt="" />';
+    }
+    return linuxmate_rebase_icon_html(linuxmate_decorate_icon((string) $icon), '..');
+}
+
 $packageIndex = [];
 foreach ($packages as $package) {
     $name = $package['name'] ?? '';
@@ -92,7 +101,7 @@ ob_start();
 $helpBody = ob_get_clean();
 ?>
 <?php linuxmate_render_head('Windows software equivalents - LinuxMate', 'Find and install LinuxMate packages that are comparable to Windows software listed by LinuxQuestions.', '..'); ?>
-<body data-generate-url="../php/generate.php">
+<body data-generate-url="../generate">
     <div class="page">
 <?php linuxmate_render_topbar([
     'basePath' => '..',
@@ -118,14 +127,6 @@ $helpBody = ob_get_clean();
                     <a class="stats-chip stats-link" href="<?php echo htmlspecialchars($sourceUrl); ?>" target="_blank" rel="noreferrer">
                         Source overview
                         <span class="pi pi-externallink" aria-hidden="true"></span>
-                    </a>
-                    <a class="stats-chip stats-link" href="comparable-software.csv">
-                        Matches CSV
-                        <span class="pi pi-download" aria-hidden="true"></span>
-                    </a>
-                    <a class="stats-chip stats-link" href="notfoundpackage.csv">
-                        Not found CSV
-                        <span class="pi pi-download" aria-hidden="true"></span>
                     </a>
                 </div>
             </div>
@@ -183,7 +184,7 @@ $helpBody = ob_get_clean();
                                         $managerKeys[] = $manager;
                                     }
                                     $managerList = implode(',', $managerKeys);
-                                    $iconHtml = linuxmate_rebase_icon_html(linuxmate_decorate_icon($pkg['icon_svg'] ?? ''), '..');
+                                    $iconHtml = w2l_package_icon_html($pkg);
                                     $url = $pkg['url'] ?? '';
                                     $appimage = $pkg['packages']['appimage'] ?? '';
                                     $customScript = $pkg['custom_script'] ?? '';
@@ -222,10 +223,6 @@ $helpBody = ob_get_clean();
                     <h2>Not In LinuxMate Yet</h2>
                     <p>Wiki entries whose Linux equivalents did not match current package data.</p>
                 </div>
-                <a href="notfoundpackage.csv">
-                    CSV
-                    <span class="pi pi-download" aria-hidden="true"></span>
-                </a>
             </header>
             <div class="windows2linux-table-wrap">
                 <table class="windows2linux-table">

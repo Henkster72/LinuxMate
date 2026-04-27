@@ -71,7 +71,7 @@ $version = linuxmate_version(__DIR__);
 $topbarControls = linuxmate_render_installer_controls($distros, $defaultDistroLabel);
 ?>
 <?php linuxmate_render_head('LinuxMate - The Online Linux Bulk App Installer.', 'LinuxMate is a lightweight PHP-based UI for generating bulk install scripts across multiple Linux package managers.'); ?>
-<body>
+<body data-generate-url="generate">
     <div class="page">
 <?php linuxmate_render_topbar(['version' => $version, 'controlsHtml' => $topbarControls, 'active' => 'installer']); ?>
 

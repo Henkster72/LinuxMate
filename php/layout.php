@@ -59,11 +59,11 @@ function linuxmate_render_topbar($options = []) {
             </div>
             <div class="topbar-controls">
                 <div class="top-links">
-                    <a href="<?php echo htmlspecialchars(linuxmate_asset('index.php', $basePath)); ?>" <?php echo $active === 'installer' ? 'aria-current="page"' : ''; ?>>
+                    <a href="<?php echo htmlspecialchars(linuxmate_asset('', $basePath) ?: './'); ?>" <?php echo $active === 'installer' ? 'aria-current="page"' : ''; ?>>
                         <i class="pi pi-packageclose"></i>
                         Installer
                     </a>
-                    <a href="<?php echo htmlspecialchars(linuxmate_asset('windows2linux/index.php', $basePath)); ?>" <?php echo $active === 'windows2linux' ? 'aria-current="page"' : ''; ?>>
+                    <a href="<?php echo htmlspecialchars(linuxmate_asset('windows2linux/', $basePath)); ?>" <?php echo $active === 'windows2linux' ? 'aria-current="page"' : ''; ?>>
                         <i class="pi pi-arrowbow"></i>
                         Windows to Linux
                     </a>

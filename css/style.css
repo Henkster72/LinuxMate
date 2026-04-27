@@ -1063,6 +1063,8 @@ body[data-theme="dark"] .shortcut-grid div {
 .windows2linux-card {
     --accent: #14b8a6;
     --accent-rgb: 20, 184, 166;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 96px;
 }
 
 .windows2linux-card .category-header h3 {

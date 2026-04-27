@@ -1095,16 +1095,12 @@ if (savedIncludeUpdate !== null) {
     syncUpdateToggleState();
 }
 
-updateAvailability();
 buildDistroMenu();
 applyUrlSelections();
-updateAvailability();
 updateSelectedCount();
 updateWarningNotice();
-buildDistroMenu();
 updateDistroButton();
 scheduleUpdate();
-updateCategoryHeights();
 
 const initialQuery = searchInput.value.trim();
 if (searchWrap) {
