@@ -26,6 +26,7 @@ const infoModal = document.getElementById('info-modal');
 const previewList = document.getElementById('preview-list');
 const infoTitle = document.getElementById('info-title');
 const infoBody = document.getElementById('info-body');
+const infoManagers = document.getElementById('info-managers');
 const infoLinkRow = document.getElementById('info-link');
 const distroButton = document.getElementById('distro-button');
 const distroMenu = document.getElementById('distro-menu');
@@ -118,6 +119,53 @@ const getActiveManagers = () => {
 const getSandboxSelection = () => sandboxSelect?.value || 'none';
 
 const appimageSearchBase = 'https://duckduckgo.com/?q=appimage+site:';
+const managerLabels = {
+    apt: 'APT',
+    dnf: 'DNF',
+    pacman: 'PACMAN',
+    zypper: 'ZYPPER',
+    flatpak: 'FLATPAK',
+    snap: 'SNAP',
+    appimage: 'APPIMAGE',
+    brew: 'BREW',
+    aur: 'AUR',
+};
+const managerOrder = ['apt', 'dnf', 'pacman', 'zypper', 'flatpak', 'snap', 'appimage', 'brew', 'aur'];
+
+const renderInfoManagers = (managerList) => {
+    if (!infoManagers) {
+        return;
+    }
+    const managers = (managerList || '')
+        .split(',')
+        .map((manager) => manager.trim())
+        .filter(Boolean)
+        .sort((a, b) => {
+            const aRank = managerOrder.includes(a) ? managerOrder.indexOf(a) : managerOrder.length;
+            const bRank = managerOrder.includes(b) ? managerOrder.indexOf(b) : managerOrder.length;
+            return aRank - bRank;
+        });
+    infoManagers.innerHTML = '';
+    if (!managers.length) {
+        infoManagers.hidden = true;
+        return;
+    }
+    const label = document.createElement('span');
+    label.className = 'info-manager-label';
+    label.textContent = 'Install methods';
+    infoManagers.appendChild(label);
+    const badges = document.createElement('span');
+    badges.className = 'pkg-manager-badges';
+    managers.forEach((manager) => {
+        const badge = document.createElement('span');
+        badge.className = `pkg-manager-badge pkg-manager-badge-${manager}`;
+        badge.textContent = managerLabels[manager] || manager.toUpperCase();
+        badge.title = `Available via ${badge.textContent}`;
+        badges.appendChild(badge);
+    });
+    infoManagers.appendChild(badges);
+    infoManagers.hidden = false;
+};
 
 const isAppimageSearchBase = (value) =>
     Boolean(value) &&
@@ -730,6 +778,7 @@ packageItems.forEach((item) => {
             : 'Available for this distro.';
         infoTitle.textContent = name;
         infoBody.textContent = description + ' ' + note;
+        renderInfoManagers(item.dataset.managers);
         if (infoLinkRow) {
             if (url) {
                 infoLinkRow.innerHTML = '';

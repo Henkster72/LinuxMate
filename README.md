@@ -1,4 +1,4 @@
-# LinuxMate v0.8 🐧✨
+# LinuxMate v0.9 🐧✨
 
 <img src="assets-icons/tuxbw.svg" alt="LinuxMate logo" width="96" />
 
@@ -12,6 +12,8 @@ No build step. No tooling ceremony. Just open it and go.
 ---
 
 ## Changelog
+
+- v0.9: Add Discord community link and move install methods into app info
 
 - v0.8: Windows-to-Linux now shows a visible LinuxQuestions source overview link, links the Help data source text, and hides the browser-native search clear icon so filtering only shows one clear button.
 - v0.7: Load distros from `data/distro.json`, make sandbox modes respect non-null package IDs, and list AppImage placeholders as commented search URLs in scripts.

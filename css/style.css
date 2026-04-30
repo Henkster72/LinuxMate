@@ -220,6 +220,39 @@ body[data-theme="dark"] .logo .logo-icon {
     color: var(--accent);
 }
 
+.w2l-link-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    flex: 0 0 auto;
+    line-height: 1;
+}
+
+.w2l-windows-mark {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    width: 15px;
+    height: 15px;
+}
+
+.w2l-windows-mark span {
+    display: block;
+    background: var(--tile-color);
+}
+
+.w2l-number {
+    font-size: 0.82em;
+    font-weight: 800;
+    line-height: 1;
+    color: currentColor;
+}
+
+.w2l-linux {
+    font-size: 1.08em;
+    line-height: 1;
+}
+
 
 .select-row {
     display: flex;
@@ -716,6 +749,59 @@ body[data-theme="dark"] .pkg-icon img[src$="tuxbw.svg"] {
     margin-left: 4px;
 }
 
+.pkg-manager-badges {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.pkg-manager-badge {
+    --badge-bg: rgba(var(--accent-rgb), 0.12);
+    --badge-border: rgba(var(--accent-rgb), 0.26);
+    --badge-ink: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 15px;
+    padding: 2px 4px;
+    border: 1px solid var(--badge-border);
+    border-radius: 4px;
+    background: var(--badge-bg);
+    color: var(--badge-ink);
+    font-size: 0.5rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+.pkg-manager-badge-apt { --badge-bg: #dff0ff; --badge-border: #a7d4f2; --badge-ink: #18577a; }
+.pkg-manager-badge-dnf { --badge-bg: #e7ebff; --badge-border: #bdc8ff; --badge-ink: #30418e; }
+.pkg-manager-badge-pacman { --badge-bg: #ddf7ef; --badge-border: #9bdcc8; --badge-ink: #11624e; }
+.pkg-manager-badge-zypper { --badge-bg: #e2f5d9; --badge-border: #addb99; --badge-ink: #37651e; }
+.pkg-manager-badge-flatpak { --badge-bg: #eee6ff; --badge-border: #cdbcf2; --badge-ink: #57318c; }
+.pkg-manager-badge-snap { --badge-bg: #f0f7d7; --badge-border: #cbdc8c; --badge-ink: #58630f; }
+.pkg-manager-badge-appimage { --badge-bg: #fff1ca; --badge-border: #e6c26d; --badge-ink: #734d00; }
+.pkg-manager-badge-brew { --badge-bg: #f5e1d8; --badge-border: #dda98d; --badge-ink: #764227; }
+.pkg-manager-badge-aur { --badge-bg: #e6f1ff; --badge-border: #aacbf0; --badge-ink: #215d99; }
+
+body[data-theme="dark"] .pkg-manager-badge {
+    --badge-bg: rgba(255, 255, 255, 0.08);
+    --badge-border: rgba(255, 255, 255, 0.14);
+    --badge-ink: #f4efe8;
+}
+
+body[data-theme="dark"] .pkg-manager-badge-apt { --badge-bg: rgba(77, 166, 230, 0.18); --badge-border: rgba(77, 166, 230, 0.32); }
+body[data-theme="dark"] .pkg-manager-badge-dnf { --badge-bg: rgba(120, 140, 255, 0.18); --badge-border: rgba(120, 140, 255, 0.34); }
+body[data-theme="dark"] .pkg-manager-badge-pacman { --badge-bg: rgba(64, 190, 155, 0.17); --badge-border: rgba(64, 190, 155, 0.32); }
+body[data-theme="dark"] .pkg-manager-badge-zypper { --badge-bg: rgba(126, 199, 91, 0.17); --badge-border: rgba(126, 199, 91, 0.32); }
+body[data-theme="dark"] .pkg-manager-badge-flatpak { --badge-bg: rgba(170, 130, 245, 0.18); --badge-border: rgba(170, 130, 245, 0.34); }
+body[data-theme="dark"] .pkg-manager-badge-snap { --badge-bg: rgba(180, 205, 80, 0.17); --badge-border: rgba(180, 205, 80, 0.32); }
+body[data-theme="dark"] .pkg-manager-badge-appimage { --badge-bg: rgba(235, 184, 65, 0.18); --badge-border: rgba(235, 184, 65, 0.34); }
+body[data-theme="dark"] .pkg-manager-badge-brew { --badge-bg: rgba(221, 145, 95, 0.18); --badge-border: rgba(221, 145, 95, 0.34); }
+body[data-theme="dark"] .pkg-manager-badge-aur { --badge-bg: rgba(95, 157, 224, 0.18); --badge-border: rgba(95, 157, 224, 0.34); }
+
 .package-actions {
     display: inline-flex;
     align-items: center;
@@ -770,6 +856,18 @@ body[data-theme="dark"] .pkg-icon img[src$="tuxbw.svg"] {
 .info-link-row {
     margin-top: 12px;
     font-size: 0.85rem;
+}
+
+.info-manager-row {
+    display: grid;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.info-manager-label {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 700;
 }
 
 .info-link-anchor {

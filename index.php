@@ -44,6 +44,15 @@ function decorate_icon($html) {
     return linuxmate_decorate_icon($html);
 }
 
+function sort_package_managers($managers) {
+    $order = ['apt', 'dnf', 'pacman', 'zypper', 'flatpak', 'snap', 'appimage', 'brew', 'aur'];
+    $rank = array_flip($order);
+    usort($managers, function ($a, $b) use ($rank) {
+        return ($rank[$a] ?? 99) <=> ($rank[$b] ?? 99);
+    });
+    return $managers;
+}
+
 $categories = [];
 foreach ($packages as $pkg) {
     $slug = slugify_category($pkg['category']);
@@ -123,6 +132,7 @@ $topbarControls = linuxmate_render_installer_controls($distros, $defaultDistroLa
                                         }
                                         $managerKeys[] = $manager;
                                     }
+                                    $managerKeys = sort_package_managers($managerKeys);
                                     $managerList = implode(',', $managerKeys);
                                     $iconHtml = decorate_icon($pkg['icon_svg']);
                                     $url = $pkg['url'] ?? '';
@@ -302,6 +312,7 @@ $topbarControls = linuxmate_render_installer_controls($distros, $defaultDistroLa
             </header>
         <div class="modal-body">
             <p id="info-body"></p>
+            <div id="info-managers" class="info-manager-row" hidden></div>
             <p id="info-link" class="info-link-row" hidden></p>
         </div>
     </div>

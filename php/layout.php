@@ -59,13 +59,26 @@ function linuxmate_render_topbar($options = []) {
             </div>
             <div class="topbar-controls">
                 <div class="top-links">
-                    <a href="<?php echo htmlspecialchars(linuxmate_asset('', $basePath) ?: './'); ?>" <?php echo $active === 'installer' ? 'aria-current="page"' : ''; ?>>
+                    <a href="<?php echo htmlspecialchars(linuxmate_asset('index.php', $basePath)); ?>" <?php echo $active === 'installer' ? 'aria-current="page"' : ''; ?>>
                         <i class="pi pi-packageclose"></i>
                         Installer
                     </a>
-                    <a href="<?php echo htmlspecialchars(linuxmate_asset('windows2linux/', $basePath)); ?>" <?php echo $active === 'windows2linux' ? 'aria-current="page"' : ''; ?>>
-                        <i class="pi pi-arrowbow"></i>
-                        Windows to Linux
+                    <a href="<?php echo htmlspecialchars(linuxmate_asset('windows2linux/index.php', $basePath)); ?>" <?php echo $active === 'windows2linux' ? 'aria-current="page"' : ''; ?>>
+                        <span class="w2l-link-mark" aria-hidden="true">
+                            <span class="w2l-windows-mark">
+                                <span style="--tile-color: #f45326;"></span>
+                                <span style="--tile-color: #82bc06;"></span>
+                                <span style="--tile-color: #05a6f1;"></span>
+                                <span style="--tile-color: #ffbb08;"></span>
+                            </span>
+                            <span class="w2l-number">2</span>
+                            <span class="pi pi-linux w2l-linux"></span>
+                        </span>
+                        <span>Windows to Linux</span>
+                    </a>
+                    <a href="https://discord.com/channels/1499496932559552680/1499496933482561741" target="_blank" rel="noreferrer">
+                        <i class="pi pi-horn"></i>
+                        Discord
                     </a>
                     <a href="https://github.com/Henkster72/LinuxMate" target="_blank" rel="noreferrer">
                         <i class="pi pi-code"></i>
@@ -281,6 +294,7 @@ function linuxmate_render_installer_modals() {
             </header>
             <div class="modal-body">
                 <p id="info-body"></p>
+                <div id="info-managers" class="info-manager-row" hidden></div>
                 <p id="info-link" class="info-link-row" hidden></p>
             </div>
         </div>
