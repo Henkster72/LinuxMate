@@ -2,3 +2,4 @@ data/images.html
 php/build_packages.php
 .env
 data/packages-urls.csv
+www/*.log

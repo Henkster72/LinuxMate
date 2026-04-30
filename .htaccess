@@ -1,0 +1,49 @@
+Options -Indexes -MultiViews
+DirectoryIndex index.php
+
+<IfModule mod_setenvif.c>
+    SetEnvIfNoCase Request_URI "\.(?:csv|json)$" linuxmate_private_data=1
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header always set Cache-Control "no-store, private" env=linuxmate_private_data
+    Header always set X-Robots-Tag "noindex, nofollow, noarchive" env=linuxmate_private_data
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Canonical directory URLs: / and /windows2linux/ instead of index.php.
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.php[?\s] [NC]
+    RewriteRule ^(.*/)?index\.php$ /$1 [R=301,L]
+
+    # Keep PHP implementation paths out of browser-facing URLs.
+    RewriteCond %{THE_REQUEST} \s/+php/ [NC]
+    RewriteRule ^php/ - [R=404,L]
+
+    # The UI posts here; the PHP file itself remains hidden.
+    RewriteRule ^generate/?$ php/generate.php [L]
+    RewriteRule ^php/generate\.php$ - [L]
+
+    # Cacheable package icons for pages that should not inline hundreds of SVGs.
+    RewriteRule ^icon/([a-z0-9-]+)/?$ php/icon.php?id=$1 [L,QSA]
+    RewriteRule ^php/icon\.php$ - [L]
+
+    # Public pages.
+    RewriteRule ^$ - [L]
+    RewriteRule ^windows2linux/?$ - [L]
+    RewriteRule ^www/background_task\.php$ - [L]
+
+    # Public static assets only.
+    RewriteRule ^(?:css|js|assets-icons)/[-A-Za-z0-9_./]+\.(?:css|js|svg|png|webp|ico|woff2?)$ - [L,NC]
+    RewriteRule ^(?:favicon\.ico|popicon\.css|popicon\.woff2)$ - [L,NC]
+
+    # Everything else is not part of the public site surface.
+    RewriteRule . - [R=404,L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    <FilesMatch "\.(?:php|csv|json|md|py|sh|txt|lock|log|ya?ml|ini|env)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>

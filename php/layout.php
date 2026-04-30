@@ -299,6 +299,23 @@ function linuxmate_render_page_end($scripts = []) {
 <?php
     }
     ?>
+    <script>
+        (function logPageView() {
+            var page = window.location.href;
+            var url = "/www/background_task.php";
+            var data = "page=" + encodeURIComponent(page);
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status !== 200) {
+                    console.error("Error logging page view:", xhr.statusText);
+                }
+            };
+            xhr.send(data);
+        })();
+    </script>
 </body>
 </html>
 <?php
