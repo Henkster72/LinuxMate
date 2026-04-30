@@ -32,7 +32,11 @@ DirectoryIndex index.php
     # Public pages.
     RewriteRule ^$ - [L]
     RewriteRule ^windows2linux/?$ - [L]
+    RewriteRule ^www/sitestats\.html$ - [L]
     RewriteRule ^www/background_task\.php$ - [L]
+    RewriteRule ^www/fetch_logs\.php$ - [L]
+    RewriteRule ^www/(?:ss_en|ss_nl|countryCodeToName|alpha2ToNumeric)\.json$ - [L]
+    RewriteRule ^www/static/[-A-Za-z0-9_.]+\.(?:css|js|woff2?)$ - [L,NC]
 
     # Public static assets only.
     RewriteRule ^(?:css|js|assets-icons)/[-A-Za-z0-9_./]+\.(?:css|js|svg|png|webp|ico|woff2?)$ - [L,NC]
